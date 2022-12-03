@@ -25,7 +25,7 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	pros::Motor uLFM (1, pros::E_MOTOR_GEAR_GREEN, false, pros::E_MOTOR_ENCODER_DEGREES);
+	
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "Hello PROS User!");
 	pros::lcd::register_btn1_cb(on_center_button);
@@ -86,7 +86,7 @@ void opcontrol() {
 		int right = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 		motor.move(127);
 		motor = left;
-
+		pros::c::controller_rumble(pros::E_CONTROLLER_MASTER, ".");
 		pros::delay(20);
 	}
 }
