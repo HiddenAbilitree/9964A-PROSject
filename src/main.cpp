@@ -96,8 +96,8 @@ void opcontrol() {
 		int left = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
 		int right = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 		
-		leftMotors.move(left);
-		rightMotors.move(right);
+		leftMotors=left;
+		rightMotors=right;
 		pros::delay(20);
 	}
 }
