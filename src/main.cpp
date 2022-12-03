@@ -1,4 +1,11 @@
 #include "main.h"
+#include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/api/chassis/controller/odomChassisController.hpp"
+#include "okapi/api/chassis/model/chassisModel.hpp"
+#include "okapi/api/units/QLength.hpp"
+#include "okapi/api/units/RQuantity.hpp"
+#include "okapi/api/util/mathUtil.hpp"
+#include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "pros/misc.h"
 #include "pros/motors.h"
 
@@ -76,6 +83,11 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
+	.withMotors(1,2,11,12)
+	.withDimensions(okapi::AbstractMotor::gearset::green, {{3.25, 11}, okapi::imev5GreenTPR})
+	.withOdometry()
+	.buildOdometry();
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	pros::Motor lUFM(1,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
 	pros::Motor lUBM(2,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
@@ -95,7 +107,7 @@ void opcontrol() {
 		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
 		int left = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
 		int right = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-		
+
 		leftMotors=left;
 		rightMotors=right;
 		pros::delay(20);
