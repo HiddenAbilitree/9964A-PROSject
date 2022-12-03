@@ -2,12 +2,15 @@
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/odomChassisController.hpp"
 #include "okapi/api/chassis/model/chassisModel.hpp"
+#include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/RQuantity.hpp"
+#include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "pros/misc.h"
 #include "pros/motors.h"
+#include "robot.h"
 
 /**
  * A callback function for LLEMU's center button.
@@ -83,24 +86,31 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-	.withMotors(1,2,11,12)
-	.withDimensions(okapi::AbstractMotor::gearset::green, {{3.25, 11}, okapi::imev5GreenTPR})
-	.withOdometry()
-	.buildOdometry();
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
+	
 	pros::Motor lUFM(1,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
 	pros::Motor lUBM(2,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	//pros::Motor lLFM(3,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	//pros::Motor lLBM(4,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor lLFM(3,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor lLBM(4,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
 	pros::Motor rUFM(11,pros::E_MOTOR_GEAR_RED,0,pros::E_MOTOR_ENCODER_DEGREES);
 	pros::Motor rUBM(12,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	//pros::Motor rLFM(13,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	//pros::Motor rLBM(14,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	//pros::Motor_Group leftMotors({lUFM,lUBM,lLFM,lLBM});
-	//pros::Motor_Group rightMotors({rUFM,rUBM,rLFM,rLBM});
-	pros::Motor_Group leftMotors({lUFM,lUBM});
-	pros::Motor_Group rightMotors({rUFM,rUBM});
+	pros::Motor rLFM(13,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor rLBM(14,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor_Group leftMotors({lUFM,lUBM,lLFM,lLBM});
+	pros::Motor_Group rightMotors({rUFM,rUBM,rLFM,rLBM});
+	//pros::Motor_Group leftMotors({lUFM,lUBM});
+	//pros::Motor_Group rightMotors({rUFM,rUBM});
+	/*std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
+	.withMotors(
+		left_drive_motors,
+		right_drive_motors
+	)
+	.withDimensions(DRIVE_GEARSET, {{3.25_in, 11_in}, okapi::imev5GreenTPR})
+	.withOdometry()
+	.buildOdometry();*/
+	
+	chassis->driveToPoint({12_in,12_in});
+	
 	while (true) {
 		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
 		                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
