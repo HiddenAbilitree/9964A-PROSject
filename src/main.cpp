@@ -124,11 +124,16 @@ void opcontrol() {
 		.withMotors(
 			left_drive_motors,
 			right_drive_motors)
-		
-		.withDimensions(DRIVE_GEARSET,{{CHASSIS_WHEELS,CHASSIS_TRACK},DRIVE_TPR})
+		.withDimensions(
+			DRIVE_GEARSET,
+			{	
+				{CHASSIS_WHEELS,CHASSIS_TRACK},
+				DRIVE_TPR
+			}
+		)
 		.withOdometry()
 		.buildOdometry();
-	chassis->setState({ 0_in, 0_in, 0_deg});
+	chassis->setState({0_in, 0_in, 0_deg});
 	chassis->driveToPoint({12_in,12_in});
 	
 	while (true) {
