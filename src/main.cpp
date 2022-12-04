@@ -8,6 +8,7 @@
 #include "okapi/api/util/logging.hpp"
 #include "okapi/api/util/mathUtil.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
+#include "okapi/impl/device/motor/motorGroup.hpp"
 #include "pros/misc.h"
 #include "pros/motors.h"
 #include "robot.h"
@@ -98,6 +99,17 @@ void opcontrol() {
 	pros::Motor rLBM(14,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
 	pros::Motor_Group leftMotors({lUFM,lUBM,lLFM,lLBM});
 	pros::Motor_Group rightMotors({rUFM,rUBM,rLFM,rLBM});
+
+	okapi::MotorGroup left_drive_motors({
+		LEFT_DRIVE_MOTOR1_PORT,
+		LEFT_DRIVE_MOTOR2_PORT,
+		LEFT_DRIVE_MOTOR3_PORT,
+		LEFT_DRIVE_MOTOR4_PORT});
+	okapi::MotorGroup right_drive_motors({
+		LEFT_DRIVE_MOTOR1_PORT,
+		LEFT_DRIVE_MOTOR2_PORT,
+		LEFT_DRIVE_MOTOR3_PORT,
+		LEFT_DRIVE_MOTOR4_PORT});
 	//pros::Motor_Group leftMotors({lUFM,lUBM});
 	//pros::Motor_Group rightMotors({rUFM,rUBM});
 	/*std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
@@ -108,7 +120,15 @@ void opcontrol() {
 	.withDimensions(DRIVE_GEARSET, {{3.25_in, 11_in}, okapi::imev5GreenTPR})
 	.withOdometry()
 	.buildOdometry();*/
-	
+	chassis = okapi::ChassisControllerBuilder()
+		.withMotors(
+			left_drive_motors,
+			right_drive_motors)
+		
+		.withDimensions(DRIVE_GEARSET,{{CHASSIS_WHEELS,CHASSIS_TRACK},DRIVE_TPR})
+		.withOdometry()
+		.buildOdometry();
+	chassis->setState({ 0_in, 0_in, 0_deg});
 	chassis->driveToPoint({12_in,12_in});
 	
 	while (true) {
