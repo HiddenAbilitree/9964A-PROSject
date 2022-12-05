@@ -161,7 +161,8 @@ void opcontrol() {
 	chassis = okapi::ChassisControllerBuilder()
 		.withMotors(
 			left_drive_motors,					// left motors
-			right_drive_motors)					// right motors
+			right_drive_motors					// right motors
+		)					
 		.withGains(
         	{0.001, 0, 0.0001},	 				// Distance controller gains
         	{0.001, 0, 0.0001},			 		// Turn controller gains
@@ -171,9 +172,9 @@ void opcontrol() {
 			DRIVE_GEARSET,						// drive gearset stored in robot.h
 			{	
 				{
-					CHASSIS_WHEELS,
-					CHASSIS_TRACK
-				}, // wheel size and drivetrain track size stored in robot.h
+					CHASSIS_WHEELS,				// wheel size stored in robot.h
+					CHASSIS_TRACK				// drivetrain track size stored in robot.h
+				}, 
 				DRIVE_TPR						// drivetrain ticks per rotation stored in robot.h
 			}
 		)
