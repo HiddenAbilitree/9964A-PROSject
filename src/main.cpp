@@ -166,11 +166,14 @@ void opcontrol() {
         	{0.001, 0, 0.0001},	 				// Distance controller gains
         	{0.001, 0, 0.0001},			 		// Turn controller gains
         	{0.001, 0, 0.0001}  				// Angle controller gains (helps drive straight)
-    )
+    	)
 		.withDimensions(
 			DRIVE_GEARSET,						// drive gearset stored in robot.h
 			{	
-				{CHASSIS_WHEELS,CHASSIS_TRACK}, // wheel size and drivetrain track size stored in robot.h
+				{
+					CHASSIS_WHEELS,
+					CHASSIS_TRACK
+				}, // wheel size and drivetrain track size stored in robot.h
 				DRIVE_TPR						// drivetrain ticks per rotation stored in robot.h
 			}
 		)
@@ -186,6 +189,7 @@ void opcontrol() {
 	
 
 	// main while loop
+	/*
 	while (true) {
 
 		// prints buttons on the screen and sets numeric values for each button.
@@ -205,5 +209,5 @@ void opcontrol() {
 
 		// final delay
 		pros::delay(8);
-	}
+	}*/
 }
