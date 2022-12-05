@@ -23,7 +23,25 @@ void on_center_button() {
 	static bool pressed = false;
 	pressed = !pressed;
 	if (pressed) {
-		pros::lcd::set_text(2, "I was pressed!");
+		pros::lcd::set_text(2, "Middle button pressed!");
+	} else {
+		pros::lcd::clear_line(2);
+	}
+}
+void on_left_button() {
+	static bool pressed = false;
+	pressed = !pressed;
+	if (pressed) {
+		pros::lcd::set_text(2, "Left button pressed!");
+	} else {
+		pros::lcd::clear_line(2);
+	}
+}
+void on_right_button() {
+	static bool pressed = false;
+	pressed = !pressed;
+	if (pressed) {
+		pros::lcd::set_text(2, "Right button pressed!");
 	} else {
 		pros::lcd::clear_line(2);
 	}
@@ -39,7 +57,10 @@ void initialize() {
 	
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "Hello PROS User!");
+	pros::lcd::register_btn0_cb(on_right_button);
 	pros::lcd::register_btn1_cb(on_center_button);
+	pros::lcd::register_btn2_cb(on_left_button);
+
 }
 
 /**
