@@ -162,6 +162,11 @@ void opcontrol() {
 		.withMotors(
 			left_drive_motors,					// left motors
 			right_drive_motors)					// right motors
+		.withGains(
+        	{0.001, 0, 0.0001},	 				// Distance controller gains
+        	{0.001, 0, 0.0001},			 		// Turn controller gains
+        	{0.001, 0, 0.0001}  				// Angle controller gains (helps drive straight)
+    )
 		.withDimensions(
 			DRIVE_GEARSET,						// drive gearset stored in robot.h
 			{	
