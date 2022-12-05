@@ -19,6 +19,8 @@
  * When this callback is fired, it will toggle line 2 of the LCD text between
  * "I was pressed!" and nothing.
  */
+
+// center button function.
 void on_center_button() {
 	static bool pressed = false;
 	pressed = !pressed;
@@ -28,6 +30,8 @@ void on_center_button() {
 		pros::lcd::clear_line(2);
 	}
 }
+
+// left button function
 void on_left_button() {
 	static bool pressed = false;
 	pressed = !pressed;
@@ -37,6 +41,8 @@ void on_left_button() {
 		pros::lcd::clear_line(2);
 	}
 }
+
+// right button function
 void on_right_button() {
 	static bool pressed = false;
 	pressed = !pressed;
@@ -54,7 +60,7 @@ void on_right_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	
+	// creates buttons on the cortex lcd display
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "Hello PROS User!");
 	pros::lcd::register_btn0_cb(on_right_button);
@@ -108,8 +114,11 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+
+	// initalizing controller
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	
+	// initializing motors
 	pros::Motor lUFM(1,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
 	pros::Motor lUBM(2,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
 	pros::Motor lLFM(3,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
@@ -118,11 +127,15 @@ void opcontrol() {
 	pros::Motor rUBM(12,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
 	pros::Motor rLFM(13,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
 	pros::Motor rLBM(14,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
+	
+	// grouping motors into groups for readability
 	pros::Motor_Group leftMotors({lUFM,lUBM,lLFM,lLBM});
 	pros::Motor_Group rightMotors({rUFM,rUBM,rLFM,rLBM});
 
+	// creating motor groups for odometry
+	// port numbers stored in robot.h
 	okapi::MotorGroup left_drive_motors({
-		LEFT_DRIVE_MOTOR1_PORT,
+		LEFT_DRIVE_MOTOR1_PORT,		
 		LEFT_DRIVE_MOTOR2_PORT,
 		LEFT_DRIVE_MOTOR3_PORT,
 		LEFT_DRIVE_MOTOR4_PORT});
@@ -131,6 +144,8 @@ void opcontrol() {
 		LEFT_DRIVE_MOTOR2_PORT,
 		LEFT_DRIVE_MOTOR3_PORT,
 		LEFT_DRIVE_MOTOR4_PORT});
+
+
 	//pros::Motor_Group leftMotors({lUFM,lUBM});
 	//pros::Motor_Group rightMotors({rUFM,rUBM});
 	/*std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
@@ -141,31 +156,49 @@ void opcontrol() {
 	.withDimensions(DRIVE_GEARSET, {{3.25_in, 11_in}, okapi::imev5GreenTPR})
 	.withOdometry()
 	.buildOdometry();*/
+
+	// creating the chassis using okapilib ChassisController
 	chassis = okapi::ChassisControllerBuilder()
 		.withMotors(
-			left_drive_motors,
-			right_drive_motors)
+			left_drive_motors,					// left motors
+			right_drive_motors)					// right motors
 		.withDimensions(
-			DRIVE_GEARSET,
+			DRIVE_GEARSET,						// drive gearset stored in robot.h
 			{	
-				{CHASSIS_WHEELS,CHASSIS_TRACK},
-				DRIVE_TPR
+				{CHASSIS_WHEELS,CHASSIS_TRACK}, // wheel size and drivetrain track size stored in robot.h
+				DRIVE_TPR						// drivetrain ticks per rotation stored in robot.h
 			}
 		)
-		.withOdometry()
+		.withOdometry()	
 		.buildOdometry();
+
+	// resets the state of the robot
 	chassis->setState({0_in, 0_in, 0_deg});
+
+	// moves the robot 1 foot forward to the right
+	// orientation should be 45 degrees.
 	chassis->driveToPoint({12_in,12_in});
 	
+
+	// main while loop
 	while (true) {
+
+		// prints buttons on the screen and sets numeric values for each button.
 		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
 		                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
 		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
+
+		// stores controller analog stick positions into an int variable
+		// ranges -127 to 127
 		int left = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
 		int right = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
+
+		// sets motor movement equal to the controller analog input
 		leftMotors=left;
 		rightMotors=right;
-		pros::delay(20);
+
+		// final delay
+		pros::delay(8);
 	}
 }
