@@ -134,6 +134,7 @@ void opcontrol() {
 
 	// creating motor groups for odometry
 	// port numbers stored in robot.h
+	/*
 	okapi::MotorGroup left_drive_motors({
 		LEFT_DRIVE_MOTOR1_PORT,		
 		LEFT_DRIVE_MOTOR2_PORT,
@@ -144,6 +145,13 @@ void opcontrol() {
 		LEFT_DRIVE_MOTOR2_PORT,
 		LEFT_DRIVE_MOTOR3_PORT,
 		LEFT_DRIVE_MOTOR4_PORT});
+	*/
+	okapi::MotorGroup left_drive_motors({
+		LEFT_DRIVE_MOTOR1_PORT,		
+		LEFT_DRIVE_MOTOR2_PORT});
+	okapi::MotorGroup right_drive_motors({
+		LEFT_DRIVE_MOTOR1_PORT,
+		LEFT_DRIVE_MOTOR2_PORT});
 
 
 	//pros::Motor_Group leftMotors({lUFM,lUBM});
