@@ -21,8 +21,5 @@
 #define CHASSIS_TRACK 12_in
 #define CHASSIS_WHEELS 3.25_in
 
-extern std::shared_ptr<okapi::Controller> controller;
-extern std::shared_ptr<okapi::OdomChassisController> chassis;
-extern okapi::MotorGroup left_drive_motors;
-extern okapi::MotorGroup right_drive_motors;
+
 

@@ -158,7 +158,7 @@ void opcontrol() {
 	.buildOdometry();*/
 
 	// creating the chassis using okapilib ChassisController
-	chassis = okapi::ChassisControllerBuilder()
+	std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
 		.withMotors(
 			left_drive_motors,					// left motors
 			right_drive_motors					// right motors
