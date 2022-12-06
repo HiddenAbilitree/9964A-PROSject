@@ -173,7 +173,7 @@ void opcontrol() {
 			{	
 				{
 					CHASSIS_WHEELS,				// wheel size stored in robot.h
-					CHASSIS_TRACK				// drivetrain track size stored in robot.h
+					CHASSIS_TRACK				// drivetrain track size (length between wheels on same axis) stored in robot.h
 				}, 
 				DRIVE_TPR						// drivetrain ticks per rotation stored in robot.h
 			}
