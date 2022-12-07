@@ -1,2 +1,2 @@
 # 9964A-Official-PROS-project
- Project
+Team 9964A's official program developed using the PROS library.
