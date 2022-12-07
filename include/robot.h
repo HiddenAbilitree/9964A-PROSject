@@ -16,7 +16,7 @@
 #define RIGHT_DRIVE_MOTOR4_PORT 14
 
 #define DRIVE_GEARSET okapi::AbstractMotor::gearset::blue
-#define DRIVE_TPR okapi::imev5BlueTPR
+#define DRIVE_TPR okapi::imev5RedTPR
 
 #define CHASSIS_TRACK 12_in
 #define CHASSIS_WHEELS 3.25_in
