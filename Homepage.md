@@ -2,7 +2,7 @@
 layout: page
 theme: jekyll-theme-minimal
 title: 9964A Code Documentation
-description: Documentation for team 9964A's program built using the SigBots PROS libraries and OkapiLib.
+description: Documentation for team 9964A's program built using the SigBots PROS library and OkapiLib.
 permalink: /
 ---
 # 9964A-Official-PROS-project
