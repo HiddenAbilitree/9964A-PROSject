@@ -1,6 +1,6 @@
 ---
 markdown: kramdown
-theme: minima
+theme: material
 title: 9964A Code Documentation
 description: Documentation for team 9964A's program built using the SigBots PROS library and OkapiLib.
 permalink: /
