@@ -1,14 +1,25 @@
 # Team 9964A Description
 
-For source visit [github.com](https://www.mkdocs.org).
-
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
+## Program
+```cpp
+std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
+		.withMotors(
+			left_drive_motors,					// left motors
+			right_drive_motors					// right motors
+		)
+		.withDimensions(
+			DRIVE_GEARSET,						// drive gearset stored in robot.h
+			{	
+				{
+					CHASSIS_WHEELS,				// wheel size stored in robot.h
+					CHASSIS_TRACK				// drivetrain track size (length between wheels on same axis) stored in robot.h
+				}, 
+				DRIVE_TPR						// drivetrain ticks per rotation stored in robot.h
+			}
+		)
+		.withOdometry()	
+		.buildOdometry();
+```
 ## Project layout
 
     mkdocs.yml    # The configuration file.

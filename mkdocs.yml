@@ -13,6 +13,8 @@ extra_css:
 
 # theme
 theme:
+  features:
+    - content.code.annotate
   icon:
     repo: fontawesome/brands/github
 
