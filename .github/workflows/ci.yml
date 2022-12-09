@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
-      - run: cd my_project
+      - run: cd my-project
       - run: pip install mkdocs
       - run: pip install mkdocs-material
       - run: mkdocs gh-deploy --force
