@@ -1,7 +1,7 @@
 site_name: 9964A Program Documentation
 site_description: Documentation for team 9964A's program built using the PROS library.
 site_author: Eric Zhang
-site_dir: /
+
 theme:
   name: material
   palette:
