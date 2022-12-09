@@ -1,6 +1,6 @@
-# Welcome to MkDocs
+# Team 9964A Description
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+For source visit [github.com](https://www.mkdocs.org).
 
 ## Commands
 
