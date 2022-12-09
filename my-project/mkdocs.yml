@@ -1,0 +1,37 @@
+site_name: 9964A Program Documentation
+site_description: Documentation for team 9964A's program built using the PROS library.
+site_author: Eric Zhang
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme)"
+      primary: cyan
+      accent: cyan
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    - media: "(prefers-color-scheme: light)"
+      primary: cyan
+      accent: cyan
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    - media: "(prefers-color-scheme: dark)"
+      primary: cyan
+      accent: cyan
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+extra:
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
