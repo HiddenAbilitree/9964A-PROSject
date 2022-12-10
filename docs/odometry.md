@@ -4,9 +4,10 @@
 
 ## Program
 
-=== "robot.h"
+=== "Variables"
 
-    ``` cpp
+    ``` cpp title="robot.h"
+
     #pragma once    // prevents the file from being included multiple times
 
     #include <memory>  
@@ -26,13 +27,21 @@
     #define RIGHT_DRIVE_MOTOR4_PORT 14
 
     // stores the gearing of the drivetrain
-    #define DRIVE_GEARSET okapi::AbstractMotor::gearset::blue
-    #define DRIVE_TPR okapi::imev5RedTPR
+    #define DRIVE_GEARSET okapi::AbstractMotor::gearset::blue  // blue motor RPM (600)
+    #define DRIVE_TPR okapi::imev5BlueTPR  // gear ticks per rotation in a blue motor cartridge
 
     // stores the dimensions of the drivetrain
-    #define CHASSIS_TRACK 12_in
-    #define CHASSIS_WHEELS 3.25_in
+    #define CHASSIS_TRACK 12_in  // distance between the inside edge of wheels on the same axle
+    #define CHASSIS_WHEELS 3.25_in  // diameter of drivetrain wheels
     ```
+    <br/>
+
+    !!! abstract inline end "Note"
+        
+        Variables are stored here primarily for readability purposes.
+    This file contains the variable definitions used in the odomChassisController constructor
+    
+
 
 === "main.cpp"
 
@@ -53,25 +62,38 @@
     #include "pros/motors.h"
     #include "robot.h"
 
+
+    // uses variable definitions defined in robot.h
+    okapi::MotorGroup left_drive_motors({
+		LEFT_DRIVE_MOTOR1_PORT,	    	
+		LEFT_DRIVE_MOTOR2_PORT,
+        LEFT_DRIVE_MOTOR3_PORT,
+        LEFT_DRIVE_MOTOR4_PORT});
+	okapi::MotorGroup right_drive_motors({
+		RIGHT_DRIVE_MOTOR1_PORT,
+		RIGHT_DRIVE_MOTOR2_PORT,
+        RIGHT_DRIVE_MOTOR3_PORT,
+        RIGHT_DRIVE_MOTOR4_PORT});
+    
+    // uses variable definitions defined in robot.h
     std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
             .withMotors(
-                left_drive_motors,      // left motors
-                right_drive_motors      // right motors
+                left_drive_motors,      // left motor ports
+                right_drive_motors      // right motor ports
             )
             .withDimensions(
-                DRIVE_GEARSET,          // drive gearset stored in robot.h
+                DRIVE_GEARSET,          // drive gearset
                 {
                     {
-                        CHASSIS_WHEELS, // wheel size stored in robot.h
-                        CHASSIS_TRACK   // drivetrain track size (length between wheels on same axis) stored in robot.h
+                        CHASSIS_WHEELS, // wheel size
+                        CHASSIS_TRACK   // drivetrain track size (length between wheels on same axis)
                     }, 
-                DRIVE_TPR               // drivetrain ticks per rotation stored in robot.h
+                DRIVE_TPR               // drivetrain ticks per rotation
                 }
             )
             .withOdometry()
             .buildOdometry();
     ```
-
 === "User Control"
 
     ``` cpp
@@ -107,3 +129,4 @@
 	pros::Motor_Group leftMotors({lUFM,lUBM,lLFM,lLBM});
 	pros::Motor_Group rightMotors({rUFM,rUBM,rLFM,rLBM});
     ```
+
