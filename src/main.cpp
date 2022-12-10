@@ -14,46 +14,6 @@
 #include "robot.h"
 
 /**
- * A callback function for LLEMU's center button.
- *
- * When this callback is fired, it will toggle line 2 of the LCD text between
- * "I was pressed!" and nothing.
- */
-
-// center button function.
-void on_center_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
-		pros::lcd::set_text(2, "Middle button pressed!");
-	} else {
-		pros::lcd::clear_line(2);
-	}
-}
-
-// left button function
-void on_left_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
-		pros::lcd::set_text(2, "Left button pressed!");
-	} else {
-		pros::lcd::clear_line(2);
-	}
-}
-
-// right button function
-void on_right_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
-		pros::lcd::set_text(2, "Right button pressed!");
-	} else {
-		pros::lcd::clear_line(2);
-	}
-}
-
-/**
  * Runs initialization code. This occurs as soon as the program is started.
  *
  * All other competition modes are blocked by initialize; it is recommended
@@ -62,10 +22,8 @@ void on_right_button() {
 void initialize() {
 	// creates buttons on the cortex lcd display
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
-	pros::lcd::register_btn0_cb(on_right_button);
-	pros::lcd::register_btn1_cb(on_center_button);
-	pros::lcd::register_btn2_cb(on_left_button);
+	pros::ADIDigitalOut leftPiston (LEFT_DIGITAL_SENSOR_PORT);
+	pros::ADIDigitalOut rightPiston (RIGHT_DIGITAL_SENSOR_PORT);
 
 }
 
@@ -134,7 +92,6 @@ void opcontrol() {
 
 	// creating motor groups for odometry
 	// port numbers stored in robot.h
-
 	okapi::MotorGroup left_drive_motors({
 		LEFT_DRIVE_MOTOR1_PORT,		
 		LEFT_DRIVE_MOTOR2_PORT,
@@ -145,24 +102,6 @@ void opcontrol() {
 		RIGHT_DRIVE_MOTOR2_PORT,
 		RIGHT_DRIVE_MOTOR3_PORT,
 		RIGHT_DRIVE_MOTOR4_PORT});
-	/*okapi::MotorGroup left_drive_motors({
-		LEFT_DRIVE_MOTOR1_PORT,		
-		LEFT_DRIVE_MOTOR2_PORT});
-	okapi::MotorGroup right_drive_motors({
-		RIGHT_DRIVE_MOTOR1_PORT,
-		RIGHT_DRIVE_MOTOR2_PORT});
-	*/
-
-	//pros::Motor_Group leftMotors({lUFM,lUBM});
-	//pros::Motor_Group rightMotors({rUFM,rUBM});
-	/*std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-	.withMotors(
-		left_drive_motors,
-		right_drive_motors
-	)
-	.withDimensions(DRIVE_GEARSET, {{3.25_in, 11_in}, okapi::imev5GreenTPR})
-	.withOdometry()
-	.buildOdometry();*/
 
 	// creating the chassis using okapilib ChassisController
 	std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()

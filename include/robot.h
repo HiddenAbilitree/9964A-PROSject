@@ -23,8 +23,12 @@
 #define DRIVE_GEARWHEEL 36.0  // gear tooth count on the axle attached to the wheel
 
 // stores the dimensions of the drivetrain
-#define CHASSIS_TRACK 12_in  // distance between the inside edge of wheels on the same axle
+#define CHASSIS_TRACK 14.25_in  // distance between the inside edge of wheels on the same axle
 #define CHASSIS_WHEELS 3.25_in  // diameter of drivetrain wheels
+
+// pneumatics
+#define LEFT_DIGITAL_SENSOR_PORT 'A'
+#define RIGHT_DIGITAL_SENSOR_PORT 'B'
 
 extern std::shared_ptr<okapi::Controller> controller; // okapilib controller
 extern std::shared_ptr<okapi::OdomChassisController> chassis;  // okapilib odometry controller
