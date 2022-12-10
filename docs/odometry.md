@@ -1,3 +1,5 @@
+<!-- @format -->
+
 # Odometry
 
 ## Program
@@ -7,7 +9,7 @@
 ```cpp
 #pragma once    // prevents the file from being included multiple times
 
-#include <memory>  
+#include <memory>
 
 #include "main.h"
 #include "okapi/api/device/motor/abstractMotor.hpp"
@@ -46,7 +48,7 @@ std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisController
                 {
                     CHASSIS_WHEELS, // wheel size stored in robot.h
                     CHASSIS_TRACK   // drivetrain track size (length between wheels on same axis) stored in robot.h
-                }, 
+                },
             DRIVE_TPR               // drivetrain ticks per rotation stored in robot.h
             }
         )
