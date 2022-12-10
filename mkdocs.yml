@@ -15,6 +15,11 @@ extra_css:
 theme:
   features:
     - content.code.annotate
+#    - navigation.tabs
+    - navigation.expand
+    - navigation.tracking
+    - navigation.instant
+    - toc.integrate
   icon:
     repo: fontawesome/brands/github
 
@@ -33,6 +38,11 @@ theme:
 
 # cookies
 extra:
+  generator: false
+  social: 
+    - icon: fontawesome/brands/github
+      link: https://github.com/HiddenAbilitree/9964A-PROSject
+      name: 9964A Repository
   consent:
     title: Cookie consent
     description: >-
@@ -40,3 +50,14 @@ extra:
       as to measure the effectiveness of our documentation and whether users
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
