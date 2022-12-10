@@ -6,15 +6,15 @@
 #include "okapi/api/device/motor/abstractMotor.hpp"
 
 // stores motor port values
-#define LEFT_DRIVE_MOTOR1_PORT 1
-#define LEFT_DRIVE_MOTOR2_PORT 2
-#define LEFT_DRIVE_MOTOR3_PORT 3
-#define LEFT_DRIVE_MOTOR4_PORT 4
+#define LEFT_DRIVE_MOTOR1_PORT 5
+#define LEFT_DRIVE_MOTOR2_PORT 6
+#define LEFT_DRIVE_MOTOR3_PORT 7
+#define LEFT_DRIVE_MOTOR4_PORT 8
 
-#define RIGHT_DRIVE_MOTOR1_PORT 11
-#define RIGHT_DRIVE_MOTOR2_PORT 12
-#define RIGHT_DRIVE_MOTOR3_PORT 13
-#define RIGHT_DRIVE_MOTOR4_PORT 14
+#define RIGHT_DRIVE_MOTOR1_PORT 1
+#define RIGHT_DRIVE_MOTOR2_PORT 2
+#define RIGHT_DRIVE_MOTOR3_PORT 3
+#define RIGHT_DRIVE_MOTOR4_PORT 4
 
 // stores the gearing of the drivetrain
 #define DRIVE_GEARSET okapi::AbstractMotor::gearset::blue  // blue motor RPM (600)
@@ -26,9 +26,13 @@
 #define CHASSIS_TRACK 14.25_in  // distance between the inside edge of wheels on the same axle
 #define CHASSIS_WHEELS 3.25_in  // diameter of drivetrain wheels
 
+<<<<<<< Updated upstream
 // pneumatics
 #define LEFT_DIGITAL_SENSOR_PORT 'A'
 #define RIGHT_DIGITAL_SENSOR_PORT 'B'
+=======
+
+>>>>>>> Stashed changes
 
 extern std::shared_ptr<okapi::Controller> controller; // okapilib controller
 extern std::shared_ptr<okapi::OdomChassisController> chassis;  // okapilib odometry controller
