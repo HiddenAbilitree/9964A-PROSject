@@ -15,6 +15,64 @@
 #include "pros/motors.h"
 #include "robot.h"
 
+
+
+
+
+  
+pros::Controller master(pros::E_CONTROLLER_MASTER);
+// initializing motors
+pros::Motor lLFM(LEFT_DRIVE_MOTOR1_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor lLBM(LEFT_DRIVE_MOTOR2_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor lUBM(LEFT_DRIVE_MOTOR4_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor rLFM(RIGHT_DRIVE_MOTOR1_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor rLBM(RIGHT_DRIVE_MOTOR2_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor rUFM(RIGHT_DRIVE_MOTOR3_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor rUBM(RIGHT_DRIVE_MOTOR4_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
+
+// grouping motors into groups for readability
+pros::Motor_Group leftMotors({lUFM, lUBM, lLFM, lLBM});
+pros::Motor_Group rightMotors({rUFM, rUBM, rLFM, rLBM});
+
+// group 6 main drive motors into groups
+pros::Motor_Group driveLeftMotors({lLFM, lUBM, lLBM});
+pros::Motor_Group driveRightMotors({rLFM, rUBM, rLBM});
+// initialize pneumatic pistons
+pros::ADIDigitalOut leftPiston(LEFT_DIGITAL_SENSOR_PORT);
+pros::ADIDigitalOut rightPiston(RIGHT_DIGITAL_SENSOR_PORT);
+pros::ADIDigitalOut catapultLock(CATAPULT_DIGITAL_SENSOR_PORT);
+pros::ADIDigitalOut jerry(EXTENSION_DIGITAL_SENSOR_PORT);
+// initialize pullback limit sensor
+pros::ADIDigitalIn pulledBack(PULLLIMIT_DIGITAL_SENSOR_PORT);
+
+
+
+
+
+okapi::MotorGroup left_drive_motors({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT, LEFT_DRIVE_MOTOR3_PORT, LEFT_DRIVE_MOTOR4_PORT});
+okapi::MotorGroup right_drive_motors({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT, RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
+
+std::shared_ptr<okapi::OdomChassisController> chassis =
+okapi::ChassisControllerBuilder()
+	.withMotors(left_drive_motors, // left motors
+				right_drive_motors // right motors
+				)
+	.withDimensions(
+		DRIVE_GEARSET, // drive gearset stored in robot.h
+		{
+			{
+				CHASSIS_WHEELS, // wheel size stored in robot.h
+				CHASSIS_TRACK   // drivetrain track size (length between
+								// wheels on same axis) stored in robot.h
+			},
+			DRIVE_TPR // drivetrain ticks per rotation stored in robot.h
+		})
+	.withOdometry()
+	.buildOdometry();
+
+
+
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -24,58 +82,6 @@
 void initialize() {
   // creates buttons on the cortex lcd display
   pros::lcd::initialize();
-  
-  pros::Controller master(pros::E_CONTROLLER_MASTER);
-   // initializing motors
-  pros::Motor lLFM(LEFT_DRIVE_MOTOR1_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor lLBM(LEFT_DRIVE_MOTOR2_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor lUBM(LEFT_DRIVE_MOTOR4_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor rLFM(RIGHT_DRIVE_MOTOR1_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor rLBM(RIGHT_DRIVE_MOTOR2_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor rUFM(RIGHT_DRIVE_MOTOR3_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor rUBM(RIGHT_DRIVE_MOTOR4_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
-
-  // grouping motors into groups for readability
-  pros::Motor_Group leftMotors({lUFM, lUBM, lLFM, lLBM});
-  pros::Motor_Group rightMotors({rUFM, rUBM, rLFM, rLBM});
-
-  // group 6 main drive motors into groups
-  pros::Motor_Group driveLeftMotors({lLFM, lUBM, lLBM});
-  pros::Motor_Group driveRightMotors({rLFM, rUBM, rLBM});
-  // initialize pneumatic pistons
-  pros::ADIDigitalOut leftPiston(LEFT_DIGITAL_SENSOR_PORT);
-  pros::ADIDigitalOut rightPiston(RIGHT_DIGITAL_SENSOR_PORT);
-  pros::ADIDigitalOut catapultLock(CATAPULT_DIGITAL_SENSOR_PORT);
-  pros::ADIDigitalOut jerry(EXTENSION_DIGITAL_SENSOR_PORT);
-  // initialize pullback limit sensor
-  pros::ADIDigitalIn pulledBack(PULLLIMIT_DIGITAL_SENSOR_PORT);
-
-
-
- 
-
-  okapi::MotorGroup left_drive_motors({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT, LEFT_DRIVE_MOTOR3_PORT, LEFT_DRIVE_MOTOR4_PORT});
-  okapi::MotorGroup right_drive_motors({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT, RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
-
-  std::shared_ptr<okapi::OdomChassisController> chassis =
-    okapi::ChassisControllerBuilder()
-        .withMotors(left_drive_motors, // left motors
-                    right_drive_motors // right motors
-                    )
-        .withDimensions(
-            DRIVE_GEARSET, // drive gearset stored in robot.h
-            {
-                {
-                    CHASSIS_WHEELS, // wheel size stored in robot.h
-                    CHASSIS_TRACK   // drivetrain track size (length between
-                                    // wheels on same axis) stored in robot.h
-                },
-                DRIVE_TPR // drivetrain ticks per rotation stored in robot.h
-            })
-        .withOdometry()
-        .buildOdometry();
-
 }
 
 /**
