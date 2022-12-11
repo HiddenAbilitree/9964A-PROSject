@@ -58,6 +58,24 @@ void initialize() {
   okapi::MotorGroup left_drive_motors({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT, LEFT_DRIVE_MOTOR3_PORT, LEFT_DRIVE_MOTOR4_PORT});
   okapi::MotorGroup right_drive_motors({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT, RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
 
+  std::shared_ptr<okapi::OdomChassisController> chassis =
+    okapi::ChassisControllerBuilder()
+        .withMotors(left_drive_motors, // left motors
+                    right_drive_motors // right motors
+                    )
+        .withDimensions(
+            DRIVE_GEARSET, // drive gearset stored in robot.h
+            {
+                {
+                    CHASSIS_WHEELS, // wheel size stored in robot.h
+                    CHASSIS_TRACK   // drivetrain track size (length between
+                                    // wheels on same axis) stored in robot.h
+                },
+                DRIVE_TPR // drivetrain ticks per rotation stored in robot.h
+            })
+        .withOdometry()
+        .buildOdometry();
+
 }
 
 /**
@@ -117,23 +135,6 @@ void opcontrol() {
   left_drive_motors.setGearing(DRIVE_GEARSET);
   right_drive_motors.setGearing(DRIVE_GEARSET);
   // creating the chassis using okapilib ChassisController
-  std::shared_ptr<okapi::OdomChassisController> chassis =
-      okapi::ChassisControllerBuilder()
-          .withMotors(left_drive_motors, // left motors
-                      right_drive_motors // right motors
-                      )
-          .withDimensions(
-              DRIVE_GEARSET, // drive gearset stored in robot.h
-              {
-                  {
-                      CHASSIS_WHEELS, // wheel size stored in robot.h
-                      CHASSIS_TRACK   // drivetrain track size (length between
-                                      // wheels on same axis) stored in robot.h
-                  },
-                  DRIVE_TPR // drivetrain ticks per rotation stored in robot.h
-              })
-          .withOdometry()
-          .buildOdometry();
 
   // resets the state of the robot
   // chassis->setState({0_in, 0_in, 0_deg});
