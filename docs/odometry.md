@@ -31,7 +31,7 @@
     */
     void initialize() {
     // creates buttons on the cortex lcd display
-    pros::lcd::initialize();
+    pros::lcd::initialize();        
     }
 
     /**

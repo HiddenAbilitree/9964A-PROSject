@@ -39,7 +39,31 @@
 // stores port of the pullback limit switch
 #define PULLLIMIT_DIGITAL_SENSOR_PORT 'E'
 
+// okapilib object initialization
 extern std::shared_ptr<okapi::Controller> controller; // okapilib controller
 extern std::shared_ptr<okapi::OdomChassisController> chassis;  // okapilib odometry controller
 extern okapi::MotorGroup left_drive_motors;  // drivetrain left motor group 
 extern okapi::MotorGroup right_drive_motors;  // drivetrain right motor group
+
+// pros object initialization
+extern pros::Controller master;
+
+extern pros::Motor lLFM;
+extern pros::Motor lLBM;
+extern pros::Motor lUFM;
+extern pros::Motor lUBM;
+extern pros::Motor rLFM;
+extern pros::Motor rLBM;
+extern pros::Motor rUFM;
+extern pros::Motor rUBM;
+
+// group 6 main drive motors into groups
+extern pros::Motor_Group driveLeftMotors;
+extern pros::Motor_Group driveRightMotors;
+// initialize pneumatic pistons
+extern pros::ADIDigitalOut leftPiston;
+extern pros::ADIDigitalOut rightPiston;
+extern pros::ADIDigitalOut catapultLock;
+extern pros::ADIDigitalOut jerry;
+// initialize pullback limit sensor
+extern pros::ADIDigitalIn pulledBack;
