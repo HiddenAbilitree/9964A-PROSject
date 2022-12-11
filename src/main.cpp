@@ -9,6 +9,8 @@
 #include "okapi/api/util/mathUtil.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "okapi/impl/device/motor/motorGroup.hpp"
+#include "pros/adi.h"
+#include "pros/adi.hpp"
 #include "pros/misc.h"
 #include "pros/motors.h"
 #include "robot.h"
@@ -77,21 +79,30 @@ void opcontrol() {
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	
 	// initializing motors
-	pros::Motor lUFM(LEFT_DRIVE_MOTOR1_PORT,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor lUBM(LEFT_DRIVE_MOTOR2_PORT,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor lLFM(LEFT_DRIVE_MOTOR3_PORT,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor lLBM(LEFT_DRIVE_MOTOR4_PORT,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rUFM(RIGHT_DRIVE_MOTOR1_PORT,pros::E_MOTOR_GEAR_GREEN,1,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rUBM(RIGHT_DRIVE_MOTOR2_PORT,pros::E_MOTOR_GEAR_GREEN,1,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rLFM(RIGHT_DRIVE_MOTOR3_PORT,pros::E_MOTOR_GEAR_GREEN,1,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rLBM(RIGHT_DRIVE_MOTOR4_PORT,pros::E_MOTOR_GEAR_GREEN,1,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor lLFM(LEFT_DRIVE_MOTOR1_PORT, pros::E_MOTOR_GEAR_BLUE,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor lLBM(LEFT_DRIVE_MOTOR2_PORT, pros::E_MOTOR_GEAR_BLUE,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT, pros::E_MOTOR_GEAR_BLUE,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor lUBM(LEFT_DRIVE_MOTOR4_PORT, pros::E_MOTOR_GEAR_BLUE,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor rLFM(RIGHT_DRIVE_MOTOR1_PORT,pros::E_MOTOR_GEAR_BLUE,1,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor rLBM(RIGHT_DRIVE_MOTOR2_PORT,pros::E_MOTOR_GEAR_BLUE,1,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor rUFM(RIGHT_DRIVE_MOTOR3_PORT,pros::E_MOTOR_GEAR_BLUE,1,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor rUBM(RIGHT_DRIVE_MOTOR4_PORT,pros::E_MOTOR_GEAR_BLUE,1,pros::E_MOTOR_ENCODER_DEGREES);
 	
 	// grouping motors into groups for readability
-	pros::Motor_Group leftMotors({lUFM,lUBM,lLFM,lLBM});
+	pros::Motor_Group leftMotors ({lUFM,lUBM,lLFM,lLBM});
 	pros::Motor_Group rightMotors({rUFM,rUBM,rLFM,rLBM});
 
-	pros::ADIDigitalOut leftPiston (LEFT_DIGITAL_SENSOR_PORT);
+	// group 6 main drive motors into groups
+	pros::Motor_Group driveLeftMotors ({lLFM,lUBM,lLBM});
+	pros::Motor_Group driveRightMotors ({rLFM,rUBM,rLBM});
+	// initialize pneumatic pistons
+	pros::ADIDigitalOut leftPiston (LEFT_DIGITAL_SENSOR_PORT); 
 	pros::ADIDigitalOut rightPiston (RIGHT_DIGITAL_SENSOR_PORT);
+	pros::ADIDigitalOut catapultLock (CATAPULT_DIGITAL_SENSOR_PORT);
+	pros::ADIDigitalOut jerry (EXTENSION_DIGITAL_SENSOR_PORT);
+	// initialize pullback limit sensor
+	pros::ADIDigitalIn pulledBack (PULLLIMIT_DIGITAL_SENSOR_PORT);
+
 
 	okapi::MotorGroup left_drive_motors({
 		LEFT_DRIVE_MOTOR1_PORT,		
@@ -137,8 +148,7 @@ void opcontrol() {
 	//chassis->turnAngle(0_deg);
 
 	// main while loop
-	bool rightActivated = false;
-	bool leftActivated = false;
+	bool ptoActivated = false;
 	
 	
 
@@ -150,16 +160,27 @@ void opcontrol() {
 
 
 		// sets motor movement equal to the controller analog input
-		leftMotors=left;
-		rightMotors=right;
-		
-		if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
-			rightPiston.set_value(!rightActivated);
-			rightActivated=!rightActivated;
+		driveLeftMotors=left; // all left side motors aside from PTO motors
+		driveRightMotors=right; // all right side motors aside from PTO motors
+
+		// PTO motor control
+		if(!ptoActivated) // when PTO not engaged, treat PTO motors as drivetrain
+		{
+			lUFM = left;
+			rUFM = right;
 		}
-		if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2)) {
-			leftPiston.set_value(!leftActivated);
-			leftActivated=!leftActivated;
+		else // when PTO engaged, default to PTO motors to spinning forwards (intake on)
+		{
+			lUFM = 127;
+			rUFM = 127;
+			if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)){
+				catapultLock.set_value(false); // release the catapult to shoot
+			}
+		}
+		if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
+			rightPiston.set_value(!ptoActivated);
+			leftPiston.set_value(!ptoActivated);
+			ptoActivated=!ptoActivated;
 		}
 		// final delay
 		pros::delay(2);

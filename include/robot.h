@@ -36,6 +36,9 @@
 // stores port of the piston used for extension
 #define EXTENSION_DIGITAL_SENSOR_PORT 'D'
 
+// stores port of the pullback limit switch
+#define PULLLIMIT_DIGITAL_SENSOR_PORT 'E'
+
 extern std::shared_ptr<okapi::Controller> controller; // okapilib controller
 extern std::shared_ptr<okapi::OdomChassisController> chassis;  // okapilib odometry controller
 extern okapi::MotorGroup left_drive_motors;  // drivetrain left motor group 
