@@ -141,17 +141,7 @@ void opcontrol() {
 	bool leftActivated = false;
 	
 	
-	if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
-		{
-			rightPiston.set_value(!rightActivated);
-			rightActivated=!rightActivated;
-		}
-		if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
-		{
-			leftPiston.set_value(!leftActivated);
-			leftActivated=!leftActivated;
 
-		}
 	while (true) {
 		// stores controller analog stick positions into an int variable
 		// ranges -127 to 127
@@ -163,8 +153,18 @@ void opcontrol() {
 		leftMotors=left;
 		rightMotors=right;
 		
+	if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1))
+	{
+		rightPiston.set_value(!rightActivated);
+		rightActivated=!rightActivated;
+	}
+	if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2))
+	{
+		leftPiston.set_value(!leftActivated);
+		leftActivated=!leftActivated;
 
+	}
 		// final delay
-		pros::delay(8);
+		pros::delay(2);
 	}
 }
