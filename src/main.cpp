@@ -22,8 +22,7 @@
 void initialize() {
 	// creates buttons on the cortex lcd display
 	pros::lcd::initialize();
-	pros::ADIDigitalOut leftPiston (LEFT_DIGITAL_SENSOR_PORT);
-	pros::ADIDigitalOut rightPiston (RIGHT_DIGITAL_SENSOR_PORT);
+
 
 }
 
@@ -73,6 +72,7 @@ void autonomous() {}
  */
 void opcontrol() {
 
+
 	// initalizing controller
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	
@@ -90,7 +90,8 @@ void opcontrol() {
 	pros::Motor_Group leftMotors({lUFM,lUBM,lLFM,lLBM});
 	pros::Motor_Group rightMotors({rUFM,rUBM,rLFM,rLBM});
 
-	
+	pros::ADIDigitalOut leftPiston (LEFT_DIGITAL_SENSOR_PORT);
+	pros::ADIDigitalOut rightPiston (RIGHT_DIGITAL_SENSOR_PORT);
 
 	okapi::MotorGroup left_drive_motors({
 		LEFT_DRIVE_MOTOR1_PORT,		
@@ -136,7 +137,8 @@ void opcontrol() {
 	chassis->turnAngle(0_deg);
 
 	// main while loop
-	
+	bool rightActivated = false;
+	bool leftActivated = false;
 	while (true) {
 		// stores controller analog stick positions into an int variable
 		// ranges -127 to 127
@@ -147,7 +149,15 @@ void opcontrol() {
 		// sets motor movement equal to the controller analog input
 		leftMotors=left;
 		rightMotors=right;
-
+		
+		if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
+		{
+			rightPiston.set_value(!rightActivated);
+		}
+		if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2))
+		{
+			leftPiston.set_value(!leftActivated);
+		}
 		// final delay
 		pros::delay(8);
 	}
