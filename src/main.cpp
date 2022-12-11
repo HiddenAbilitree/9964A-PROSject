@@ -57,6 +57,11 @@ void competition_initialize() {}
  */
 void autonomous() {}
 
+void pullback()
+{
+
+}
+
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -76,22 +81,14 @@ void opcontrol() {
   pros::Controller master(pros::E_CONTROLLER_MASTER);
 
   // initializing motors
-  pros::Motor lLFM(LEFT_DRIVE_MOTOR1_PORT, pros::E_MOTOR_GEAR_BLUE, 0,
-                   pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor lLBM(LEFT_DRIVE_MOTOR2_PORT, pros::E_MOTOR_GEAR_BLUE, 0,
-                   pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT, pros::E_MOTOR_GEAR_BLUE, 0,
-                   pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor lUBM(LEFT_DRIVE_MOTOR4_PORT, pros::E_MOTOR_GEAR_BLUE, 0,
-                   pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor rLFM(RIGHT_DRIVE_MOTOR1_PORT, pros::E_MOTOR_GEAR_BLUE, 1,
-                   pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor rLBM(RIGHT_DRIVE_MOTOR2_PORT, pros::E_MOTOR_GEAR_BLUE, 1,
-                   pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor rUFM(RIGHT_DRIVE_MOTOR3_PORT, pros::E_MOTOR_GEAR_BLUE, 1,
-                   pros::E_MOTOR_ENCODER_DEGREES);
-  pros::Motor rUBM(RIGHT_DRIVE_MOTOR4_PORT, pros::E_MOTOR_GEAR_BLUE, 1,
-                   pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor lLFM(LEFT_DRIVE_MOTOR1_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor lLBM(LEFT_DRIVE_MOTOR2_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor lUBM(LEFT_DRIVE_MOTOR4_PORT , pros::E_MOTOR_GEAR_BLUE, 0, pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor rLFM(RIGHT_DRIVE_MOTOR1_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor rLBM(RIGHT_DRIVE_MOTOR2_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor rUFM(RIGHT_DRIVE_MOTOR3_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor rUBM(RIGHT_DRIVE_MOTOR4_PORT, pros::E_MOTOR_GEAR_BLUE, 1, pros::E_MOTOR_ENCODER_DEGREES);
 
   // grouping motors into groups for readability
   pros::Motor_Group leftMotors({lUFM, lUBM, lLFM, lLBM});
@@ -109,11 +106,9 @@ void opcontrol() {
   pros::ADIDigitalIn pulledBack(PULLLIMIT_DIGITAL_SENSOR_PORT);
 
   okapi::MotorGroup left_drive_motors(
-      {LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT, LEFT_DRIVE_MOTOR3_PORT,
-       LEFT_DRIVE_MOTOR4_PORT});
+      {LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT, LEFT_DRIVE_MOTOR3_PORT, LEFT_DRIVE_MOTOR4_PORT});
   okapi::MotorGroup right_drive_motors(
-      {RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
-       RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
+      {RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT, RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
 
   right_drive_motors.setReversed(true);
   left_drive_motors.setGearing(DRIVE_GEARSET);
@@ -177,8 +172,14 @@ void opcontrol() {
           lUFM = -127;
           rUFM = -127;
         }
-        lUFM.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-        rUFM.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+        lUFM.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+        rUFM.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+		lUFM.brake();
+		rUFM.brake();
+		catapultLock.set_value(true);
+		pros::delay(250);
+		lUFM.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		rUFM.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
       }
     }
     if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
