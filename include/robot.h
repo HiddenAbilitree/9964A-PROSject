@@ -26,9 +26,15 @@
 #define CHASSIS_TRACK 14.25_in  // distance between the inside edge of wheels on the same axle
 #define CHASSIS_WHEELS 2_in  // diameter of drivetrain wheels
 
-// pneumatics
+// stores ports of the pistons used for the pto mech
 #define LEFT_DIGITAL_SENSOR_PORT 'A'
 #define RIGHT_DIGITAL_SENSOR_PORT 'B'
+
+// stores port of the piston used for catapult
+#define CATAPULT_DIGITAL_SENSOR_PORT 'C'
+
+// stores port of the piston used for extension
+#define EXTENSION_DIGITAL_SENSOR_PORT 'D'
 
 extern std::shared_ptr<okapi::Controller> controller; // okapilib controller
 extern std::shared_ptr<okapi::OdomChassisController> chassis;  // okapilib odometry controller

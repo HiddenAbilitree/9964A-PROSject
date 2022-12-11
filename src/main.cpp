@@ -153,17 +153,14 @@ void opcontrol() {
 		leftMotors=left;
 		rightMotors=right;
 		
-	if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1))
-	{
-		rightPiston.set_value(!rightActivated);
-		rightActivated=!rightActivated;
-	}
-	if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2))
-	{
-		leftPiston.set_value(!leftActivated);
-		leftActivated=!leftActivated;
-
-	}
+		if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
+			rightPiston.set_value(!rightActivated);
+			rightActivated=!rightActivated;
+		}
+		if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2)) {
+			leftPiston.set_value(!leftActivated);
+			leftActivated=!leftActivated;
+		}
 		// final delay
 		pros::delay(2);
 	}

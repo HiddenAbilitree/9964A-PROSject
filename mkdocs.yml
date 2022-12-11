@@ -64,6 +64,9 @@ markdown_extensions:
       superscript: true
   - pymdownx.highlight:
       anchor_linenums: true
+      use_pygments: true
+      auto_title: true
+      linenums: true
   - pymdownx.details
   - pymdownx.inlinehilite
   - pymdownx.mark:
