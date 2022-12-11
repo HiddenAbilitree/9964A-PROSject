@@ -77,21 +77,21 @@ void opcontrol() {
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	
 	// initializing motors
-	pros::Motor lUFM(1,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor lUBM(2,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor lLFM(3,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor lLBM(4,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rUFM(11,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rUBM(12,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rLFM(13,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rLBM(14,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor lUFM(LEFT_DRIVE_MOTOR1_PORT,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor lUBM(LEFT_DRIVE_MOTOR2_PORT,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor lLFM(LEFT_DRIVE_MOTOR3_PORT,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor lLBM(LEFT_DRIVE_MOTOR4_PORT,pros::E_MOTOR_GEAR_GREEN,0,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor rUFM(RIGHT_DRIVE_MOTOR1_PORT,pros::E_MOTOR_GEAR_GREEN,1,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor rUBM(RIGHT_DRIVE_MOTOR2_PORT,pros::E_MOTOR_GEAR_GREEN,1,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor rLFM(RIGHT_DRIVE_MOTOR3_PORT,pros::E_MOTOR_GEAR_GREEN,1,pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor rLBM(RIGHT_DRIVE_MOTOR4_PORT,pros::E_MOTOR_GEAR_GREEN,1,pros::E_MOTOR_ENCODER_DEGREES);
 	
 	// grouping motors into groups for readability
 	pros::Motor_Group leftMotors({lUFM,lUBM,lLFM,lLBM});
 	pros::Motor_Group rightMotors({rUFM,rUBM,rLFM,rLBM});
+	
+	
 
-	// creating motor groups for odometry
-	// port numbers stored in robot.h
 	okapi::MotorGroup left_drive_motors({
 		LEFT_DRIVE_MOTOR1_PORT,		
 		LEFT_DRIVE_MOTOR2_PORT,
@@ -103,6 +103,9 @@ void opcontrol() {
 		RIGHT_DRIVE_MOTOR3_PORT,
 		RIGHT_DRIVE_MOTOR4_PORT});
 
+	right_drive_motors.setReversed(true);
+	left_drive_motors.setGearing(DRIVE_GEARSET);
+	right_drive_motors.setGearing(DRIVE_GEARSET);
 	// creating the chassis using okapilib ChassisController
 	std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
 		.withMotors(
@@ -127,17 +130,16 @@ void opcontrol() {
 
 	// moves the robot 1 foot forward to the right
 	// orientation should be 45 degrees.
-	chassis->driveToPoint({12_in,12_in});
-	
+	chassis->driveToPoint({12_in,0_in});
+	chassis->turnAngle(90_deg);
+	chassis->driveToPoint({12_in,6_in});
+	chassis->turnAngle(0_deg);
 
 	// main while loop
-	/*
+	
 	while (true) {
 
 		// prints buttons on the screen and sets numeric values for each button.
-		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
-		                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
-		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
 
 		// stores controller analog stick positions into an int variable
 		// ranges -127 to 127
@@ -151,5 +153,5 @@ void opcontrol() {
 
 		// final delay
 		pros::delay(8);
-	}*/
+	}
 }
