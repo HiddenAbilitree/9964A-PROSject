@@ -14,11 +14,6 @@
 #include "pros/misc.h"
 #include "pros/motors.h"
 #include "robot.h"
-
-
-
-
-
   
 pros::Controller master(pros::E_CONTROLLER_MASTER);
 // initializing motors
