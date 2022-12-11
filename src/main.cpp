@@ -89,7 +89,7 @@ void opcontrol() {
 	// grouping motors into groups for readability
 	pros::Motor_Group leftMotors({lUFM,lUBM,lLFM,lLBM});
 	pros::Motor_Group rightMotors({rUFM,rUBM,rLFM,rLBM});
-	
+
 	
 
 	okapi::MotorGroup left_drive_motors({
@@ -138,9 +138,6 @@ void opcontrol() {
 	// main while loop
 	
 	while (true) {
-
-		// prints buttons on the screen and sets numeric values for each button.
-
 		// stores controller analog stick positions into an int variable
 		// ranges -127 to 127
 		int left = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
