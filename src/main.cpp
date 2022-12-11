@@ -22,10 +22,8 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	// creates buttons on the cortex lcd display
-	pros::lcd::initialize();
-
-
+  // creates buttons on the cortex lcd display
+  pros::lcd::initialize();
 }
 
 /**
@@ -74,115 +72,121 @@ void autonomous() {}
  */
 void opcontrol() {
 
+  // initalizing controller
+  pros::Controller master(pros::E_CONTROLLER_MASTER);
 
-	// initalizing controller
-	pros::Controller master(pros::E_CONTROLLER_MASTER);
-	
-	// initializing motors
-	pros::Motor lLFM(LEFT_DRIVE_MOTOR1_PORT, pros::E_MOTOR_GEAR_BLUE,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor lLBM(LEFT_DRIVE_MOTOR2_PORT, pros::E_MOTOR_GEAR_BLUE,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT, pros::E_MOTOR_GEAR_BLUE,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor lUBM(LEFT_DRIVE_MOTOR4_PORT, pros::E_MOTOR_GEAR_BLUE,0,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rLFM(RIGHT_DRIVE_MOTOR1_PORT,pros::E_MOTOR_GEAR_BLUE,1,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rLBM(RIGHT_DRIVE_MOTOR2_PORT,pros::E_MOTOR_GEAR_BLUE,1,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rUFM(RIGHT_DRIVE_MOTOR3_PORT,pros::E_MOTOR_GEAR_BLUE,1,pros::E_MOTOR_ENCODER_DEGREES);
-	pros::Motor rUBM(RIGHT_DRIVE_MOTOR4_PORT,pros::E_MOTOR_GEAR_BLUE,1,pros::E_MOTOR_ENCODER_DEGREES);
-	
-	// grouping motors into groups for readability
-	pros::Motor_Group leftMotors ({lUFM,lUBM,lLFM,lLBM});
-	pros::Motor_Group rightMotors({rUFM,rUBM,rLFM,rLBM});
+  // initializing motors
+  pros::Motor lLFM(LEFT_DRIVE_MOTOR1_PORT, pros::E_MOTOR_GEAR_BLUE, 0,
+                   pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor lLBM(LEFT_DRIVE_MOTOR2_PORT, pros::E_MOTOR_GEAR_BLUE, 0,
+                   pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT, pros::E_MOTOR_GEAR_BLUE, 0,
+                   pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor lUBM(LEFT_DRIVE_MOTOR4_PORT, pros::E_MOTOR_GEAR_BLUE, 0,
+                   pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor rLFM(RIGHT_DRIVE_MOTOR1_PORT, pros::E_MOTOR_GEAR_BLUE, 1,
+                   pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor rLBM(RIGHT_DRIVE_MOTOR2_PORT, pros::E_MOTOR_GEAR_BLUE, 1,
+                   pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor rUFM(RIGHT_DRIVE_MOTOR3_PORT, pros::E_MOTOR_GEAR_BLUE, 1,
+                   pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor rUBM(RIGHT_DRIVE_MOTOR4_PORT, pros::E_MOTOR_GEAR_BLUE, 1,
+                   pros::E_MOTOR_ENCODER_DEGREES);
 
-	// group 6 main drive motors into groups
-	pros::Motor_Group driveLeftMotors ({lLFM,lUBM,lLBM});
-	pros::Motor_Group driveRightMotors ({rLFM,rUBM,rLBM});
-	// initialize pneumatic pistons
-	pros::ADIDigitalOut leftPiston (LEFT_DIGITAL_SENSOR_PORT); 
-	pros::ADIDigitalOut rightPiston (RIGHT_DIGITAL_SENSOR_PORT);
-	pros::ADIDigitalOut catapultLock (CATAPULT_DIGITAL_SENSOR_PORT);
-	pros::ADIDigitalOut jerry (EXTENSION_DIGITAL_SENSOR_PORT);
-	// initialize pullback limit sensor
-	pros::ADIDigitalIn pulledBack (PULLLIMIT_DIGITAL_SENSOR_PORT);
+  // grouping motors into groups for readability
+  pros::Motor_Group leftMotors({lUFM, lUBM, lLFM, lLBM});
+  pros::Motor_Group rightMotors({rUFM, rUBM, rLFM, rLBM});
 
+  // group 6 main drive motors into groups
+  pros::Motor_Group driveLeftMotors({lLFM, lUBM, lLBM});
+  pros::Motor_Group driveRightMotors({rLFM, rUBM, rLBM});
+  // initialize pneumatic pistons
+  pros::ADIDigitalOut leftPiston(LEFT_DIGITAL_SENSOR_PORT);
+  pros::ADIDigitalOut rightPiston(RIGHT_DIGITAL_SENSOR_PORT);
+  pros::ADIDigitalOut catapultLock(CATAPULT_DIGITAL_SENSOR_PORT);
+  pros::ADIDigitalOut jerry(EXTENSION_DIGITAL_SENSOR_PORT);
+  // initialize pullback limit sensor
+  pros::ADIDigitalIn pulledBack(PULLLIMIT_DIGITAL_SENSOR_PORT);
 
-	okapi::MotorGroup left_drive_motors({
-		LEFT_DRIVE_MOTOR1_PORT,		
-		LEFT_DRIVE_MOTOR2_PORT,
-		LEFT_DRIVE_MOTOR3_PORT,
-		LEFT_DRIVE_MOTOR4_PORT});
-	okapi::MotorGroup right_drive_motors({
-		RIGHT_DRIVE_MOTOR1_PORT,
-		RIGHT_DRIVE_MOTOR2_PORT,
-		RIGHT_DRIVE_MOTOR3_PORT,
-		RIGHT_DRIVE_MOTOR4_PORT});
+  okapi::MotorGroup left_drive_motors(
+      {LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT, LEFT_DRIVE_MOTOR3_PORT,
+       LEFT_DRIVE_MOTOR4_PORT});
+  okapi::MotorGroup right_drive_motors(
+      {RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
+       RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
 
-	right_drive_motors.setReversed(true);
-	left_drive_motors.setGearing(DRIVE_GEARSET);
-	right_drive_motors.setGearing(DRIVE_GEARSET);
-	// creating the chassis using okapilib ChassisController
-	std::shared_ptr<okapi::OdomChassisController> chassis = okapi::ChassisControllerBuilder()
-		.withMotors(
-			left_drive_motors,					// left motors
-			right_drive_motors					// right motors
-		)
-		.withDimensions(
-			DRIVE_GEARSET,						// drive gearset stored in robot.h
-			{	
-				{
-					CHASSIS_WHEELS,				// wheel size stored in robot.h
-					CHASSIS_TRACK				// drivetrain track size (length between wheels on same axis) stored in robot.h
-				}, 
-				DRIVE_TPR						// drivetrain ticks per rotation stored in robot.h
-			}
-		)
-		.withOdometry()	
-		.buildOdometry();
+  right_drive_motors.setReversed(true);
+  left_drive_motors.setGearing(DRIVE_GEARSET);
+  right_drive_motors.setGearing(DRIVE_GEARSET);
+  // creating the chassis using okapilib ChassisController
+  std::shared_ptr<okapi::OdomChassisController> chassis =
+      okapi::ChassisControllerBuilder()
+          .withMotors(left_drive_motors, // left motors
+                      right_drive_motors // right motors
+                      )
+          .withDimensions(
+              DRIVE_GEARSET, // drive gearset stored in robot.h
+              {
+                  {
+                      CHASSIS_WHEELS, // wheel size stored in robot.h
+                      CHASSIS_TRACK   // drivetrain track size (length between
+                                      // wheels on same axis) stored in robot.h
+                  },
+                  DRIVE_TPR // drivetrain ticks per rotation stored in robot.h
+              })
+          .withOdometry()
+          .buildOdometry();
 
-	// resets the state of the robot
-	//chassis->setState({0_in, 0_in, 0_deg});
+  // resets the state of the robot
+  // chassis->setState({0_in, 0_in, 0_deg});
 
-	// moves the robot 1 foot forward to the right
-	// orientation should be 45 degrees.
-	//chassis->driveToPoint({12_in,0_in});
-	//chassis->turnAngle(90_deg);
-	//chassis->driveToPoint({12_in,6_in});
-	//chassis->turnAngle(0_deg);
+  // moves the robot 1 foot forward to the right
+  // orientation should be 45 degrees.
+  // chassis->driveToPoint({12_in,0_in});
+  // chassis->turnAngle(90_deg);
+  // chassis->driveToPoint({12_in,6_in});
+  // chassis->turnAngle(0_deg);
 
-	// main while loop
-	bool ptoActivated = false;
-	
-	
+  // main while loop
+  bool ptoActivated = false;
 
-	while (true) {
-		// stores controller analog stick positions into an int variable
-		// ranges -127 to 127
-		int left = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-		int right = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+  while (true) {
+    // stores controller analog stick positions into an int variable
+    // ranges -127 to 127
+    int left = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    int right = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
+    // sets motor movement equal to the controller analog input
+    driveLeftMotors = left;   // all left side motors aside from PTO motors
+    driveRightMotors = right; // all right side motors aside from PTO motors
 
-		// sets motor movement equal to the controller analog input
-		driveLeftMotors=left; // all left side motors aside from PTO motors
-		driveRightMotors=right; // all right side motors aside from PTO motors
-
-		// PTO motor control
-		if(!ptoActivated) // when PTO not engaged, treat PTO motors as drivetrain
-		{
-			lUFM = left;
-			rUFM = right;
-		}
-		else // when PTO engaged, default to PTO motors to spinning forwards (intake on)
-		{
-			lUFM = 127;
-			rUFM = 127;
-			if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)){
-				catapultLock.set_value(false); // release the catapult to shoot
-			}
-		}
-		if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
-			rightPiston.set_value(!ptoActivated);
-			leftPiston.set_value(!ptoActivated);
-			ptoActivated=!ptoActivated;
-		}
-		// final delay
-		pros::delay(2);
-	}
+    // PTO motor control
+    if (!ptoActivated) // when PTO not engaged, treat PTO motors as drivetrain
+    {
+      lUFM = left;
+      rUFM = right;
+    } else // when PTO engaged, default to PTO motors to spinning forwards
+           // (intake on)
+    {
+      lUFM = 127;
+      rUFM = 127;
+      if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+        catapultLock.set_value(false); // release the catapult to shoot
+        pros::delay(250);
+        while (!pulledBack.get_value()) {
+          lUFM = -127;
+          rUFM = -127;
+        }
+        lUFM.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+        rUFM.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      }
+    }
+    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
+      rightPiston.set_value(!ptoActivated);
+      leftPiston.set_value(!ptoActivated);
+      ptoActivated = !ptoActivated;
+    }
+    // final delay
+    pros::delay(2);
+  }
 }
