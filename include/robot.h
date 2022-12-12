@@ -34,8 +34,8 @@
 #define RIGHT_DRIVE_MOTOR4_PORT 4
 
 // stores the gearing of the drivetrain
-#define DRIVE_GEARSET okapi::AbstractMotor::gearset::blue  // blue motor RPM (600)
-#define DRIVE_TPR okapi::imev5BlueTPR  // gear ticks per rotation in a blue motor cartridge
+#define OKAPI_DRIVE_GEARSET okapi::AbstractMotor::gearset::blue  // blue motor RPM (600)
+#define OKAPI_DRIVE_TPR okapi::imev5BlueTPR  // gear ticks per rotation in a blue motor cartridge
 #define DRIVE_GEARMOTOR 36.0  // gear tooth count on the axle attached to the motor
 #define DRIVE_GEARWHEEL 60.0  // gear tooth count on the axle attached to the wheel
 
@@ -59,7 +59,7 @@
 
 
 // okapilib
-extern std::shared_ptr<okapi::Controller> controller;  // okapilib controller
+extern std::shared_ptr<okapi::Controller> okapiController;  // okapilib controller
 extern std::shared_ptr<okapi::OdomChassisController> chassis;  // okapilib odometry controller
 extern okapi::MotorGroup okapiLDM;  // drivetrain left motor group 
 extern okapi::MotorGroup okapiRDM;  // drivetrain right motor group
@@ -72,7 +72,7 @@ extern okapi::MotorGroup okapiRDM;  // drivetrain right motor group
 
 // pros object declarations
 
-extern pros::Controller master;  // pros contorller
+extern pros::Controller prosController;  // pros contorller
 
 // declares pto motors
 extern pros::Motor lUFM;  // left upper front motor

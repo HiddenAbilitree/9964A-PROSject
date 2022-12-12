@@ -1,7 +1,6 @@
-#include "okapi/impl/device/motor/motorGroup.hpp"
 #include "robot.h"
 
-pros::Controller master(pros::E_CONTROLLER_MASTER);
+pros::Controller prosController(pros::E_CONTROLLER_MASTER);
 // initializing motors
 
 
@@ -28,7 +27,7 @@ okapi::ChassisControllerBuilder()
   )
   .withDimensions(
     {
-      DRIVE_GEARSET, // drive gearset stored in robot.h
+      OKAPI_DRIVE_GEARSET, // drive gearset stored in robot.h
       (DRIVE_GEARMOTOR/DRIVE_GEARWHEEL)  // drivetrain gearing
     },
     {
@@ -37,7 +36,7 @@ okapi::ChassisControllerBuilder()
         CHASSIS_TRACK   // drivetrain track size (length between
                 // wheels on same axis) stored in robot.h
       },
-      DRIVE_TPR // drivetrain ticks per rotation stored in robot.h
+      OKAPI_DRIVE_TPR // drivetrain ticks per rotation stored in robot.h
     })
   .withOdometry()
   .buildOdometry();
@@ -100,7 +99,7 @@ void catapultMech()
     // (intake on)
     lUFM = 127;
     rUFM = 127;
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+    if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
       catapultLock.set_value(false); // release the catapult to shoot
       pros::delay(250);
       lUFM.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -136,8 +135,8 @@ void drivetrain()
 void opcontrol() {
   // stores controller analog stick positions into an int variable
   // ranges -127 to 127
-  int left = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-  int right = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+  int left = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+  int right = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
   while (true) {  
     prosRDM.set_reversed(true);
     prosLDM.set_gearing(PROS_DRIVE_GEARSET);
@@ -149,7 +148,7 @@ void opcontrol() {
     {
       pros::Task task(catapultMech);
     }
-    if(master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
+    if(prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
       rightPiston.set_value(!ptoActivated);
       leftPiston.set_value(!ptoActivated);
       ptoActivated = !ptoActivated;
