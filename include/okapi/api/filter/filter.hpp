@@ -7,7 +7,7 @@
 
 namespace okapi {
 class Filter {
-  public:
+public:
   virtual ~Filter();
 
   /**

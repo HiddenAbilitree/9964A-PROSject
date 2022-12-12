@@ -14,7 +14,7 @@
 
 namespace squiggles {
 class Pose {
-  public:
+public:
   /**
    * Specifies a point and heading in 2D space.
    *
@@ -33,7 +33,7 @@ class Pose {
    *
    * @return The distance between this pose and Other.
    */
-  double dist(const Pose& other) const {
+  double dist(const Pose &other) const {
     return std::sqrt((x - other.x) * (x - other.x) +
                      (y - other.y) * (y - other.y));
   }
@@ -53,7 +53,7 @@ class Pose {
            std::to_string(yaw);
   }
 
-  bool operator==(const Pose& other) const {
+  bool operator==(const Pose &other) const {
     return nearly_equal(x, other.x) && nearly_equal(y, other.y) &&
            nearly_equal(yaw, other.yaw);
   }

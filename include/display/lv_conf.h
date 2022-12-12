@@ -42,9 +42,8 @@
  * VDB makes the double buffering, you don't need to deal with it!
  * Typical size: ~1/10 screen */
 #define LV_VDB_SIZE                                                            \
-  (LV_VER_RES *                                                                \
-   LV_HOR_RES) /*Size of VDB in pixel count (1/10 screen size is good for      \
-                  first)*/
+  (LV_VER_RES * LV_HOR_RES) /*Size of VDB in pixel count (1/10 screen size is  \
+                               good for first)*/
 #define LV_VDB_ADR                                                             \
   0 /*Place VDB to a specific address (e.g. in external RAM) (0: allocate      \
        automatically into RAM)*/
@@ -117,11 +116,13 @@
  *================*/
 #define LV_THEME_LIVE_UPDATE 1
 #define USE_LV_THEME_TEMPL 0 /*Just for test*/
-#define USE_LV_THEME_DEFAULT 0 /*Built mainly from the built-in styles. Consumes very few RAM*/
+#define USE_LV_THEME_DEFAULT                                                   \
+  0 /*Built mainly from the built-in styles. Consumes very few RAM*/
 #define USE_LV_THEME_ALIEN 1 /*Dark futuristic theme*/
 #define USE_LV_THEME_NIGHT 1 /*Dark elegant theme*/
-#define USE_LV_THEME_MONO 1 /*Mono color theme for monochrome displays*/
-#define USE_LV_THEME_MATERIAL 1 /*Flat theme with bold colors and light shadows*/
+#define USE_LV_THEME_MONO 1  /*Mono color theme for monochrome displays*/
+#define USE_LV_THEME_MATERIAL                                                  \
+  1                        /*Flat theme with bold colors and light shadows*/
 #define USE_LV_THEME_ZEN 1 /*Peaceful, mainly light theme */
 
 /*==================
@@ -196,8 +197,8 @@
 /*Image (dependencies: lv_label*/
 #define USE_LV_IMG 1
 #if USE_LV_IMG != 0
-#  define LV_IMG_CF_INDEXED 1
-#  define LV_IMG_CF_ALPHA 1
+#define LV_IMG_CF_INDEXED 1
+#define LV_IMG_CF_ALPHA 1
 #endif
 
 /*Line (dependencies: -*/
@@ -225,9 +226,8 @@
 #endif
 #define USE_LV_TILEVIEW 1
 #if USE_LV_TILEVIEW
-#  define LV_TILEVIEW_ANIM_TIME 300
+#define LV_TILEVIEW_ANIM_TIME 300
 #endif
-
 
 /*************************
  * Data visualizer objects
@@ -247,7 +247,7 @@
 
 #define USE_LV_TABLE 1
 #if USE_LV_TABLE
-#  define LV_TABLE_COL_MAX 12
+#define LV_TABLE_COL_MAX 12
 #endif
 
 /*LED (dependencies: -)*/
@@ -268,9 +268,9 @@
 
 #define USE_PRELOAD 1
 #if USE_LV_PRELOAD != 0
-#  define LV_PRELOAD_DEF_ARC_LENGTH 60
-#  define LV_PRELOAD_DEF_SPIN_TIME 1000
-#  define LV_PRELOAD_DEF_ANIM LV_PRELOAD_TYPE_SPINNING_ARC
+#define LV_PRELOAD_DEF_ARC_LENGTH 60
+#define LV_PRELOAD_DEF_SPIN_TIME 1000
+#define LV_PRELOAD_DEF_ANIM LV_PRELOAD_TYPE_SPINNING_ARC
 #endif
 
 #define USE_LV_CANVAS 1
@@ -281,12 +281,12 @@
 /*Button (dependencies: lv_cont*/
 #define USE_LV_BTN 1
 #if USE_LV_BTN != 0
-#  define LV_BTN_INK_EFFECT 1
+#define LV_BTN_INK_EFFECT 1
 #endif
 
 #define USE_LV_IMGBTN 1
 #if USE_LV_IMGBTN
-#  define LV_IMGBTN_TILED 0
+#define LV_IMGBTN_TILED 0
 #endif
 
 /*Button matrix (dependencies: -)*/
@@ -335,7 +335,7 @@
 #endif
 
 #if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
-#  define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #endif
 #include "display/lv_conf_checker.h"
 #endif /*LV_CONF_H*/

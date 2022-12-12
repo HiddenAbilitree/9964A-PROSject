@@ -20,7 +20,7 @@
 
 namespace squiggles {
 class SplineGenerator {
-  public:
+public:
   /**
    * Generates curves that match the given motion constraints.
    *
@@ -31,7 +31,7 @@ class SplineGenerator {
    */
   SplineGenerator(Constraints iconstraints,
                   std::shared_ptr<PhysicalModel> imodel =
-                    std::make_shared<PassthroughModel>(),
+                      std::make_shared<PassthroughModel>(),
                   double idt = 0.1);
 
   /**
@@ -62,7 +62,7 @@ class SplineGenerator {
   std::vector<ProfilePoint>
   generate(std::initializer_list<ControlVector> iwaypoints);
 
-  protected:
+protected:
   /**
    * The maximum allowable values for the robot's motion.
    */
@@ -97,7 +97,7 @@ class SplineGenerator {
    * This was 1.2 in the WPILib example but that large of a value seems to
    * create wild paths, 0.12 worked better in testing with VEX-sized paths.
    */
-  public:
+public:
   const double K_DEFAULT_VEL = 1.0;
 
   /**
@@ -107,7 +107,7 @@ class SplineGenerator {
 
   struct GeneratedPoint {
     GeneratedPoint(Pose ipose, double icurvature = 0.0)
-      : pose(ipose), curvature(icurvature) {}
+        : pose(ipose), curvature(icurvature) {}
 
     std::string to_string() const {
       return "GeneratedPoint: {" + pose.to_string() +
@@ -124,11 +124,9 @@ class SplineGenerator {
    * derivative values to perform the initial check against the constraints.
    */
   struct GeneratedVector {
-    GeneratedVector(GeneratedPoint ipoint,
-                    double ivel,
-                    double iaccel,
+    GeneratedVector(GeneratedPoint ipoint, double ivel, double iaccel,
                     double ijerk)
-      : point(ipoint), vel(ivel), accel(iaccel), jerk(ijerk) {}
+        : point(ipoint), vel(ivel), accel(iaccel), jerk(ijerk) {}
 
     GeneratedPoint point;
     double vel;
@@ -143,11 +141,9 @@ class SplineGenerator {
     }
   };
 
-  std::vector<GeneratedVector> gen_single_raw_path(ControlVector start,
-                                                   ControlVector end,
-                                                   int duration,
-                                                   double start_vel,
-                                                   double end_vel);
+  std::vector<GeneratedVector>
+  gen_single_raw_path(ControlVector start, ControlVector end, int duration,
+                      double start_vel, double end_vel);
   /**
    * Runs a Gradient Descent algorithm to minimize the linear acceleration,
    * linear jerk, and curvature for the generated path.
@@ -155,8 +151,8 @@ class SplineGenerator {
    * This is used when there is not a start/end velocity specified for a given
    * path.
    */
-  std::vector<GeneratedPoint>
-  gradient_descent(ControlVector& start, ControlVector& end, bool fast);
+  std::vector<GeneratedPoint> gradient_descent(ControlVector &start,
+                                               ControlVector &end, bool fast);
 
   /**
    * An intermediate value used in the parameterization step. Adds the
@@ -164,18 +160,10 @@ class SplineGenerator {
    * generation step.
    */
   struct ConstrainedState {
-    ConstrainedState(Pose ipose,
-                     double icurvature,
-                     double idistance,
-                     double imax_vel,
-                     double imin_accel,
-                     double imax_accel)
-      : pose(ipose),
-        curvature(icurvature),
-        distance(idistance),
-        max_vel(imax_vel),
-        min_accel(imin_accel),
-        max_accel(imax_accel) {}
+    ConstrainedState(Pose ipose, double icurvature, double idistance,
+                     double imax_vel, double imin_accel, double imax_accel)
+        : pose(ipose), curvature(icurvature), distance(idistance),
+          max_vel(imax_vel), min_accel(imin_accel), max_accel(imax_accel) {}
 
     ConstrainedState() = default;
 
@@ -209,7 +197,7 @@ class SplineGenerator {
   template <class Iter>
   std::vector<ProfilePoint> _generate(Iter start, Iter end, bool fast);
 
-  public:
+public:
   /**
    * Performs the "naive" generation step.
    *
@@ -217,8 +205,8 @@ class SplineGenerator {
    * SplineGenerator's acceleration and jerk constraints and returns the points
    * that form the curve.
    */
-  std::vector<GeneratedPoint>
-  gen_raw_path(ControlVector& start, ControlVector& end, bool fast);
+  std::vector<GeneratedPoint> gen_raw_path(ControlVector &start,
+                                           ControlVector &end, bool fast);
 
   /**
    * Imposes a linear motion profile on the raw path.
@@ -227,11 +215,9 @@ class SplineGenerator {
    * at each point along the curve.
    */
   std::vector<ProfilePoint>
-  parameterize(const ControlVector start,
-               const ControlVector end,
-               const std::vector<GeneratedPoint>& raw_path,
-               const double preferred_start_vel,
-               const double preferred_end_vel,
+  parameterize(const ControlVector start, const ControlVector end,
+               const std::vector<GeneratedPoint> &raw_path,
+               const double preferred_start_vel, const double preferred_end_vel,
                const double start_time);
 
   /**
@@ -249,17 +235,13 @@ class SplineGenerator {
    */
   ProfilePoint get_point_at_time(const ControlVector start,
                                  const ControlVector end,
-                                 std::vector<ProfilePoint> points,
-                                 double t);
+                                 std::vector<ProfilePoint> points, double t);
 
   /**
    * Linearly interpolates between points along the profiled curve.
    */
-  ProfilePoint lerp_point(QuinticPolynomial x_qp,
-                          QuinticPolynomial y_qp,
-                          ProfilePoint start,
-                          ProfilePoint end,
-                          double i);
+  ProfilePoint lerp_point(QuinticPolynomial x_qp, QuinticPolynomial y_qp,
+                          ProfilePoint start, ProfilePoint end, double i);
 
   /**
    * Returns the spline curve for the given control vectors and path duration.
@@ -274,20 +256,20 @@ class SplineGenerator {
   /**
    * Applies the general constraints and model constraints to the given state.
    */
-  void enforce_accel_lims(ConstrainedState* state);
+  void enforce_accel_lims(ConstrainedState *state);
 
   /**
    * Imposes the motion profile constraints on a segment of the path from the
    * perspective of iterating forwards through the path.
    */
-  void forward_pass(ConstrainedState* predecessor, ConstrainedState* successor);
+  void forward_pass(ConstrainedState *predecessor, ConstrainedState *successor);
 
   /**
    * Imposes the motion profile constraints on a segment of the path from the
    * perspective of iterating backwards through the path.
    */
-  void backward_pass(ConstrainedState* predecessor,
-                     ConstrainedState* successor);
+  void backward_pass(ConstrainedState *predecessor,
+                     ConstrainedState *successor);
 
   /**
    * Calculates the final velocity for a path segment.

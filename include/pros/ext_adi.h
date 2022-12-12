@@ -58,7 +58,8 @@ namespace c {
  *
  * \return The ADI configuration for the given port
  */
-adi_port_config_e_t ext_adi_port_get_config(uint8_t smart_port, uint8_t adi_port);
+adi_port_config_e_t ext_adi_port_get_config(uint8_t smart_port,
+                                            uint8_t adi_port);
 
 /**
  * Gets the value for the given ADI port.
@@ -71,8 +72,8 @@ adi_port_config_e_t ext_adi_port_get_config(uint8_t smart_port, uint8_t adi_port
  * \param smart_port
  *        The smart port number that the ADI Expander is in
  * \param adi_port
- *	      The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to return
- *        the configuration
+ *	      The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to
+ *return the configuration
  *
  * \return The value stored for the given port
  */
@@ -96,7 +97,8 @@ int32_t ext_adi_port_get_value(uint8_t smart_port, uint8_t adi_port);
  * \return 1 if the operation was successful or PROS_ERR if the operation
  * failed, setting errno.
  */
-int32_t ext_adi_port_set_config(uint8_t smart_port, uint8_t adi_port, adi_port_config_e_t type);
+int32_t ext_adi_port_set_config(uint8_t smart_port, uint8_t adi_port,
+                                adi_port_config_e_t type);
 
 /**
  * Sets the value for the given ADI port.
@@ -112,15 +114,14 @@ int32_t ext_adi_port_set_config(uint8_t smart_port, uint8_t adi_port, adi_port_c
  * \param smart_port
  *        The smart port number that the ADI Expander is in
  * \param adi_port
- *	      The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which the value
- *        will be set
- * \param value
- *        The value to set the ADI port to
+ *	      The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which the
+ *value will be set \param value The value to set the ADI port to
  *
  * \return 1 if the operation was successful or PROS_ERR if the operation
  * failed, setting errno.
  */
-int32_t ext_adi_port_set_value(uint8_t smart_port, uint8_t adi_port, int32_t value);
+int32_t ext_adi_port_set_value(uint8_t smart_port, uint8_t adi_port,
+                               int32_t value);
 
 /**
  * Calibrates the analog sensor on the specified port and returns the new
@@ -165,8 +166,8 @@ int32_t ext_adi_analog_calibrate(uint8_t smart_port, uint8_t adi_port);
  * \param smart_port
  *        The smart port number that the ADI Expander is in
  * \param adi_port
- *	      The ADI port (from 1-8, 'a'-'h', 'A'-'H') for which the value will be
- *        returned
+ *	      The ADI port (from 1-8, 'a'-'h', 'A'-'H') for which the value will
+ *be returned
  *
  * \return The analog sensor value, where a value of 0 reflects an input voltage
  * of nearly 0 V and a value of 4095 reflects an input voltage of nearly 5 V
@@ -190,8 +191,8 @@ int32_t ext_adi_analog_read(uint8_t smart_port, uint8_t adi_port);
  * \param smart_port
  *        The smart port number that the ADI Expander is in
  * \param adi_port
- *	      The ADI port (from 1-8, 'a'-'h', 'A'-'H') for which the value will be
- *        returned
+ *	      The ADI port (from 1-8, 'a'-'h', 'A'-'H') for which the value will
+ *be returned
  *
  * \return The difference of the sensor value from its calibrated default from
  * -4095 to 4095
@@ -220,8 +221,8 @@ int32_t ext_adi_analog_read_calibrated(uint8_t smart_port, uint8_t adi_port);
  * \param smart_port
  *        The smart port number that the ADI Expander is in
  * \param adi_port
- *	      The ADI port (from 1-8, 'a'-'h', 'A'-'H') for which the value will be
- *        returned
+ *	      The ADI port (from 1-8, 'a'-'h', 'A'-'H') for which the value will
+ *be returned
  *
  * \return The difference of the sensor value from its calibrated default from
  * -16384 to 16384
@@ -430,7 +431,8 @@ int32_t ext_adi_encoder_get(ext_adi_encoder_t enc);
  * \return An adi_encoder_t object to be stored and used for later calls to
  * encoder functions
  */
-ext_adi_encoder_t ext_adi_encoder_init(uint8_t smart_port, uint8_t adi_port_top, uint8_t adi_port_bottom, bool reverse);
+ext_adi_encoder_t ext_adi_encoder_init(uint8_t smart_port, uint8_t adi_port_top,
+                                       uint8_t adi_port_bottom, bool reverse);
 
 /**
  * Sets the encoder value to zero.
@@ -519,7 +521,9 @@ int32_t ext_adi_ultrasonic_get(ext_adi_ultrasonic_t ult);
  * \return An adi_ultrasonic_t object to be stored and used for later calls to
  * ultrasonic functions
  */
-ext_adi_ultrasonic_t ext_adi_ultrasonic_init(uint8_t smart_port, uint8_t adi_port_ping, uint8_t adi_port_echo);
+ext_adi_ultrasonic_t ext_adi_ultrasonic_init(uint8_t smart_port,
+                                             uint8_t adi_port_ping,
+                                             uint8_t adi_port_echo);
 
 /**
  * Disables the ultrasonic sensor and voids the configuration on its ports.
@@ -594,7 +598,8 @@ double ext_adi_gyro_get(ext_adi_gyro_t gyro);
  * \return An adi_gyro_t object containing the given port, or PROS_ERR if the
  * initialization failed.
  */
-ext_adi_gyro_t ext_adi_gyro_init(uint8_t smart_port, uint8_t adi_port, double multiplier);
+ext_adi_gyro_t ext_adi_gyro_init(uint8_t smart_port, uint8_t adi_port,
+                                 double multiplier);
 
 /**
  * Resets the gyroscope value to zero.
@@ -633,36 +638,40 @@ int32_t ext_adi_gyro_shutdown(ext_adi_gyro_t gyro);
 /**
  * Reference type for an initialized potentiometer.
  *
- * This merely contains the port number for the potentiometer, unlike its use as an
- * object to store gyro data in PROS 2.
+ * This merely contains the port number for the potentiometer, unlike its use as
+ * an object to store gyro data in PROS 2.
  */
 typedef int32_t ext_adi_potentiometer_t;
 
 /**
- * Initializes a potentiometer on the given port. 
+ * Initializes a potentiometer on the given port.
  *
  * This function uses the following values of errno when an error state is
  * reached:
  * ENXIO - The given value is not within the range of ADI Ports
  * EADDRINUSE - The port is not configured as a potentiometer
- * 
+ *
  * \param smart_port
  *        The smart port with the adi expander (1-21)
  * \param adi_port
  *        The ADI port to initialize as a gyro (from 1-8, 'a'-'h', 'A'-'H')
  * \param potentiometer_type
- *        An adi_potentiometer_type_e_t enum value specifying the potentiometer version type
+ *        An adi_potentiometer_type_e_t enum value specifying the potentiometer
+ * version type
  *
- * \return An adi_potentiometer_t object containing the given port, or PROS_ERR if the
- * initialization failed.
+ * \return An adi_potentiometer_t object containing the given port, or PROS_ERR
+ * if the initialization failed.
  */
-ext_adi_potentiometer_t ext_adi_potentiometer_init(uint8_t smart_port, uint8_t adi_port, adi_potentiometer_type_e_t potentiometer_type); 
+ext_adi_potentiometer_t
+ext_adi_potentiometer_init(uint8_t smart_port, uint8_t adi_port,
+                           adi_potentiometer_type_e_t potentiometer_type);
 
 /**
  * Gets the current potentiometer angle in tenths of a degree.
  *
- * The original potentiometer rotates 250 degrees thus returning an angle between 0-250 degrees.
- * Potentiometer V2 rotates 333 degrees thus returning an angle between 0-333 degrees.
+ * The original potentiometer rotates 250 degrees thus returning an angle
+ * between 0-250 degrees. Potentiometer V2 rotates 333 degrees thus returning an
+ * angle between 0-333 degrees.
  *
  * This function uses the following values of errno when an error state is
  * reached:
@@ -677,19 +686,20 @@ ext_adi_potentiometer_t ext_adi_potentiometer_init(uint8_t smart_port, uint8_t a
 double ext_adi_potentiometer_get_angle(ext_adi_potentiometer_t potentiometer);
 
 /**
- * Reference type for an initialized addressable led, which stores its smart and adi port.
+ * Reference type for an initialized addressable led, which stores its smart and
+ * adi port.
  */
 typedef int32_t ext_adi_led_t;
 
 /**
- * Initializes a led on the given port. 
+ * Initializes a led on the given port.
  *
  * This function uses the following values of errno when an error state is
  * reached:
  * ENXIO - The given value is not within the range of ADI Ports
  * EINVAL - A given value is not correct, or the buffer is null
  * EADDRINUSE - The port is not configured for ADI output
- * 
+ *
  * \param smart_port
  *        The smart port with the adi expander (1-21)
  * \param adi_port
@@ -710,11 +720,13 @@ ext_adi_led_t ext_adi_led_init(uint8_t smart_port, uint8_t adi_port);
  * EADDRINUSE - The port is not configured for ADI output
  *
  * @param led port of type adi_led_t
- * @param buffer array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ * @param buffer array of colors in format 0xRRGGBB, recommended that individual
+ * RGB value not to exceed 0x80 due to current draw
  * @param buffer_length length of buffer to clear
  * @return PROS_SUCCESS if successful, PROS_ERR if not
  */
-int32_t ext_adi_led_clear_all(ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length);
+int32_t ext_adi_led_clear_all(ext_adi_led_t led, uint32_t *buffer,
+                              uint32_t buffer_length);
 
 /**
  * @brief Set the entire led strip using the colors contained in the buffer
@@ -726,11 +738,13 @@ int32_t ext_adi_led_clear_all(ext_adi_led_t led, uint32_t* buffer, uint32_t buff
  * EADDRINUSE - The port is not configured for ADI output
  *
  * @param led port of type adi_led_t
- * @param buffer array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ * @param buffer array of colors in format 0xRRGGBB, recommended that individual
+ * RGB value not to exceed 0x80 due to current draw
  * @param buffer_length length of buffer to clear
  * @return PROS_SUCCESS if successful, PROS_ERR if not
  */
-int32_t ext_adi_led_set(ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length);
+int32_t ext_adi_led_set(ext_adi_led_t led, uint32_t *buffer,
+                        uint32_t buffer_length);
 
 /**
  * @brief Set the entire led strip to one color
@@ -742,12 +756,14 @@ int32_t ext_adi_led_set(ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_len
  * EADDRINUSE - The port is not configured for ADI output
  *
  * @param led port of type adi_led_t
- * @param buffer array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ * @param buffer array of colors in format 0xRRGGBB, recommended that individual
+ * RGB value not to exceed 0x80 due to current draw
  * @param buffer_length length of buffer to clear
  * @param color color to set all the led strip value to
  * @return PROS_SUCCESS if successful, PROS_ERR if not
  */
-int32_t ext_adi_led_set_all(ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color);
+int32_t ext_adi_led_set_all(ext_adi_led_t led, uint32_t *buffer,
+                            uint32_t buffer_length, uint32_t color);
 
 /**
  * @brief Set one pixel on the led strip
@@ -759,13 +775,16 @@ int32_t ext_adi_led_set_all(ext_adi_led_t led, uint32_t* buffer, uint32_t buffer
  * EADDRINUSE - The port is not configured for ADI output
  *
  * @param led port of type adi_led_t
- * @param buffer array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ * @param buffer array of colors in format 0xRRGGBB, recommended that individual
+ * RGB value not to exceed 0x80 due to current draw
  * @param buffer_length length of the input buffer
  * @param color color to clear all the led strip to
  * @param pixel_position position of the pixel to clear (0 indexed)
  * @return PROS_SUCCESS if successful, PROS_ERR if not
  */
-int32_t ext_adi_led_set_pixel(ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color, uint32_t pixel_position);
+int32_t ext_adi_led_set_pixel(ext_adi_led_t led, uint32_t *buffer,
+                              uint32_t buffer_length, uint32_t color,
+                              uint32_t pixel_position);
 
 /**
  * @brief Clear one pixel on the led strip
@@ -777,17 +796,20 @@ int32_t ext_adi_led_set_pixel(ext_adi_led_t led, uint32_t* buffer, uint32_t buff
  * EADDRINUSE - The port is not configured for ADI output
  *
  * @param led port of type adi_led_t
- * @param buffer array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ * @param buffer array of colors in format 0xRRGGBB, recommended that individual
+ * RGB value not to exceed 0x80 due to current draw
  * @param buffer_length length of the input buffer
  * @param pixel_position position of the pixel to clear (0 indexed)
  * @return PROS_SUCCESS if successful, PROS_ERR if not
  */
-int32_t ext_adi_led_clear_pixel(ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t pixel_position);
+int32_t ext_adi_led_clear_pixel(ext_adi_led_t led, uint32_t *buffer,
+                                uint32_t buffer_length,
+                                uint32_t pixel_position);
 
 #ifdef __cplusplus
-}  // namespace c
-}  // namespace pros
+} // namespace c
+} // namespace pros
 }
 #endif
 
-#endif  // _PROS_ADI_H_
+#endif // _PROS_ADI_H_

@@ -11,7 +11,7 @@
 
 namespace squiggles {
 class QuinticPolynomial {
-  public:
+public:
   /**
    * Defines the polynomial function for a spline in one dimension.
    *
@@ -25,13 +25,8 @@ class QuinticPolynomial {
    *            second per second.
    * @param t The desired duration for the curve in seconds.
    */
-  QuinticPolynomial(double s_p,
-                    double s_v,
-                    double s_a,
-                    double g_p,
-                    double g_v,
-                    double g_a,
-                    double t);
+  QuinticPolynomial(double s_p, double s_v, double s_a, double g_p, double g_v,
+                    double g_a, double t);
 
   /**
    * Calculates the values of the polynomial and its derivatives at the given
@@ -54,7 +49,7 @@ class QuinticPolynomial {
            " 5: " + std::to_string(a5) + "}";
   }
 
-  protected:
+protected:
   /**
    * The coefficients for each term of the polynomial.
    */

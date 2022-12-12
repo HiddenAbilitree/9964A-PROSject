@@ -45,7 +45,7 @@ enum class ControllerDigital {
 };
 
 class ControllerUtil {
-  public:
+public:
   /**
    * Maps an `id` to the PROS enum equivalent.
    */

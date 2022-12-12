@@ -15,8 +15,7 @@
 #ifndef _PROS_COLORS_HPP_
 #define _PROS_COLORS_HPP_
 
-
-namespace pros{
+namespace pros {
 enum class Color {
   alice_blue = 0x00F0F8FF,
   antique_white = 0x00FAEBD7,

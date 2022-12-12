@@ -43,8 +43,8 @@ extern "C" {
 /**See https://pros.cs.purdue.edu/v5/extended/multitasking.html to learn more**/
 /******************************************************************************/
 
-typedef void* queue_t;
-typedef void* sem_t;
+typedef void *queue_t;
+typedef void *sem_t;
 
 /**
  * Unblocks a task in the Blocked state (e.g. waiting for a delay, on a
@@ -72,8 +72,8 @@ bool task_abort_delay(task_t task);
  * \param notify_action
  * 				The action to supply to task_notify_ext
  */
-void task_notify_when_deleting(task_t target_task, task_t task_to_notify, uint32_t value,
-                               notify_action_e_t notify_action);
+void task_notify_when_deleting(task_t target_task, task_t task_to_notify,
+                               uint32_t value, notify_action_e_t notify_action);
 
 /**
  * Creates a recursive mutex which can be locked recursively by the owner.
@@ -251,7 +251,7 @@ queue_t queue_create(uint32_t length, uint32_t item_size);
  *
  * \return True if the item was preprended, false otherwise.
  */
-bool queue_prepend(queue_t queue, const void* item, uint32_t timeout);
+bool queue_prepend(queue_t queue, const void *item, uint32_t timeout);
 
 /**
  * Posts an item to the end of a queue. The item is queued by copy, not by
@@ -271,7 +271,7 @@ bool queue_prepend(queue_t queue, const void* item, uint32_t timeout);
  *
  * \return True if the item was preprended, false otherwise.
  */
-bool queue_append(queue_t queue, const void* item, uint32_t timeout);
+bool queue_append(queue_t queue, const void *item, uint32_t timeout);
 
 /**
  * Receive an item from a queue without removing the item from the queue.
@@ -284,12 +284,13 @@ bool queue_append(queue_t queue, const void* item, uint32_t timeout);
  * \param buffer
  *        Pointer to a buffer to which the received item will be copied
  * \param timeout
- *        The maximum amount of time the task should block waiting for an item to receive should the queue be empty at
- *        the time of the call. TIMEOUT_MAX can be used to block indefinitely.
+ *        The maximum amount of time the task should block waiting for an item
+ * to receive should the queue be empty at the time of the call. TIMEOUT_MAX can
+ * be used to block indefinitely.
  *
  * \return True if an item was copied into the buffer, false otherwise.
  */
-bool queue_peek(queue_t queue, void* const buffer, uint32_t timeout);
+bool queue_peek(queue_t queue, void *const buffer, uint32_t timeout);
 
 /**
  * Receive an item from the queue.
@@ -309,7 +310,7 @@ bool queue_peek(queue_t queue, void* const buffer, uint32_t timeout);
  *
  * \return True if an item was copied into the buffer, false otherwise.
  */
-bool queue_recv(queue_t queue, void* const buffer, uint32_t timeout);
+bool queue_recv(queue_t queue, void *const buffer, uint32_t timeout);
 
 /**
  * Return the number of messages stored in a queue.
@@ -367,19 +368,20 @@ void queue_reset(queue_t queue);
  * api.
  */
 typedef enum v5_device_e {
-	E_DEVICE_NONE = 0,
-	E_DEVICE_MOTOR = 2,
-	E_DEVICE_ROTATION = 4,
-	E_DEVICE_IMU = 6,
-	E_DEVICE_DISTANCE = 7,
-	E_DEVICE_RADIO = 8,
-	E_DEVICE_VISION = 11,
-	E_DEVICE_ADI = 12,
-	E_DEVICE_OPTICAL = 16,
-	E_DEVICE_GPS = 20,
-	E_DEVICE_SERIAL = 129,
-	E_DEVICE_GENERIC __attribute__((deprecated("use E_DEVICE_SERIAL instead"))) = E_DEVICE_SERIAL,
-	E_DEVICE_UNDEFINED = 255
+  E_DEVICE_NONE = 0,
+  E_DEVICE_MOTOR = 2,
+  E_DEVICE_ROTATION = 4,
+  E_DEVICE_IMU = 6,
+  E_DEVICE_DISTANCE = 7,
+  E_DEVICE_RADIO = 8,
+  E_DEVICE_VISION = 11,
+  E_DEVICE_ADI = 12,
+  E_DEVICE_OPTICAL = 16,
+  E_DEVICE_GPS = 20,
+  E_DEVICE_SERIAL = 129,
+  E_DEVICE_GENERIC __attribute__((deprecated("use E_DEVICE_SERIAL instead"))) =
+      E_DEVICE_SERIAL,
+  E_DEVICE_UNDEFINED = 255
 } v5_device_e_t;
 
 /*
@@ -456,21 +458,19 @@ v5_device_e_t registry_get_plugged_type(uint8_t port);
  * Control settings of the serial driver.
  *
  * \param action
- * 			An action to perform on the serial driver. See the SERCTL_* macros for
- * 			details on the different actions.
- * \param extra_arg
- * 			An argument to pass in based on the action
+ * 			An action to perform on the serial driver. See the
+ * SERCTL_* macros for details on the different actions. \param extra_arg An
+ * argument to pass in based on the action
  */
-int32_t serctl(const uint32_t action, void* const extra_arg);
+int32_t serctl(const uint32_t action, void *const extra_arg);
 
 /**
  * Control settings of the microSD card driver.
  *
  * \param action
- * 			An action to perform on the microSD card driver. See the USDCTL_* macros
- *      for details on the different actions.
- * \param extra_arg
- * 		   	An argument to pass in based on the action
+ * 			An action to perform on the microSD card driver. See the
+ * USDCTL_* macros for details on the different actions. \param extra_arg An
+ * argument to pass in based on the action
  */
 // Not yet implemented
 // int32_t usdctl(const uint32_t action, void* const extra_arg);
@@ -481,14 +481,13 @@ int32_t serctl(const uint32_t action, void* const extra_arg);
  * \param file
  * 			A valid file descriptor number
  * \param action
- * 			An action to perform on the file's driver. See the *CTL_* macros for
- * 			details on the different actions. Note that the action passed in must
- *      match the correct driver (e.g. don't perform a SERCTL_* action on a
- *      microSD card file)
- * \param extra_arg
- * 		  	An argument to pass in based on the action
+ * 			An action to perform on the file's driver. See the
+ * *CTL_* macros for details on the different actions. Note that the action
+ * passed in must match the correct driver (e.g. don't perform a SERCTL_* action
+ * on a microSD card file) \param extra_arg An argument to pass in based on the
+ * action
  */
-int32_t fdctl(int file, const uint32_t action, void* const extra_arg);
+int32_t fdctl(int file, const uint32_t action, void *const extra_arg);
 
 /**
  * Action macro to pass into serctl or fdctl that activates the stream
@@ -590,4 +589,4 @@ int32_t fdctl(int file, const uint32_t action, void* const extra_arg);
 }
 #endif
 
-#endif  // _PROS_API_EXTENDED_H_
+#endif // _PROS_API_EXTENDED_H_

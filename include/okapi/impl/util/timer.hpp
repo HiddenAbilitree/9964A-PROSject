@@ -9,7 +9,7 @@
 
 namespace okapi {
 class Timer : public AbstractTimer {
-  public:
+public:
   Timer();
 
   /**

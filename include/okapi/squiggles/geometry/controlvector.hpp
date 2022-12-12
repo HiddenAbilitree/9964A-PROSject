@@ -14,7 +14,7 @@
 
 namespace squiggles {
 class ControlVector {
-  public:
+public:
   /**
    * A vector used to specify a state along a hermite spline.
    *
@@ -23,11 +23,9 @@ class ControlVector {
    * @param iaccel The acceleration component of the vector.
    * @param ijerk The jerk component of the vector.
    */
-  ControlVector(Pose ipose,
-                double ivel = std::nan(""),
-                double iaccel = 0.0,
+  ControlVector(Pose ipose, double ivel = std::nan(""), double iaccel = 0.0,
                 double ijerk = 0.0)
-    : pose(ipose), vel(ivel), accel(iaccel), jerk(ijerk) {}
+      : pose(ipose), vel(ivel), accel(iaccel), jerk(ijerk) {}
 
   ControlVector() = default;
 
@@ -47,7 +45,7 @@ class ControlVector {
            std::to_string(accel) + "," + std::to_string(jerk);
   }
 
-  bool operator==(const ControlVector& other) const {
+  bool operator==(const ControlVector &other) const {
     return pose == other.pose && nearly_equal(vel, other.vel) &&
            nearly_equal(accel, other.accel) && nearly_equal(jerk, other.jerk);
   }

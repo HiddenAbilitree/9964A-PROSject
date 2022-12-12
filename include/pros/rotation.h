@@ -31,7 +31,7 @@ namespace c {
 #define ROTATION_MINIMUM_DATA_RATE 5
 
 /**
- * Reset Rotation Sensor 
+ * Reset Rotation Sensor
  *
  * Reset the current absolute position to be the same as the
  * Rotation Sensor angle.
@@ -78,7 +78,7 @@ int32_t rotation_set_data_rate(uint8_t port, uint32_t rate);
  *
  * \param port
  *		  The V5 Rotation Sensor port number from 1-21
- * \param position 
+ * \param position
  * 		  The position in terms of ticks
  * \return 1 if the operation was successful or PROS_ERR if the operation
  * failed, setting errno.
@@ -133,7 +133,7 @@ int32_t rotation_get_velocity(uint8_t port);
 
 /**
  * Get the Rotation Sensor's current angle in centidegrees (0-36000)
- * 
+ *
  * This function uses the following values of errno when an error state is
  * reached:
  * ENXIO - The given value is not within the range of V5 ports (1-21).
@@ -141,14 +141,14 @@ int32_t rotation_get_velocity(uint8_t port);
  *
  * \param  port
  * 				 The V5 Rotation Sensor port number from 1-21
- * \return The angle value (0-36000) or PROS_ERR_F if the operation failed, setting
- * errno.
+ * \return The angle value (0-36000) or PROS_ERR_F if the operation failed,
+ * setting errno.
  */
 int32_t rotation_get_angle(uint8_t port);
 
 /**
  * Set the Rotation Sensor's direction reversed flag
- * 
+ *
  * This function uses the following values of errno when an error state is
  * reached:
  * ENXIO - The given value is not within the range of V5 ports (1-21).
@@ -157,8 +157,9 @@ int32_t rotation_get_angle(uint8_t port);
  * \param  port
  * 				 The V5 Rotation Sensor port number from 1-21
  * \param  value
- * 				 Determines if the direction of the Rotation Sensor is reversed or not.
- * 
+ * 				 Determines if the direction of the Rotation Sensor is
+ * reversed or not.
+ *
  * \return 1 if operation succeeded or PROS_ERR if the operation failed, setting
  * errno.
  */
@@ -191,8 +192,9 @@ int32_t rotation_reverse(uint8_t port);
  * \param  port
  * 				 The V5 Rotation Sensor port number from 1-21
  * \param  reverse_flag
- * 				 Determines if the Rotation Sensor is reversed or not.
- * 
+ * 				 Determines if the Rotation Sensor is reversed or
+ * not.
+ *
  * \return 1 if the operation was successful or PROS_ERR if the operation
  * failed, setting errno.
  */
@@ -200,7 +202,7 @@ int32_t rotation_init_reverse(uint8_t port, bool reverse_flag);
 
 /**
  * Get the Rotation Sensor's reversed flag
- * 
+ *
  * This function uses the following values of errno when an error state is
  * reached:
  * ENXIO - The given value is not within the range of V5 ports (1-21).
@@ -208,16 +210,16 @@ int32_t rotation_init_reverse(uint8_t port, bool reverse_flag);
  *
  * \param  port
  * 				 The V5 Rotation Sensor port number from 1-21
- * 
- * \return Boolean value of if the Rotation Sensor's direction is reversed or not
- * or PROS_ERR if the operation failed, setting errno.
+ *
+ * \return Boolean value of if the Rotation Sensor's direction is reversed or
+ * not or PROS_ERR if the operation failed, setting errno.
  */
 int32_t rotation_get_reversed(uint8_t port);
 
 #ifdef __cplusplus
-} //namespace C
-} //namespace pros
-} //extern "C"
+} // namespace C
+} // namespace pros
+} // extern "C"
 #endif
 
 #endif

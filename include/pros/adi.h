@@ -33,48 +33,50 @@ namespace pros {
  * Represents the port type for an ADI port.
  */
 typedef enum adi_port_config_e {
-	E_ADI_ANALOG_IN = 0,
-	E_ADI_ANALOG_OUT = 1,
-	E_ADI_DIGITAL_IN = 2,
-	E_ADI_DIGITAL_OUT = 3,
+  E_ADI_ANALOG_IN = 0,
+  E_ADI_ANALOG_OUT = 1,
+  E_ADI_DIGITAL_IN = 2,
+  E_ADI_DIGITAL_OUT = 3,
 
 #ifdef _INTELLISENSE
 #define _DEPRECATE_DIGITAL_IN = E_ADI_DIGITAL_IN
 #define _DEPRECATE_ANALOG_IN = E_ADI_ANALOG_IN
 #else
-#define _DEPRECATE_DIGITAL_IN __attribute__((deprecated("use E_ADI_DIGITAL_IN instead"))) = E_ADI_DIGITAL_IN
-#define _DEPRECATE_ANALOG_IN __attribute__((deprecated("use E_ADI_ANALOG_IN instead"))) = E_ADI_ANALOG_IN
+#define _DEPRECATE_DIGITAL_IN                                                  \
+  __attribute__((deprecated("use E_ADI_DIGITAL_IN instead"))) = E_ADI_DIGITAL_IN
+#define _DEPRECATE_ANALOG_IN                                                   \
+  __attribute__((deprecated("use E_ADI_ANALOG_IN instead"))) = E_ADI_ANALOG_IN
 #endif
 
-	E_ADI_SMART_BUTTON _DEPRECATE_DIGITAL_IN,
-	E_ADI_SMART_POT _DEPRECATE_ANALOG_IN,
+  E_ADI_SMART_BUTTON _DEPRECATE_DIGITAL_IN,
+  E_ADI_SMART_POT _DEPRECATE_ANALOG_IN,
 
-	E_ADI_LEGACY_BUTTON _DEPRECATE_DIGITAL_IN,
-	E_ADI_LEGACY_POT _DEPRECATE_ANALOG_IN,
-	E_ADI_LEGACY_LINE_SENSOR _DEPRECATE_ANALOG_IN,
-	E_ADI_LEGACY_LIGHT_SENSOR _DEPRECATE_ANALOG_IN,
-	E_ADI_LEGACY_GYRO = 10,
-	E_ADI_LEGACY_ACCELEROMETER _DEPRECATE_ANALOG_IN,
+  E_ADI_LEGACY_BUTTON _DEPRECATE_DIGITAL_IN,
+  E_ADI_LEGACY_POT _DEPRECATE_ANALOG_IN,
+  E_ADI_LEGACY_LINE_SENSOR _DEPRECATE_ANALOG_IN,
+  E_ADI_LEGACY_LIGHT_SENSOR _DEPRECATE_ANALOG_IN,
+  E_ADI_LEGACY_GYRO = 10,
+  E_ADI_LEGACY_ACCELEROMETER _DEPRECATE_ANALOG_IN,
 
 #undef _DEPRECATE_DIGITAL_IN
 #undef _DEPRECATE_ANALOG_IN
 
-	E_ADI_LEGACY_SERVO = 12,
-	E_ADI_LEGACY_PWM = 13,
+  E_ADI_LEGACY_SERVO = 12,
+  E_ADI_LEGACY_PWM = 13,
 
-	E_ADI_LEGACY_ENCODER = 14,
-	E_ADI_LEGACY_ULTRASONIC = 15,
+  E_ADI_LEGACY_ENCODER = 14,
+  E_ADI_LEGACY_ULTRASONIC = 15,
 
-	E_ADI_TYPE_UNDEFINED = 255,
-	E_ADI_ERR = PROS_ERR
+  E_ADI_TYPE_UNDEFINED = 255,
+  E_ADI_ERR = PROS_ERR
 } adi_port_config_e_t;
 
 /**
  * Represents the potentiometer version type.
  */
-typedef enum adi_potentiometer_type_e { 
-	E_ADI_POT_EDR = 0,
-	E_ADI_POT_V2
+typedef enum adi_potentiometer_type_e {
+  E_ADI_POT_EDR = 0,
+  E_ADI_POT_V2
 } adi_potentiometer_type_e_t;
 
 #ifdef PROS_USE_SIMPLE_NAMES
@@ -511,7 +513,8 @@ int32_t adi_encoder_get(adi_encoder_t enc);
  * \return An adi_encoder_t object to be stored and used for later calls to
  * encoder functions
  */
-adi_encoder_t adi_encoder_init(uint8_t port_top, uint8_t port_bottom, bool reverse);
+adi_encoder_t adi_encoder_init(uint8_t port_top, uint8_t port_bottom,
+                               bool reverse);
 
 /**
  * Sets the encoder value to zero.
@@ -700,8 +703,8 @@ int32_t adi_gyro_shutdown(adi_gyro_t gyro);
 /**
  * Reference type for an initialized potentiometer.
  *
- * This merely contains the port number for the potentiometer, unlike its use as an
- * object to store potentiometer data in PROS 2.
+ * This merely contains the port number for the potentiometer, unlike its use as
+ * an object to store potentiometer data in PROS 2.
  */
 typedef int32_t adi_potentiometer_t;
 
@@ -716,13 +719,13 @@ typedef int32_t adi_potentiometer_t;
  * \param port
  *        The ADI port to initialize as a gyro (from 1-8, 'a'-'h', 'A'-'H')
  *
- * \return An adi_potentiometer_t object containing the given port, or PROS_ERR if the
- * initialization failed.
+ * \return An adi_potentiometer_t object containing the given port, or PROS_ERR
+ * if the initialization failed.
  */
 adi_potentiometer_t adi_potentiometer_init(uint8_t port);
 
 /**
- * Initializes a potentiometer on the given port. 
+ * Initializes a potentiometer on the given port.
  *
  * This function uses the following values of errno when an error state is
  * reached:
@@ -732,18 +735,22 @@ adi_potentiometer_t adi_potentiometer_init(uint8_t port);
  * \param port
  *        The ADI port to initialize as a gyro (from 1-8, 'a'-'h', 'A'-'H')
  * \param potentiometer_type
- *        An adi_potentiometer_type_e_t enum value specifying the potentiometer version type
+ *        An adi_potentiometer_type_e_t enum value specifying the potentiometer
+ * version type
  *
- * \return An adi_potentiometer_t object containing the given port, or PROS_ERR if the
- * initialization failed.
+ * \return An adi_potentiometer_t object containing the given port, or PROS_ERR
+ * if the initialization failed.
  */
-adi_potentiometer_t adi_potentiometer_type_init(uint8_t port, adi_potentiometer_type_e_t potentiometer_type);
+adi_potentiometer_t
+adi_potentiometer_type_init(uint8_t port,
+                            adi_potentiometer_type_e_t potentiometer_type);
 
 /**
  * Gets the current potentiometer angle in tenths of a degree.
  *
- * The original potentiometer rotates 250 degrees thus returning an angle between 0-250 degrees.
- * Potentiometer V2 rotates 330 degrees thus returning an angle between 0-330 degrees.
+ * The original potentiometer rotates 250 degrees thus returning an angle
+ * between 0-250 degrees. Potentiometer V2 rotates 330 degrees thus returning an
+ * angle between 0-330 degrees.
  *
  * This function uses the following values of errno when an error state is
  * reached:
@@ -792,11 +799,13 @@ adi_led_t adi_led_init(uint8_t port);
  * EADDRINUSE - The port is not configured for ADI output
  *
  * @param led port of type adi_led_t
- * @param buffer array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ * @param buffer array of colors in format 0xRRGGBB, recommended that individual
+ * RGB value not to exceed 0x80 due to current draw
  * @param buffer_length length of buffer to clear
  * @return PROS_SUCCESS if successful, PROS_ERR if not
  */
-int32_t adi_led_clear_all(adi_led_t led, uint32_t* buffer, uint32_t buffer_length);
+int32_t adi_led_clear_all(adi_led_t led, uint32_t *buffer,
+                          uint32_t buffer_length);
 
 /**
  * @brief Set the entire led strip using the colors contained in the buffer
@@ -808,11 +817,12 @@ int32_t adi_led_clear_all(adi_led_t led, uint32_t* buffer, uint32_t buffer_lengt
  * EADDRINUSE - The port is not configured for ADI output
  *
  * @param led port of type adi_led_t
- * @param buffer array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ * @param buffer array of colors in format 0xRRGGBB, recommended that individual
+ * RGB value not to exceed 0x80 due to current draw
  * @param buffer_length length of buffer to clear
  * @return PROS_SUCCESS if successful, PROS_ERR if not
  */
-int32_t adi_led_set(adi_led_t led, uint32_t* buffer, uint32_t buffer_length);
+int32_t adi_led_set(adi_led_t led, uint32_t *buffer, uint32_t buffer_length);
 
 /**
  * @brief Set the entire led strip to one color
@@ -824,12 +834,14 @@ int32_t adi_led_set(adi_led_t led, uint32_t* buffer, uint32_t buffer_length);
  * EADDRINUSE - The port is not configured for ADI output
  *
  * @param led port of type adi_led_t
- * @param buffer array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ * @param buffer array of colors in format 0xRRGGBB, recommended that individual
+ * RGB value not to exceed 0x80 due to current draw
  * @param buffer_length length of buffer to clear
  * @param color color to set all the led strip value to
  * @return PROS_SUCCESS if successful, PROS_ERR if not
  */
-int32_t adi_led_set_all(adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color);
+int32_t adi_led_set_all(adi_led_t led, uint32_t *buffer, uint32_t buffer_length,
+                        uint32_t color);
 
 /**
  * @brief Set one pixel on the led strip
@@ -841,13 +853,16 @@ int32_t adi_led_set_all(adi_led_t led, uint32_t* buffer, uint32_t buffer_length,
  * EADDRINUSE - The port is not configured for ADI output
  *
  * @param led port of type adi_led_t
- * @param buffer array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ * @param buffer array of colors in format 0xRRGGBB, recommended that individual
+ * RGB value not to exceed 0x80 due to current draw
  * @param buffer_length length of the input buffer
  * @param color color to clear all the led strip to
  * @param pixel_position position of the pixel to clear
  * @return PROS_SUCCESS if successful, PROS_ERR if not
  */
-int32_t adi_led_set_pixel(adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color, uint32_t pixel_position);
+int32_t adi_led_set_pixel(adi_led_t led, uint32_t *buffer,
+                          uint32_t buffer_length, uint32_t color,
+                          uint32_t pixel_position);
 
 /**
  * @brief Clear one pixel on the led strip
@@ -859,17 +874,19 @@ int32_t adi_led_set_pixel(adi_led_t led, uint32_t* buffer, uint32_t buffer_lengt
  * EADDRINUSE - The port is not configured for ADI output
  *
  * @param led port of type adi_led_t
- * @param buffer array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ * @param buffer array of colors in format 0xRRGGBB, recommended that individual
+ * RGB value not to exceed 0x80 due to current draw
  * @param buffer_length length of the input buffer
  * @param pixel_position position of the pixel to clear
  * @return PROS_SUCCESS if successful, PROS_ERR if not
  */
-int32_t adi_led_clear_pixel(adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t pixel_position);
+int32_t adi_led_clear_pixel(adi_led_t led, uint32_t *buffer,
+                            uint32_t buffer_length, uint32_t pixel_position);
 
 #ifdef __cplusplus
-}  // namespace c
-}  // namespace pros
+} // namespace c
+} // namespace pros
 }
 #endif
 
-#endif  // _PROS_ADI_H_
+#endif // _PROS_ADI_H_

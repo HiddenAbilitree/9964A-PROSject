@@ -189,7 +189,7 @@ int32_t serial_read_byte(uint8_t port);
  * \return The number of bytes read or PROS_ERR if the operation failed, setting
  * errno.
  */
-int32_t serial_read(uint8_t port, uint8_t* buffer, int32_t length);
+int32_t serial_read(uint8_t port, uint8_t *buffer, int32_t length);
 
 /**
  * Write the given byte to the port's output buffer.
@@ -236,12 +236,12 @@ int32_t serial_write_byte(uint8_t port, uint8_t buffer);
  * \return The number of bytes written or PROS_ERR if the operation failed,
  * setting errno.
  */
-int32_t serial_write(uint8_t port, uint8_t* buffer, int32_t length);
+int32_t serial_write(uint8_t port, uint8_t *buffer, int32_t length);
 
 #ifdef __cplusplus
-}  // namespace c
-}  // namespace pros
+} // namespace c
+} // namespace pros
 }
 #endif
 
-#endif  // _PROS_SERIAL_H_
+#endif // _PROS_SERIAL_H_

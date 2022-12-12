@@ -3,45 +3,48 @@
 pros::Controller prosController(pros::E_CONTROLLER_MASTER);
 // initializing motors
 
-
 // initialize pneumatic pistons
 pros::ADIDigitalOut leftPiston(LEFT_DIGITAL_SENSOR_PORT);
 pros::ADIDigitalOut rightPiston(RIGHT_DIGITAL_SENSOR_PORT);
 pros::ADIDigitalOut catapultLock(CATAPULT_DIGITAL_SENSOR_PORT);
 pros::ADIDigitalOut jerry(EXTENSION_DIGITAL_SENSOR_PORT);
 
-pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT,PROS_DRIVE_GEARSET,0,PROS_DRIVE_MEASURE);
-pros::Motor rUFM(RIGHT_DRIVE_MOTOR3_PORT,PROS_DRIVE_GEARSET,1,PROS_DRIVE_MEASURE);
+pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 0,
+                 PROS_DRIVE_MEASURE);
+pros::Motor rUFM(RIGHT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 1,
+                 PROS_DRIVE_MEASURE);
 
-pros::Motor_Group prosLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT, LEFT_DRIVE_MOTOR3_PORT, LEFT_DRIVE_MOTOR4_PORT});
-pros::Motor_Group prosRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT, RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
+pros::Motor_Group prosLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
+                           LEFT_DRIVE_MOTOR3_PORT, LEFT_DRIVE_MOTOR4_PORT});
+pros::Motor_Group prosRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
+                           RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
 
-okapi::MotorGroup okapiLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT, LEFT_DRIVE_MOTOR3_PORT, LEFT_DRIVE_MOTOR4_PORT});
-okapi::MotorGroup okapiRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT, RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
+okapi::MotorGroup okapiLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
+                            LEFT_DRIVE_MOTOR3_PORT, LEFT_DRIVE_MOTOR4_PORT});
+okapi::MotorGroup okapiRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
+                            RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
 
 std::shared_ptr<okapi::OdomChassisController> chassis =
-okapi::ChassisControllerBuilder()
-  .withMotors(
-    okapiLDM, // left motors
-    okapiRDM // right motors
-  )
-  .withDimensions(
-    {
-      OKAPI_DRIVE_GEARSET, // drive gearset stored in robot.h
-      (DRIVE_GEARMOTOR/DRIVE_GEARWHEEL)  // drivetrain gearing
-    },
-    {
-      {
-        CHASSIS_WHEELS, // wheel size stored in robot.h
-        CHASSIS_TRACK   // drivetrain track size (length between
-                // wheels on same axis) stored in robot.h
-      },
-      OKAPI_DRIVE_TPR // drivetrain ticks per rotation stored in robot.h
-    })
-  .withOdometry()
-  .buildOdometry();
-
-
+    okapi::ChassisControllerBuilder()
+        .withMotors(okapiLDM, // left motors
+                    okapiRDM  // right motors
+                    )
+        .withDimensions(
+            {
+                OKAPI_DRIVE_GEARSET, // drive gearset stored in robot.h
+                (DRIVE_GEARMOTOR / DRIVE_GEARWHEEL) // drivetrain gearing
+            },
+            {
+                {
+                    CHASSIS_WHEELS, // wheel size stored in robot.h
+                    CHASSIS_TRACK   // drivetrain track size (length between
+                                    // wheels on same axis) stored in robot.h
+                },
+                OKAPI_DRIVE_TPR // drivetrain ticks per rotation stored in
+                                // robot.h
+            })
+        .withOdometry()
+        .buildOdometry();
 
 bool ptoActivated = false;
 
@@ -88,14 +91,10 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {
-  chassis->setState({0_in,0_in});
-}
+void autonomous() { chassis->setState({0_in, 0_in}); }
 
-void catapultMech()
-{
-  if(ptoActivated)
-  {
+void catapultMech() {
+  if (ptoActivated) {
     // (intake on)
     lUFM = 127;
     rUFM = 127;
@@ -114,10 +113,7 @@ void catapultMech()
   }
 }
 
-void drivetrain()
-{
-
-}
+void drivetrain() {}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -137,18 +133,19 @@ void opcontrol() {
   // ranges -127 to 127
   int left = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
   int right = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-  while (true) {  
+  while (true) {
     prosRDM.set_reversed(true);
     prosLDM.set_gearing(PROS_DRIVE_GEARSET);
     prosRDM.set_gearing(PROS_DRIVE_GEARSET);
     prosLDM = left;
     prosRDM = right;
     // PTO motor control
-    if(ptoActivated) // when PTO engaged, default to PTO motors to spinning forwards
+    if (ptoActivated) // when PTO engaged, default to PTO motors to spinning
+                      // forwards
     {
       pros::Task task(catapultMech);
     }
-    if(prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
+    if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
       rightPiston.set_value(!ptoActivated);
       leftPiston.set_value(!ptoActivated);
       ptoActivated = !ptoActivated;
@@ -157,7 +154,4 @@ void opcontrol() {
     pros::delay(2);
   }
   // main while loop
-
-
-  
 }

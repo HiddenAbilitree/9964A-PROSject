@@ -1,6 +1,6 @@
 /*
- * This code is a modified version of Benjamin Jurke's work in 2015. You can read his blog post
- * here:
+ * This code is a modified version of Benjamin Jurke's work in 2015. You can
+ * read his blog post here:
  * https://benjaminjurke.com/content/articles/2015/compile-time-numerical-unit-dimension-checking/
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
@@ -21,9 +21,7 @@ constexpr QForce poundforce = pound * G;
 constexpr QForce kilopond = kg * G;
 
 inline namespace literals {
-constexpr QForce operator"" _n(long double x) {
-  return QForce(x);
-}
+constexpr QForce operator"" _n(long double x) { return QForce(x); }
 constexpr QForce operator"" _n(unsigned long long int x) {
   return QForce(static_cast<double>(x));
 }

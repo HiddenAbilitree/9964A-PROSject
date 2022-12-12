@@ -27,14 +27,10 @@ struct ProfilePoint {
    * @param itime The timestamp for this state relative to the start of the
    *              path in seconds.
    */
-  ProfilePoint(ControlVector ivector,
-               std::vector<double> iwheel_velocities,
-               double icurvature,
-               double itime)
-    : vector(ivector),
-      wheel_velocities(iwheel_velocities),
-      curvature(icurvature),
-      time(itime) {}
+  ProfilePoint(ControlVector ivector, std::vector<double> iwheel_velocities,
+               double icurvature, double itime)
+      : vector(ivector), wheel_velocities(iwheel_velocities),
+        curvature(icurvature), time(itime) {}
 
   ProfilePoint() = default;
 
@@ -45,7 +41,7 @@ struct ProfilePoint {
    */
   std::string to_string() const {
     std::string wheels = "{";
-    for (auto& w : wheel_velocities) {
+    for (auto &w : wheel_velocities) {
       wheels += std::to_string(w);
       wheels += ", ";
     }
@@ -57,7 +53,7 @@ struct ProfilePoint {
 
   std::string to_csv() const {
     std::string wheels = "";
-    for (auto& w : wheel_velocities) {
+    for (auto &w : wheel_velocities) {
       wheels += ",";
       wheels += std::to_string(w);
     }
@@ -65,7 +61,7 @@ struct ProfilePoint {
            std::to_string(time) + wheels;
   }
 
-  bool operator==(const ProfilePoint& other) const {
+  bool operator==(const ProfilePoint &other) const {
     for (std::size_t i = 0; i < wheel_velocities.size(); ++i) {
       if (!nearly_equal(wheel_velocities[i], other.wheel_velocities[i])) {
         return false;
@@ -75,18 +71,18 @@ struct ProfilePoint {
            nearly_equal(time, other.time);
   }
 
-  friend std::ostream& operator<<(std::ostream& os, const ProfilePoint& p) {
+  friend std::ostream &operator<<(std::ostream &os, const ProfilePoint &p) {
     return os << "ProfilePoint(ControlVector(Pose(" +
-                   std::to_string(p.vector.pose.x) + "," +
-                   std::to_string(p.vector.pose.y) + "," +
-                   std::to_string(p.vector.pose.yaw) + ")," +
-                   std::to_string(p.vector.vel) + "," +
-                   std::to_string(p.vector.accel) + "," +
-                   std::to_string(p.vector.jerk) + "),{" +
-                   std::to_string(p.wheel_velocities[0]) + "," +
-                   std::to_string(p.wheel_velocities[1]) + "}," +
-                   std::to_string(p.curvature) + "," + std::to_string(p.time) +
-                   "),";
+                     std::to_string(p.vector.pose.x) + "," +
+                     std::to_string(p.vector.pose.y) + "," +
+                     std::to_string(p.vector.pose.yaw) + ")," +
+                     std::to_string(p.vector.vel) + "," +
+                     std::to_string(p.vector.accel) + "," +
+                     std::to_string(p.vector.jerk) + "),{" +
+                     std::to_string(p.wheel_velocities[0]) + "," +
+                     std::to_string(p.wheel_velocities[1]) + "}," +
+                     std::to_string(p.curvature) + "," +
+                     std::to_string(p.time) + "),";
     // return os << p.to_string();
   }
 

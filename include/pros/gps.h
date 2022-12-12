@@ -29,17 +29,17 @@ namespace c {
 #endif
 
 typedef struct __attribute__((__packed__)) gps_status_s {
-	double x;      ///< X Position (meters)
-	double y;      ///< Y Position (meters)
-	double pitch;  ///< Percieved Pitch based on GPS + IMU
-	double roll;   ///< Percieved Roll based on GPS + IMU
-	double yaw;    ///< Percieved Yaw based on GPS + IMU
+  double x;     ///< X Position (meters)
+  double y;     ///< Y Position (meters)
+  double pitch; ///< Percieved Pitch based on GPS + IMU
+  double roll;  ///< Percieved Roll based on GPS + IMU
+  double yaw;   ///< Percieved Yaw based on GPS + IMU
 } gps_status_s_t;
 
 struct gps_raw_s {
-	double x;  ///< Percieved Pitch based on GPS + IMU
-	double y;  ///< Percieved Roll based on GPS + IMU
-	double z;  ///< Percieved Yaw based on GPS + IMU
+  double x; ///< Percieved Pitch based on GPS + IMU
+  double y; ///< Percieved Roll based on GPS + IMU
+  double z; ///< Percieved Yaw based on GPS + IMU
 };
 
 typedef struct gps_raw_s gps_accel_s_t;
@@ -58,19 +58,17 @@ typedef struct gps_raw_s gps_gyro_s_t;
  * \param  port
  * 				 The V5 GPS port number from 1-21
  * \param  xOffset
- * 				 Cartesian 4-Quadrant X offset from center of turning (meters)
- * \param  yOffset
- * 				 Cartesian 4-Quadrant Y offset from center of turning (meters)
- * \param  xInitial
- * 				 Initial 4-Quadrant X Position, with (0,0) being at the center of the field (meters)
- * \param  yInitial
- * 				 Initial 4-Quadrant Y Position, with (0,0) being at the center of the field (meters)
- * \param  headingInitial
- *  			 Heading with 0 being north on the field, in degrees [0,360) going clockwise
- * \return 1 if the operation was successful or PROS_ERR if the operation
- * failed, setting errno.
+ * 				 Cartesian 4-Quadrant X offset from center of turning
+ * (meters) \param  yOffset Cartesian 4-Quadrant Y offset from center of turning
+ * (meters) \param  xInitial Initial 4-Quadrant X Position, with (0,0) being at
+ * the center of the field (meters) \param  yInitial Initial 4-Quadrant Y
+ * Position, with (0,0) being at the center of the field (meters) \param
+ * headingInitial Heading with 0 being north on the field, in degrees [0,360)
+ * going clockwise \return 1 if the operation was successful or PROS_ERR if the
+ * operation failed, setting errno.
  */
-int32_t gps_initialize_full(uint8_t port, double xInitial, double yInitial, double headingInitial, double xOffset,
+int32_t gps_initialize_full(uint8_t port, double xInitial, double yInitial,
+                            double headingInitial, double xOffset,
                             double yOffset);
 
 /**
@@ -85,11 +83,10 @@ int32_t gps_initialize_full(uint8_t port, double xInitial, double yInitial, doub
  * \param  port
  * 				 The V5 GPS port number from 1-21
  * \param  xOffset
- * 				 Cartesian 4-Quadrant X offset from center of turning (meters)
- * \param  yOffset
- * 				 Cartesian 4-Quadrant Y offset from center of turning (meters)
- * \return 1 if the operation was successful or PROS_ERR if the operation
- * failed, setting errno.
+ * 				 Cartesian 4-Quadrant X offset from center of turning
+ * (meters) \param  yOffset Cartesian 4-Quadrant Y offset from center of turning
+ * (meters) \return 1 if the operation was successful or PROS_ERR if the
+ * operation failed, setting errno.
  */
 int32_t gps_set_offset(uint8_t port, double xOffset, double yOffset);
 
@@ -105,13 +102,12 @@ int32_t gps_set_offset(uint8_t port, double xOffset, double yOffset);
  * \param  port
  * 				 The V5 GPS port number from 1-21
  * \param  xOffset
- * 				 Pointer to cartesian 4-Quadrant X offset from center of turning (meters)
- * \param  yOffset
- * 				 Pointer to cartesian 4-Quadrant Y offset from center of turning (meters)
- * \return 1 if the operation was successful or PROS_ERR if the operation
- * failed, setting errno.
+ * 				 Pointer to cartesian 4-Quadrant X offset from center of
+ * turning (meters) \param  yOffset Pointer to cartesian 4-Quadrant Y offset
+ * from center of turning (meters) \return 1 if the operation was successful or
+ * PROS_ERR if the operation failed, setting errno.
  */
-int32_t gps_get_offset(uint8_t port, double* xOffset, double* yOffset);
+int32_t gps_get_offset(uint8_t port, double *xOffset, double *yOffset);
 
 /**
  * Sets the robot's location relative to the center of the field in meters.
@@ -125,15 +121,15 @@ int32_t gps_get_offset(uint8_t port, double* xOffset, double* yOffset);
  * \param  port
  * 				 The V5 GPS port number from 1-21
  * \param  xInitial
- * 				 Initial 4-Quadrant X Position, with (0,0) being at the center of the field (meters)
- * \param  yInitial
- * 				 Initial 4-Quadrant Y Position, with (0,0) being at the center of the field (meters)
- * \param  headingInitial
- *  			 Heading with 0 being north on the field, in degrees [0,360) going clockwise
- * \return 1 if the operation was successful or PROS_ERR if the operation
- * failed, setting errno.
+ * 				 Initial 4-Quadrant X Position, with (0,0) being at the
+ * center of the field (meters) \param  yInitial Initial 4-Quadrant Y Position,
+ * with (0,0) being at the center of the field (meters) \param  headingInitial
+ *  			 Heading with 0 being north on the field, in degrees [0,360)
+ * going clockwise \return 1 if the operation was successful or PROS_ERR if the
+ * operation failed, setting errno.
  */
-int32_t gps_set_position(uint8_t port, double xInitial, double yInitial, double headingInitial);
+int32_t gps_set_position(uint8_t port, double xInitial, double yInitial,
+                         double headingInitial);
 
 /**
  * Set the GPS sensor's data rate in milliseconds, only applies to IMU on GPS.

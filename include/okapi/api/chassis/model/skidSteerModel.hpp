@@ -11,10 +11,11 @@
 
 namespace okapi {
 class SkidSteerModel : public ChassisModel {
-  public:
+public:
   /**
-   * Model for a skid steer drive (wheels parallel with robot's direction of motion). When all
-   * motors are powered +100%, the robot should move forward in a straight line.
+   * Model for a skid steer drive (wheels parallel with robot's direction of
+   * motion). When all motors are powered +100%, the robot should move forward
+   * in a straight line.
    *
    * @param ileftSideMotor The left side motor.
    * @param irightSideMotor The right side motor.
@@ -25,8 +26,7 @@ class SkidSteerModel : public ChassisModel {
                  std::shared_ptr<AbstractMotor> irightSideMotor,
                  std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                  std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                 double imaxVelocity,
-                 double imaxVoltage);
+                 double imaxVelocity, double imaxVoltage);
 
   /**
    * Drive the robot forwards (using open-loop control). Uses velocity mode.
@@ -76,7 +76,8 @@ class SkidSteerModel : public ChassisModel {
    * @param irightSpeed right side speed
    * @param ithreshold deadband on joystick values
    */
-  void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) override;
+  void tank(double ileftSpeed, double irightSpeed,
+            double ithreshold = 0) override;
 
   /**
    * Drive the robot with an arcade drive layout. Uses voltage mode.
@@ -85,19 +86,22 @@ class SkidSteerModel : public ChassisModel {
    * @param iyaw speed around the vertical axis
    * @param ithreshold deadband on joystick values
    */
-  void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) override;
+  void arcade(double iforwardSpeed, double iyaw,
+              double ithreshold = 0) override;
 
   /**
-   * Drive the robot with a curvature drive layout. The robot drives in constant radius turns
-   * where you control the curvature (inverse of radius) you drive in. This is advantageous
-   * because the forward speed will not affect the rate of turning. The algorithm switches to
-   * arcade if the forward speed is 0. Uses voltage mode.
+   * Drive the robot with a curvature drive layout. The robot drives in constant
+   * radius turns where you control the curvature (inverse of radius) you drive
+   * in. This is advantageous because the forward speed will not affect the rate
+   * of turning. The algorithm switches to arcade if the forward speed is 0.
+   * Uses voltage mode.
    *
    * @param iforwardSpeed speed in the forward direction
    * @param icurvature curvature (inverse of radius) to drive in
    * @param ithreshold deadband on joystick values
    */
-  void curvature(double iforwardSpeed, double icurvature, double ithreshold = 0) override;
+  void curvature(double iforwardSpeed, double icurvature,
+                 double ithreshold = 0) override;
 
   /**
    * Power the left side motors. Uses velocity mode.
@@ -147,10 +151,11 @@ class SkidSteerModel : public ChassisModel {
   void setGearing(AbstractMotor::gearset gearset) override;
 
   /**
-   * Sets a new maximum velocity in RPM. The usable maximum depends on the maximum velocity of the
-   * currently installed gearset. If the configured maximum velocity is greater than the attainable
-   * maximum velocity from the currently installed gearset, the ChassisModel will still scale to
-   * that velocity.
+   * Sets a new maximum velocity in RPM. The usable maximum depends on the
+   * maximum velocity of the currently installed gearset. If the configured
+   * maximum velocity is greater than the attainable maximum velocity from the
+   * currently installed gearset, the ChassisModel will still scale to that
+   * velocity.
    *
    * @param imaxVelocity The new maximum velocity.
    */
@@ -187,7 +192,7 @@ class SkidSteerModel : public ChassisModel {
    */
   std::shared_ptr<AbstractMotor> getRightSideMotor() const;
 
-  protected:
+protected:
   double maxVelocity;
   double maxVoltage;
   std::shared_ptr<AbstractMotor> leftSideMotor;

@@ -9,10 +9,10 @@
 
 namespace okapi {
 class ThreeEncoderXDriveModel : public XDriveModel {
-  public:
+public:
   /**
-   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all motors are powered
-   * +100%, the robot should move forward in a straight line.
+   * Model for an x drive (wheels at 45 deg from a skid steer drive). When all
+   * motors are powered +100%, the robot should move forward in a straight line.
    *
    * @param itopLeftMotor The top left motor.
    * @param itopRightMotor The top right motor.
@@ -29,8 +29,7 @@ class ThreeEncoderXDriveModel : public XDriveModel {
                           std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                           std::shared_ptr<ContinuousRotarySensor> irightEnc,
                           std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
-                          double imaxVelocity,
-                          double imaxVoltage);
+                          double imaxVelocity, double imaxVoltage);
 
   /**
    * Read the sensors.
@@ -44,7 +43,7 @@ class ThreeEncoderXDriveModel : public XDriveModel {
    */
   void resetSensors() override;
 
-  protected:
+protected:
   std::shared_ptr<ContinuousRotarySensor> middleSensor;
 };
 } // namespace okapi

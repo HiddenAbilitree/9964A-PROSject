@@ -22,7 +22,7 @@ namespace squiggles {
  *
  * @return 0 if the path was serialized succesfully or -1 if an error occurred.
  */
-int serialize_path(std::ostream& out, std::vector<ProfilePoint> path);
+int serialize_path(std::ostream &out, std::vector<ProfilePoint> path);
 
 /**
  * Converts CSV data into a path.
@@ -32,7 +32,7 @@ int serialize_path(std::ostream& out, std::vector<ProfilePoint> path);
  * @return The path specified by the CSV data or std::nullopt if de-serializing
  *         the path was unsuccessful.
  */
-std::optional<std::vector<ProfilePoint>> deserialize_path(std::istream& in);
+std::optional<std::vector<ProfilePoint>> deserialize_path(std::istream &in);
 
 /**
  * Converts CSV data from the Pathfinder library's format to a Squiggles path.
@@ -50,7 +50,7 @@ std::optional<std::vector<ProfilePoint>> deserialize_path(std::istream& in);
  *         the path was unsuccessful.
  */
 std::optional<std::vector<ProfilePoint>>
-deserialize_pathfinder_path(std::istream& left, std::istream& right);
+deserialize_pathfinder_path(std::istream &left, std::istream &right);
 } // namespace squiggles
 
 #endif

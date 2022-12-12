@@ -9,7 +9,7 @@
 
 namespace okapi {
 class ContinuousRotarySensor : public RotarySensor {
-  public:
+public:
   /**
    * Reset the sensor to zero.
    *
