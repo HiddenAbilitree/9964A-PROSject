@@ -3,9 +3,26 @@
 #include <memory>  
 
 #include "main.h"
+#include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
+#include "okapi/api/chassis/controller/odomChassisController.hpp"
+#include "okapi/api/chassis/model/chassisModel.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
+#include "okapi/api/units/QLength.hpp"
+#include "okapi/api/units/RQuantity.hpp"
+#include "okapi/api/util/logging.hpp"
+#include "okapi/api/util/mathUtil.hpp"
+#include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
+#include "okapi/impl/device/motor/motorGroup.hpp"
+#include "pros/adi.h"
+#include "pros/adi.hpp"
+#include "pros/misc.h"
+#include "pros/motors.h"
+#include "pros/rtos.hpp"
+
+// global
 
 // stores motor port values
+// motor 3 is attached to the PTO
 #define LEFT_DRIVE_MOTOR1_PORT 5
 #define LEFT_DRIVE_MOTOR2_PORT 6
 #define LEFT_DRIVE_MOTOR3_PORT 7
@@ -20,13 +37,13 @@
 #define DRIVE_GEARSET okapi::AbstractMotor::gearset::blue  // blue motor RPM (600)
 #define DRIVE_TPR okapi::imev5BlueTPR  // gear ticks per rotation in a blue motor cartridge
 #define DRIVE_GEARMOTOR 36.0  // gear tooth count on the axle attached to the motor
-#define DRIVE_GEARWHEEL 36.0  // gear tooth count on the axle attached to the wheel
+#define DRIVE_GEARWHEEL 60.0  // gear tooth count on the axle attached to the wheel
 
 // stores the dimensions of the drivetrain
 #define CHASSIS_TRACK 14.25_in  // distance between the inside edge of wheels on the same axle
 #define CHASSIS_WHEELS 2_in  // diameter of drivetrain wheels
 
-// stores ports of the pistons used for the pto mech
+// stores ports of the pistons used for the PTO mech
 #define LEFT_DIGITAL_SENSOR_PORT 'A'
 #define RIGHT_DIGITAL_SENSOR_PORT 'B'
 
@@ -39,31 +56,34 @@
 // stores port of the pullback limit switch
 #define PULLLIMIT_DIGITAL_SENSOR_PORT 'E'
 
-// okapilib object initialization
-extern std::shared_ptr<okapi::Controller> controller; // okapilib controller
+
+
+// okapilib
+extern std::shared_ptr<okapi::Controller> controller;  // okapilib controller
 extern std::shared_ptr<okapi::OdomChassisController> chassis;  // okapilib odometry controller
-extern okapi::MotorGroup left_drive_motors;  // drivetrain left motor group 
-extern okapi::MotorGroup right_drive_motors;  // drivetrain right motor group
+extern okapi::MotorGroup okapiLDM;  // drivetrain left motor group 
+extern okapi::MotorGroup okapiRDM;  // drivetrain right motor group
 
-// pros object initialization
-extern pros::Controller master;
 
-extern pros::Motor lLFM;
-extern pros::Motor lLBM;
-extern pros::Motor lUFM;
-extern pros::Motor lUBM;
-extern pros::Motor rLFM;
-extern pros::Motor rLBM;
-extern pros::Motor rUFM;
-extern pros::Motor rUBM;
 
-// group 6 main drive motors into groups
-extern pros::Motor_Group driveLeftMotors;
-extern pros::Motor_Group driveRightMotors;
-// initialize pneumatic pistons
-extern pros::ADIDigitalOut leftPiston;
-extern pros::ADIDigitalOut rightPiston;
-extern pros::ADIDigitalOut catapultLock;
-extern pros::ADIDigitalOut jerry;
-// initialize pullback limit sensor
-extern pros::ADIDigitalIn pulledBack;
+//pros
+#define PROS_DRIVE_GEARSET pros::E_MOTOR_GEAR_BLUE  // blue motor (600rpm)
+#define PROS_DRIVE_MEASURE pros::E_MOTOR_ENCODER_DEGREES  // encoder measures in degrees
+
+// pros object declarations
+
+extern pros::Controller master;  // pros contorller
+
+// declares pto motors
+extern pros::Motor lUFM;  // left upper front motor
+extern pros::Motor rUFM;  // right upper front motor
+
+// declare motor groups
+extern pros::Motor_Group prosLDM;  // pros left drive motors
+extern pros::Motor_Group prosRDM;  // pros right drive motors
+
+// declare pneumatic pistons
+extern pros::ADIDigitalOut leftPiston;  // left PTO piston
+extern pros::ADIDigitalOut rightPiston;  // right PTO piston
+extern pros::ADIDigitalOut catapultLock;  // catapult piston
+extern pros::ADIDigitalOut jerry;  // extension piston
