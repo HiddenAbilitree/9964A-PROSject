@@ -41,7 +41,7 @@
 
 // stores the dimensions of the drivetrain
 #define CHASSIS_TRACK 14.25_in  // distance between the inside edge of wheels on the same axle
-#define CHASSIS_WHEELS 2_in  // diameter of drivetrain wheels
+#define CHASSIS_WHEELS 3.25_in  // diameter of drivetrain wheels
 
 // stores ports of the pistons used for the PTO mech
 #define LEFT_DIGITAL_SENSOR_PORT 'A'
