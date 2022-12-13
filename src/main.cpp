@@ -1,3 +1,4 @@
+#include "pros/misc.h"
 #include "robot.h"
 
 pros::Controller prosController(pros::E_CONTROLLER_MASTER);
@@ -94,23 +95,10 @@ void competition_initialize() {}
 void autonomous() { chassis->setState({0_in, 0_in}); }
 
 void catapultMech() {
-  if (ptoActivated) {
     // (intake on)
-    lUFM = 127;
-    rUFM = 127;
-    if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-      catapultLock.set_value(false); // release the catapult to shoot
-      pros::delay(250);
-      lUFM.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-      rUFM.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-      lUFM.brake();
-      rUFM.brake();
-      catapultLock.set_value(true);
-      pros::delay(250);
-      lUFM.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-      rUFM.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-    }
-  }
+    lUFM = 0;
+	rUFM = 0;
+
 }
 
 void drivetrain() {}
@@ -134,16 +122,21 @@ void opcontrol() {
   int left = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
   int right = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
   while (true) {
-    prosRDM.set_reversed(true);
-    prosLDM.set_gearing(PROS_DRIVE_GEARSET);
-    prosRDM.set_gearing(PROS_DRIVE_GEARSET);
+ 
     prosLDM = left;
     prosRDM = right;
     // PTO motor control
-    if (ptoActivated) // when PTO engaged, default to PTO motors to spinning
-                      // forwards
+    if (ptoActivated) // when PTO engaged, default to PTO motors to spinning forwards
     {
-      pros::Task task(catapultMech);
+        if (prosController.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
+			lUFM = 127;
+			rUFM = 127;
+    	}
+		if (prosController.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN))
+		{
+			lUFM = -127;
+			rUFM = -127;
+		}
     }
     if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
       rightPiston.set_value(!ptoActivated);
