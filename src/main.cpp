@@ -119,12 +119,11 @@ void opcontrol()
 {
 	// stores controller analog stick positions into an int variable
 	// ranges -127 to 127
-	int left = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-	int right = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+
 	while (true)
 	{
-		prosLDM = left;
-		prosRDM = right;
+		prosLDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+		prosRDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 		// PTO motor control
 		ptoControls();
 		togglePTO();
