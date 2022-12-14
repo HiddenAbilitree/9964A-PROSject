@@ -2,6 +2,8 @@
 
 #include <memory>
 
+#include "functions.h"
+
 #include "main.h"
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/odomChassisController.hpp"
@@ -34,18 +36,18 @@
 #define RIGHT_DRIVE_MOTOR4_PORT 4
 
 // stores the gearing of the drivetrain
-#define OKAPI_DRIVE_GEARSET                                                    \
+#define OKAPI_DRIVE_GEARSET \
   okapi::AbstractMotor::gearset::blue // blue motor RPM (600)
-#define OKAPI_DRIVE_TPR                                                        \
+#define OKAPI_DRIVE_TPR \
   okapi::imev5BlueTPR // gear ticks per rotation in a blue motor cartridge
-#define DRIVE_GEARMOTOR                                                        \
+#define DRIVE_GEARMOTOR \
   36.0 // gear tooth count on the axle attached to the motor
-#define DRIVE_GEARWHEEL                                                        \
+#define DRIVE_GEARWHEEL \
   60.0 // gear tooth count on the axle attached to the wheel
 
 // stores the dimensions of the drivetrain
-#define CHASSIS_TRACK                                                          \
-  14.25_in // distance between the inside edge of wheels on the same axle
+#define CHASSIS_TRACK \
+  14.25_in                     // distance between the inside edge of wheels on the same axle
 #define CHASSIS_WHEELS 3.25_in // diameter of drivetrain wheels
 
 // stores ports of the pistons used for the PTO mech
@@ -71,7 +73,7 @@ extern okapi::MotorGroup okapiRDM; // drivetrain right motor group
 
 // pros
 #define PROS_DRIVE_GEARSET pros::E_MOTOR_GEAR_BLUE // blue motor (600rpm)
-#define PROS_DRIVE_MEASURE                                                     \
+#define PROS_DRIVE_MEASURE \
   pros::E_MOTOR_ENCODER_DEGREES // encoder measures in degrees
 
 // pros object declarations
@@ -91,3 +93,5 @@ extern pros::ADIDigitalOut leftPiston;   // left PTO piston
 extern pros::ADIDigitalOut rightPiston;  // right PTO piston
 extern pros::ADIDigitalOut catapultLock; // catapult piston
 extern pros::ADIDigitalOut jerry;        // extension piston
+
+extern bool ptoActivated;
