@@ -4,7 +4,7 @@ site_author: Eric Zhang
 
 # github repository information
 repo_name: HiddenAbilitree/9964A-PROSject
-repo_url: https://github.com/HiddenAbilitree/9964A-Official-PROSject
+repo_url: https://github.com/HiddenAbilitree/9964A-PROSject
 edit_uri: ""
 
 # new colors
@@ -39,6 +39,23 @@ theme:
         name: Switch to light mode
 
 extra:
+  analytics:
+    provider: google
+    property: G-96JMH9MJRG
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
   generator: false
   social: 
     - icon: fontawesome/brands/github
@@ -51,7 +68,24 @@ extra:
       as to measure the effectiveness of our documentation and whether users
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
-
+plugins:
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: iso_datetime
+  - social:
+      cards: true
+      cards_dir: docs/images/social
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: "100%"
+      height: auto
+      zoomable: true
+      draggable: true
+      auto_caption: false
+      caption_position: bottom
 markdown_extensions:
   - abbr
   - admonition

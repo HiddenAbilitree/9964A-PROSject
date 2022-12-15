@@ -31,6 +31,8 @@
     C --> E(No double inclusion);
     ``` 
     This chart illustrates the importance of the use of `#!cpp #pragma once` at the beginning of the header file.
+
+    `#!cpp #pragma once` acts very similarly to a `#!cpp #ifndef` header guard.
     ```mermaid
     graph TD
     A(Header file)
@@ -50,4 +52,10 @@
 
     ```cpp title="functions.cpp"
     --8<-- "src/functions.cpp"
+    ```
+
+=== "Functions Header"
+
+    ```cpp title="functions.h"
+    --8<-- "include/functions.h"
     ```

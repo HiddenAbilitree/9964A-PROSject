@@ -1,6 +1,6 @@
 # Team 9964A Description
 
-## Choices
+## Choices ![PROS](https://user-images.githubusercontent.com/22580992/123097191-e198b480-d3fd-11eb-903c-4c267f59fac1.png){ width="75"align=right}
 
 The biggest decision that was made on the programming side of our team was to switch to PROS from VEXCode.
 
