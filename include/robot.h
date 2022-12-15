@@ -2,6 +2,7 @@
 
 #include <memory>
 
+// includes all needed files
 #include "functions.h"
 
 #include "main.h"
@@ -24,7 +25,7 @@
 // global
 
 // stores motor port values
-// motor 3 is attached to the PTO
+// motor 3 on both sides is attached to the PTO
 #define LEFT_DRIVE_MOTOR1_PORT 5
 #define LEFT_DRIVE_MOTOR2_PORT 6
 #define LEFT_DRIVE_MOTOR3_PORT 7
@@ -94,4 +95,5 @@ extern pros::ADIDigitalOut rightPiston;  // right PTO piston
 extern pros::ADIDigitalOut catapultLock; // catapult piston
 extern pros::ADIDigitalOut jerry;        // extension piston
 
+// makes ptoActivated a global variable
 extern bool ptoActivated;

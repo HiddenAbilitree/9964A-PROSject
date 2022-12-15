@@ -1,8 +1,6 @@
 <!-- @format -->
 
-# Odometry
-
-## Program
+# Program Documentation
 
 === "Main Program"
 
@@ -16,8 +14,8 @@
     --8<-- "include/robot.h"
     ```
 
-    <br/>
-
+    </br>
+    
     !!! abstract inline end "Note"
         
         Variables are stored here primarily for readability purposes throughout the codebase.
@@ -31,7 +29,7 @@
     B ---->|Yes| C(Ignore);
     B ---->|No| D(Include);
     C --> E(No double inclusion);
-    ```
+    ``` 
     This chart illustrates the importance of the use of `#!cpp #pragma once` at the beginning of the header file.
     ```mermaid
     graph TD

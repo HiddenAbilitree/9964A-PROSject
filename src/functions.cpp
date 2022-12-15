@@ -2,6 +2,7 @@
 
 void togglePTO()
 {
+    // if controller's front right bumper is pressed, toggles the PTO mechanism
     if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1))
     {
         rightPiston.set_value(!ptoActivated);
@@ -9,15 +10,20 @@ void togglePTO()
         ptoActivated = !ptoActivated;
     }
 }
+
+// utility function to shorten code
 void setPtoSpeed(int speed)
 {
     lUFM = speed;
     rUFM = speed;
 }
+
+// the set of controls used when the PTO is activated
 void ptoControls()
 {
-    if (ptoActivated) // when PTO engaged, default to PTO motors to spinning
-    // forwards
+    // if the PTO is activated, check for a controller input to move the motors
+    // attached to the PTO, otherwise, don't move motors
+    if (ptoActivated)
     {
         if (prosController.get_digital(pros::E_CONTROLLER_DIGITAL_UP))
             setPtoSpeed(127);

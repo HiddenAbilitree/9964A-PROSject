@@ -2,4 +2,17 @@
 
 ## Choices
 
-We decided to use PROS and the supporting library, OkapiLib due to various reasons. While researching about important aspects of a robot, one key feature that was common in most high-level teams was the implementaion of Odometry. This is the practice where rotation encoders are utilized to calculate the actual movement of the robot. When researching how to implement Odometry, we came across PROS, specifically OkapiLib. We found that this was one of the easiest ways to implement odometry that could be customized for uses in many different scenarios. Another feature was the ease of implementation of a PID controller, something that is desperately needed to effectively calibrate our robot's aged motors. Another key feature that led to the decision was the reinstatement of certain C++ features that were removed in the implementation of VEXcode.
+The biggest decision that was made on the programming side of our team was to switch to PROS from VEXCode.
+
+The creators of VEX created VEXCode, a programming environment that uses a language derived from C++, dedicated for use with VEX hardware. Since VEX is often seen as a pathway into engineering or programming, the creators removed support for many C++ features, making the language much easier to learn at the expense of certain functionalities.
+
+As the programmers of the team, we knew that VEXCode limited our capabilities when it came to programming.
+
+This is where PROS comes in. The developers of PROS, the Purdue SigBots, decided that while the VEXCode environment was good for beginners, more advanced users should be allowed to use all of the features that make C++ one of the fastest languages. Along with this, they added a library named OkapiLib, including functionality for prepackaged functions that enable teams to implement advanced processes such as odometry and PID, two essential features that are needed for a high-level team to succeed.
+
+|                                       |         PROS          |            VEXCode            |
+| :-----------------------------------: | :-------------------: | :---------------------------: |
+|   Pros :material-emoticon-outline:    | Faster, More features |    Easier to learn and use    |
+| Cons :material-emoticon-sick-outline: |    Harder to learn    | Slower and less functionality |
+
+Since we, the programmers of this team, are relatively experienced in programming, we decided that it would be best to utilize the option with more functionality which was PROS.

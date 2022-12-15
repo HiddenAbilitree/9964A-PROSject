@@ -1,8 +1,8 @@
 
 #include "robot.h"
 
+// defining the controller
 pros::Controller prosController(pros::E_CONTROLLER_MASTER);
-// initializing motors
 
 // initialize pneumatic pistons
 pros::ADIDigitalOut leftPiston(LEFT_DIGITAL_SENSOR_PORT);
@@ -10,21 +10,26 @@ pros::ADIDigitalOut rightPiston(RIGHT_DIGITAL_SENSOR_PORT);
 pros::ADIDigitalOut catapultLock(CATAPULT_DIGITAL_SENSOR_PORT);
 pros::ADIDigitalOut jerry(EXTENSION_DIGITAL_SENSOR_PORT);
 
+// defining the PTO motors
 pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 0,
 				 PROS_DRIVE_MEASURE);
 pros::Motor rUFM(RIGHT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 1,
 				 PROS_DRIVE_MEASURE);
 
+// defining the drivetrain motors
 pros::Motor_Group prosLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
 						   LEFT_DRIVE_MOTOR3_PORT, LEFT_DRIVE_MOTOR4_PORT});
 pros::Motor_Group prosRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
 						   RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
 
+// defining the drivetrain motors for odometry
+// PTO motors are omitted for simplicity
 okapi::MotorGroup okapiLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
-							LEFT_DRIVE_MOTOR3_PORT, LEFT_DRIVE_MOTOR4_PORT});
+							LEFT_DRIVE_MOTOR4_PORT});
 okapi::MotorGroup okapiRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
-							RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
+							RIGHT_DRIVE_MOTOR4_PORT});
 
+// defining the okapi chassis object
 std::shared_ptr<okapi::OdomChassisController> chassis =
 	okapi::ChassisControllerBuilder()
 		.withMotors(okapiLDM, // left motors
@@ -47,6 +52,7 @@ std::shared_ptr<okapi::OdomChassisController> chassis =
 		.withOdometry()
 		.buildOdometry();
 
+// boolean value for PTO activation state
 bool ptoActivated = false;
 
 /**
@@ -93,14 +99,12 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() { chassis->setState({0_in, 0_in}); }
-
-void catapultMech()
+void autonomous()
 {
-	// (intake on)
+	// setting the default values for the odometry
+	// our team uses a placement guide so this number stays consistent
+	chassis->setState({0_in, 0_in});
 }
-
-void drivetrain() {}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -117,18 +121,18 @@ void drivetrain() {}
  */
 void opcontrol()
 {
-	// stores controller analog stick positions into an int variable
-	// ranges -127 to 127
-
+	// main while loop
 	while (true)
 	{
+		// sets the speed of the drivetrain motors according to the controller
+		// joystick positions ranges -127 to 127
 		prosLDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
 		prosRDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 		// PTO motor control
 		ptoControls();
+		// PTO toggling
 		togglePTO();
 		// final delay
 		pros::delay(2);
 	}
-	// main while loop
 }

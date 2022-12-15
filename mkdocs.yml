@@ -19,6 +19,8 @@ theme:
     - navigation.expand
     - navigation.tracking
     - navigation.instant
+    - navigation.sections
+#   - navigation.indexes
     - toc.integrate
   icon:
     repo: fontawesome/brands/github
@@ -62,6 +64,9 @@ markdown_extensions:
       smart_insert: true
       insert: true
       superscript: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       use_pygments: true
@@ -82,6 +87,7 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tilde
+  - tables
   - toc:
       permalink: true
 
@@ -89,3 +95,5 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
