@@ -73,6 +73,7 @@ markdown_extensions:
       smart_mark: true
   - pymdownx.snippets:
       check_paths: true
+      base_path: '.'
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
