@@ -72,9 +72,9 @@ plugins:
   - git-revision-date-localized:
       enable_creation_date: true
       type: iso_datetime
-  - social:
-      cards: true
-      cards_dir: docs/images/social
+# - social:
+#     cards: true
+#     cards_dir: docs/images/social
   - glightbox:
       touchNavigation: true
       loop: false

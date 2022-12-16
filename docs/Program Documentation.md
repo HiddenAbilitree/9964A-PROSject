@@ -18,19 +18,25 @@
     
     !!! abstract inline end "Note"
         
-        Variables are stored here primarily for readability purposes throughout the codebase.
+        Variables are stored here primarily for readability purposes throughout the codebase, although it also enables modularity through the use of global variables.
     This file contains the variable definitions used in the odometry controller constructor in main.cpp.
     
     We utilized global objects at the bottom of the file for modularity, allowing for multiple files to utilize the same objects.
 
+
     ```mermaid
     graph LR
-    A[#include] ----> B{Already included?};
-    B ---->|Yes| C(Ignore);
-    B ---->|No| D(Include);
+    A[#include] --> B{Already included?};
+    B --->|Yes| C(Ignore);
+    B --->|No| D(Include);
     C --> E(No double inclusion);
     ``` 
+
+    !!! info inline end
+        
+        `#!cpp #pragma` serves as way to give the compiler a configuration setting before compiling the program.
     This chart illustrates the importance of the use of `#!cpp #pragma once` at the beginning of the header file.
+
 
     `#!cpp #pragma once` acts very similarly to a `#!cpp #ifndef` header guard.
     ```mermaid
