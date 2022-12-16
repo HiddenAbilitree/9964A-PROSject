@@ -30,8 +30,8 @@ theme:
 #   - navigation.indexes
     - toc.integrate
   icon:
+    logo: material/dog
     repo: fontawesome/brands/github
-
   name: material
   custom_dir: overrides
   palette:
@@ -39,12 +39,10 @@ theme:
       toggle:
         icon: material/brightness-7
         name: Switch to system preference
-
     - scheme: slate
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-
 extra:
   analytics:
     provider: google
