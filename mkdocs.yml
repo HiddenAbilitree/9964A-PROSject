@@ -14,8 +14,15 @@ extra_css:
 # theme
 theme:
   features:
+    - content.action.edit
+    - content.action.view
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.tabs.link
     - content.code.annotate
 #   - navigation.tabs
+    - navigation.footer
     - navigation.expand
     - navigation.tracking
     - navigation.instant
@@ -72,6 +79,7 @@ plugins:
   - git-revision-date-localized:
       enable_creation_date: true
       type: iso_datetime
+      fallback_to_build_date: true
 # - social:
 #     cards: true
 #     cards_dir: docs/images/social
@@ -86,6 +94,7 @@ plugins:
       draggable: true
       auto_caption: false
       caption_position: bottom
+  - search
 markdown_extensions:
   - abbr
   - admonition
@@ -112,7 +121,8 @@ markdown_extensions:
       smart_mark: true
   - pymdownx.snippets:
       check_paths: true
-      base_path: '.'
+      base_path:
+        - "."
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid

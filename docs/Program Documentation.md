@@ -39,8 +39,9 @@
 
 
     `#!cpp #pragma once` acts very similarly to a `#!cpp #ifndef` header guard.
+
     ```mermaid
-    graph TD
+    graph LR
     A(Header file)
     B(File A)
     C(File B)
@@ -49,9 +50,9 @@
     A -->|#include| B;
     B -->|#include| D;
     A -->|#include| C;
-    %%C --> E;
+    C --> E;
     D -->|Header not included again| C;
-    %%E --> F(No double inclusion);
+    E --> F(No double inclusion);
     ```
 
 === "Functions"
