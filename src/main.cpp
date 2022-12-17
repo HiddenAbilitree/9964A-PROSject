@@ -54,6 +54,7 @@ std::shared_ptr<okapi::OdomChassisController> chassis =
 
 // boolean value for PTO activation state
 bool ptoActivated = false;
+bool extensionActivated = true;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -68,6 +69,7 @@ void initialize()
 	prosRDM.set_reversed(true);
 	prosLDM.set_gearing(PROS_DRIVE_GEARSET);
 	prosRDM.set_gearing(PROS_DRIVE_GEARSET);
+	jerry.set_value(extensionActivated);
 }
 
 /**
@@ -104,6 +106,7 @@ void autonomous()
 	// setting the default values for the odometry
 	// our team uses a placement guide so this number stays consistent
 	chassis->setState({0_in, 0_in});
+	chassis->driveToPoint({6_in, 0_in});
 }
 
 /**
@@ -132,6 +135,8 @@ void opcontrol()
 		ptoControls();
 		// PTO toggling
 		togglePTO();
+		// extension
+		extension();
 		// final delay
 		pros::delay(2);
 	}

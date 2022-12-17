@@ -22,7 +22,7 @@ theme:
     - search.highlight
     - search.suggest
     - search.share
-    - content.tabs.link
+    - content.tabs.link 
     - content.code.annotate
 #   - navigation.tabs
     - navigation.expand

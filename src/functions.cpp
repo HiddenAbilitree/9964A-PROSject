@@ -34,3 +34,12 @@ void ptoControls()
             setPtoSpeed(0);
     }
 }
+
+void extension()
+{
+    if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A))
+    {
+        jerry.set_value(!extensionActivated);
+        extensionActivated = !extensionActivated;
+    }
+}

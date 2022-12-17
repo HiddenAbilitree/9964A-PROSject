@@ -3,3 +3,4 @@
 // functions in functions.cpp
 void togglePTO();
 void ptoControls();
+void extension();
