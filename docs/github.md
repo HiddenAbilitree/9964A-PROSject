@@ -6,4 +6,4 @@ Our team utilized GitHub in order to allow multiple people to work on the progra
 
 We used two branches, one for the main program and one to build the website on. We utilized GitHub actions in order to build our website on each commit, allowing for us to change the website easily.
 
-This website was built using the Material for MkDocs theme, one of the most widely used themes for program documentation.
+This website was built using the Material for MkDocs theme, one of the many themes used for program documentation.

@@ -18,6 +18,7 @@ nav:
   - Home: 'index.md'
   - Docs: 'docs.md'
   - GitHub: 'github.md'
+  - Design: 'Catapult.md'
 # theme
 theme:
   features:
