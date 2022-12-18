@@ -1,6 +1,7 @@
 # run this command if running a server locally
 # pip install mkdocs mkdocs-material==9.0.0b4 mkdocs-git-revision-date-localized-plugin mkdocs-glightbox pillow cairosvg
 
+# site settings
 site_name: 9964A Program Documentation
 site_description: Documentation for team 9964A's program built using the PROS library.
 site_author: Eric Zhang
@@ -14,11 +15,13 @@ edit_uri: ""
 extra_css:
   - stylesheets/extra.css
 
+# table of contents directories
 nav:
   - Home: 'index.md'
   - Docs: 'docs.md'
   - GitHub: 'github.md'
   - Design: 'design.md'
+
 # theme
 theme:
   features:
@@ -50,6 +53,8 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+
+# material extensions
 extra:
 #  analytics:
 #   provider: google
@@ -80,15 +85,17 @@ extra:
 #    as to measure the effectiveness of our documentation and whether users
 #    find what they're searching for. With your consent, you're helping us to
 #    make our documentation better.
+
+# plugins
 plugins:
-  - git-revision-date-localized:
+  - git-revision-date-localized: # date and time of edit
       enable_creation_date: true
       type: iso_datetime
       fallback_to_build_date: true
-# - social:
+# - social: # social cards
 #     cards: true
 #     cards_dir: docs/images/social
-  - glightbox:
+  - glightbox: # image linking
       touchNavigation: true
       loop: false
       effect: zoom
@@ -100,35 +107,37 @@ plugins:
       auto_caption: false
       caption_position: bottom
   - search
+
+# markdown extensions
 markdown_extensions:
   - abbr
   - admonition
   - attr_list
   - footnotes
   - md_in_html
-  - pymdownx.arithmatex:
+  - pymdownx.arithmatex: # allows developers to display math equations with proper formatting
       generic: true
-  - pymdownx.caret:
+  - pymdownx.caret: # adds text formatting options involving ^
       smart_insert: true
       insert: true
       superscript: true
-  - pymdownx.emoji:
+  - pymdownx.emoji: # emojis
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.highlight:
+  - pymdownx.highlight: # adds code highlighting
       anchor_linenums: true
       use_pygments: true
       auto_title: true
       linenums: true
   - pymdownx.details
-  - pymdownx.inlinehilite
+  - pymdownx.inlinehilite # code highlight extensions
   - pymdownx.mark:
       smart_mark: true
-  - pymdownx.snippets:
+  - pymdownx.snippets: # allows snippets of code to be inserted into the website
       check_paths: true
       base_path:
         - "."
-  - pymdownx.superfences:
+  - pymdownx.superfences: # allows code to be formatted properly and various other things.
       custom_fences:
         - name: mermaid
           class: mermaid
@@ -137,9 +146,10 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.tilde
   - tables
-  - toc:
+  - toc: # table of contents
       permalink: true
 
+# javascript extension supplements
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
