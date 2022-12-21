@@ -16,7 +16,7 @@ inline void togglePTO()
         leftPiston.set_value(!ptoActivated);
         ptoActivated = !ptoActivated;
     }
-}
+};
 
 // the set of controls used when the PTO is activated
 inline void ptoControls()
@@ -32,7 +32,7 @@ inline void ptoControls()
         else
             setPTOSpeed();
     }
-}
+};
 
 // toggles the pneumatic piston state used for the extension mechanism
 inline void extension()
@@ -42,4 +42,4 @@ inline void extension()
         jerry.set_value(!extensionActivated);
         extensionActivated = !extensionActivated;
     }
-}
+};
