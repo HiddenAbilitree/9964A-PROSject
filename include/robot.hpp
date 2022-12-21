@@ -3,7 +3,7 @@
 #include <memory>
 
 // includes all needed files
-#include "functions.h"
+#include "functions.hpp"
 
 #include "main.h"
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"

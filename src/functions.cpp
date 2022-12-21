@@ -1,7 +1,7 @@
-#include "robot.h"
+#include "robot.hpp"
 
 // toggles the PTO mechanism
-void togglePTO()
+inline void togglePTO()
 {
     // if controller's front right bumper is pressed, toggles the PTO mechanism
     if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1))
@@ -20,7 +20,7 @@ void setPtoSpeed(int speed)
 }
 
 // the set of controls used when the PTO is activated
-void ptoControls()
+inline void ptoControls()
 {
     // if the PTO is activated, check for a controller input to move the motors
     // attached to the PTO, otherwise, don't move motors
@@ -35,7 +35,7 @@ void ptoControls()
     }
 }
 
-void extension()
+inline void extension()
 {
     if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A))
     {
