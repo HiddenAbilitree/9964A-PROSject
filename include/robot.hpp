@@ -3,7 +3,7 @@
 #include <memory>
 
 // includes all needed files
-#include "functions.h"
+#include "functions.hpp"
 
 #include "main.h"
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
@@ -36,19 +36,21 @@
 #define LEFT_DRIVE_MOTOR3_PORT 7
 #define LEFT_DRIVE_MOTOR4_PORT 8
 
+extern int RIGHT_DRIVE_MOTOR_PORTS[4];
+
 // stores the gearing of the drivetrain
-#define OKAPI_DRIVE_GEARSET \
+#define OKAPI_DRIVE_GEARSET                                                    \
   okapi::AbstractMotor::gearset::blue // blue motor RPM (600)
-#define OKAPI_DRIVE_TPR \
+#define OKAPI_DRIVE_TPR                                                        \
   okapi::imev5BlueTPR // gear ticks per rotation in a blue motor cartridge
-#define DRIVE_GEARMOTOR \
+#define DRIVE_GEARMOTOR                                                        \
   36.0 // gear tooth count on the axle attached to the motor
-#define DRIVE_GEARWHEEL \
+#define DRIVE_GEARWHEEL                                                        \
   60.0 // gear tooth count on the axle attached to the wheel
 
 // stores the dimensions of the drivetrain
-#define CHASSIS_TRACK \
-  14.25_in                     // distance between the inside edge of wheels on the same axle
+#define CHASSIS_TRACK                                                          \
+  14.25_in // distance between the inside edge of wheels on the same axle
 #define CHASSIS_WHEELS 3.25_in // diameter of drivetrain wheels
 
 // stores ports of the pistons used for the PTO mech
@@ -74,7 +76,7 @@ extern okapi::MotorGroup okapiRDM; // drivetrain right motor group
 
 // pros
 #define PROS_DRIVE_GEARSET pros::E_MOTOR_GEAR_BLUE // blue motor (600rpm)
-#define PROS_DRIVE_MEASURE \
+#define PROS_DRIVE_MEASURE                                                     \
   pros::E_MOTOR_ENCODER_DEGREES // encoder measures in degrees
 
 // pros object declarations
@@ -84,6 +86,14 @@ extern pros::Controller prosController; // pros contorller
 // declares pto motors
 extern pros::Motor lUFM; // left upper front motor
 extern pros::Motor rUFM; // right upper front motor
+
+// declares other motors
+extern pros::Motor rUBM; // right upper back motor
+extern pros::Motor lUBM; // left upper back motor
+extern pros::Motor rLFM; // right lower front motor
+extern pros::Motor lLFM; // left lower front motor
+extern pros::Motor rLBM; // right lower back motor
+extern pros::Motor lLBM; // left lower back motor
 
 // declare motor groups
 extern pros::Motor_Group prosLDM; // pros left drive motors

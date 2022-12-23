@@ -1,6 +1,7 @@
 #pragma once // explanation under robot.h
 
 // functions in functions.cpp
-void togglePTO();
-void ptoControls();
+void toggle_pto();
+void pto_controls();
 void extension();
+void temp_rumble();
