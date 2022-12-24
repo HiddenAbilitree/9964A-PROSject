@@ -1,5 +1,7 @@
 
 #include "functions.hpp"
+#include "okapi/api/util/logging.hpp"
+#include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "robot.hpp"
 
 // defining the controller
@@ -44,6 +46,11 @@ okapi::MotorGroup okapiLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
 okapi::MotorGroup okapiRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
                             RIGHT_DRIVE_MOTOR4_PORT});
 
+okapi::Motor rMotor(RIGHT_DRIVE_MOTOR3_PORT, true, OKAPI_DRIVE_GEARSET,
+                    OKAPI_DRIVE_MEASURE);
+okapi::Motor lMotor(LEFT_DRIVE_MOTOR3_PORT, false, OKAPI_DRIVE_GEARSET,
+                    OKAPI_DRIVE_MEASURE);
+
 // defining the okapi chassis object
 std::shared_ptr<okapi::OdomChassisController> chassis =
     okapi::ChassisControllerBuilder()
@@ -67,6 +74,33 @@ std::shared_ptr<okapi::OdomChassisController> chassis =
         .withOdometry()
         .buildOdometry();
 
+std::shared_ptr<okapi::ChassisController> driveController =
+    okapi::ChassisControllerBuilder()
+        .withMotors(okapiLDM, // left motors
+                    okapiRDM  // right motors
+                    )
+        .withDimensions(
+            {
+                OKAPI_DRIVE_GEARSET, // drive gearset stored in robot.h
+                (DRIVE_GEARWHEEL / DRIVE_GEARMOTOR) // drivetrain gearing
+            },
+            {
+                {
+                    CHASSIS_WHEELS, // wheel size stored in robot.h
+                    CHASSIS_TRACK   // drivetrain track size (length between
+                                    // wheels on same axis) stored in robot.h
+                },
+                OKAPI_DRIVE_TPR // drivetrain ticks per rotation stored in
+                                // robot.h
+            })
+        .withOdometry()
+        .buildOdometry();
+
+std::shared_ptr<okapi::AsyncPositionController<double, double>> cataController =
+    okapi::AsyncPosControllerBuilder()
+        .withMotor({lMotor, rMotor})
+        .withGains({0.001, 0.0001, 0.0001})
+        .build();
 // boolean value for PTO activation state
 bool ptoActivated = false;
 bool extensionActivated = true;

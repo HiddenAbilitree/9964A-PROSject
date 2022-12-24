@@ -74,6 +74,8 @@ extern std::shared_ptr<okapi::OdomChassisController>
 extern okapi::MotorGroup okapiLDM; // drivetrain left motor group
 extern okapi::MotorGroup okapiRDM; // drivetrain right motor group
 
+#define OKAPI_DRIVE_MEASURE okapi::AbstractMotor::encoderUnits::degrees
+
 // pros
 #define PROS_DRIVE_GEARSET pros::E_MOTOR_GEAR_BLUE // blue motor (600rpm)
 #define PROS_DRIVE_MEASURE                                                     \
