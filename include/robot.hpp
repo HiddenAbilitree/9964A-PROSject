@@ -26,7 +26,7 @@
 
 // stores motor port values
 // motor 3 on both sides is attached to the PTO
-#define RIGHT_DRIVE_MOTOR1_PORT 11
+#define RIGHT_DRIVE_MOTOR1_PORT 1
 #define RIGHT_DRIVE_MOTOR2_PORT 2
 #define RIGHT_DRIVE_MOTOR3_PORT 3
 #define RIGHT_DRIVE_MOTOR4_PORT 4

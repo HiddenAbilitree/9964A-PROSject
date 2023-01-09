@@ -73,7 +73,7 @@ std::shared_ptr<okapi::OdomChassisController> chassis =
             })
         .withOdometry()
         .buildOdometry();
-
+/*
 std::shared_ptr<okapi::ChassisController> driveController =
     okapi::ChassisControllerBuilder()
         .withMotors(okapiLDM, // left motors
@@ -100,7 +100,7 @@ std::shared_ptr<okapi::AsyncPositionController<double, double>> cataController =
     okapi::AsyncPosControllerBuilder()
         .withMotor({lMotor, rMotor})
         .withGains({0.001, 0.0001, 0.0001})
-        .build();
+        .build();*/
 // boolean value for PTO activation state
 bool ptoActivated = false;
 bool extensionActivated = true;
@@ -113,10 +113,12 @@ bool extensionActivated = true;
  */
 void initialize() {
   // creates buttons on the cortex lcd display
-  pros::lcd::initialize();
+  // pros::lcd::initialize();
   prosRDM.set_reversed(true);
   prosLDM.set_gearing(PROS_DRIVE_GEARSET);
   prosRDM.set_gearing(PROS_DRIVE_GEARSET);
+  rightPiston.set_value(ptoActivated);
+  leftPiston.set_value(ptoActivated);
   jerry.set_value(extensionActivated);
 }
 
@@ -185,6 +187,8 @@ void opcontrol() {
     // temperature rumble
     temp_rumble();
     // final delay
+    // lUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    // rUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
     pros::delay(40);
   }
 }
