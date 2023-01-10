@@ -11,8 +11,9 @@ void toggle_pto() {
 }
 
 /* utility function to shorten code
-/ sets the speed of the pto motors.
-*/
+ * sets the speed of the pto motors.
+ * @param speed The speed that the PTO motors will be set to.
+ */
 void set_ptom_speed(int speed) {
   lUFM = speed;
   rUFM = speed;
@@ -21,17 +22,14 @@ void set_ptom_speed(int speed) {
 // the set of controls used when the PTO is activated
 void pto_controls() {
   // if the PTO is activated, check for a controller input to move the motors
-  // attache  d to the PTO, otherwise, don't move motors
+  // attached to the PTO, otherwise, don't move motors
   if (!ptoActivated) {
     if (prosController.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
-      lUFM = 127;
-      rUFM = 127;
+      set_ptom_speed(127);
     } else if (prosController.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
-      lUFM = -127;
-      rUFM = -127;
+      set_ptom_speed(-127);
     } else {
-      lUFM = 0;
-      rUFM = 0;
+      set_ptom_speed(0);
     }
   }
 }

@@ -185,7 +185,7 @@ void opcontrol() {
     // extension
     extension();
     // temperature rumble
-    temp_rumble();
+    // temp_rumble();
     // final delay
     // lUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     // rUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
