@@ -10,8 +10,8 @@
 
 === "Variables"
 
-    ``` cpp title="robot.h"
-    --8<-- "include/robot.h"
+    ``` cpp title="robot.hpp"
+    --8<-- "include/robot.hpp"
     ```
 
     </br>
@@ -63,6 +63,6 @@
 
 === "Functions Header"
 
-    ```cpp title="functions.h"
-    --8<-- "include/functions.h"
+    ```cpp title="functions.hpp"
+    --8<-- "include/functions.hpp"
     ```

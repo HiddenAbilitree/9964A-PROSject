@@ -310,7 +310,8 @@
     },
     "upload_options": {
       "description": "Eric's PROS project",
-      "slot": 8
+      "slot": 8,
+      "after": "screen"
     }
   }
 }
