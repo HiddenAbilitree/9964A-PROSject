@@ -13,6 +13,7 @@ void toggle_pto() {
 /* utility function to shorten code
  * sets the speed of the pto motors.
  * @param speed The speed that the PTO motors will be set to.
+ * NOTE: one side must be set to negative speed since the motor is backwards
  */
 void set_ptom_speed(int speed) {
   lUFM = speed;
@@ -57,4 +58,14 @@ void temp_rumble() {
       }
     }
   }
+}
+// function to actuate drivetrain. uses 6 vs 8 motors depending on status of pto.
+void update_drivetrain(){
+  if(ptoActivated){
+    lUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    rUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+
+  }
+  prosLDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+  prosRDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 }

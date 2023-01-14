@@ -35,9 +35,10 @@ pros::Motor rLBM(RIGHT_DRIVE_MOTOR2_PORT, PROS_DRIVE_GEARSET, 1,
 
 // defining the drivetrain motors
 pros::Motor_Group prosLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
-                           LEFT_DRIVE_MOTOR3_PORT, LEFT_DRIVE_MOTOR4_PORT});
+                            LEFT_DRIVE_MOTOR4_PORT});
 pros::Motor_Group prosRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
-                           RIGHT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR4_PORT});
+                            RIGHT_DRIVE_MOTOR4_PORT});
+                           // motors not included: LEFT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR3_PORT
 
 // defining the drivetrain motors for odometry
 // PTO motors are omitted for simplicity
@@ -176,8 +177,7 @@ void opcontrol() {
   while (true) {
     // sets the speed of the drivetrain motors according to the controller
     // joystick positions ranges -127 to 127
-    prosLDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    prosRDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    update_drivetrain();
     // PTO motor control
     pto_controls();
     // PTO toggling
@@ -189,6 +189,6 @@ void opcontrol() {
     // final delay
     // lUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     // rUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-    pros::delay(40);
+    pros::delay(20);
   }
 }
