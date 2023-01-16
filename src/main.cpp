@@ -13,6 +13,9 @@ pros::ADIDigitalOut rightPiston(RIGHT_DIGITAL_SENSOR_PORT);
 pros::ADIDigitalOut catapultLock(CATAPULT_DIGITAL_SENSOR_PORT);
 pros::ADIDigitalOut jerry(EXTENSION_DIGITAL_SENSOR_PORT);
 
+// initialize limit switch for catapult windback
+pros::ADIDigitalIn windbackLimit(PULLLIMIT_DIGITAL_SENSOR_PORT);
+
 // defining the PTO motors
 pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 0,
                  PROS_DRIVE_MEASURE);
@@ -105,6 +108,10 @@ std::shared_ptr<okapi::AsyncPositionController<double, double>> cataController =
 // boolean value for PTO activation state
 bool ptoActivated = false;
 bool extensionActivated = true;
+// boolean value for windback process
+bool windingBack = false;
+// boolean value for intake toggle state
+bool intakeActivated = false;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.

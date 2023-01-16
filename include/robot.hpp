@@ -58,13 +58,13 @@ extern int RIGHT_DRIVE_MOTOR_PORTS[4];
 #define RIGHT_DIGITAL_SENSOR_PORT 'B'
 
 // stores port of the piston used for catapult
-#define CATAPULT_DIGITAL_SENSOR_PORT 'C'
+#define CATAPULT_DIGITAL_SENSOR_PORT 'C' //TODO: remove all code to do with catapult piston
 
 // stores port of the piston used for extension
 #define EXTENSION_DIGITAL_SENSOR_PORT 'D'
 
 // stores port of the pullback limit switch
-#define PULLLIMIT_DIGITAL_SENSOR_PORT 'E'
+#define PULLLIMIT_DIGITAL_SENSOR_PORT 'H'
 
 // okapilib
 extern std::shared_ptr<okapi::Controller>
@@ -107,6 +107,11 @@ extern pros::ADIDigitalOut rightPiston;  // right PTO piston
 extern pros::ADIDigitalOut catapultLock; // catapult piston
 extern pros::ADIDigitalOut jerry;        // extension piston
 
+// declare windback limit switch
+extern pros::ADIDigitalIn windbackLimit;
+
 // makes ptoActivated a global variable
 extern bool ptoActivated;
 extern bool extensionActivated;
+extern bool windingBack;
+extern bool intakeActivated;

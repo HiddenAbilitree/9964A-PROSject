@@ -1,9 +1,10 @@
+#include "pros/adi.h"
 #include "robot.hpp"
 
 // toggles the PTO mechanism
 void toggle_pto() {
   // if controller's front right bumper is pressed, toggles the PTO mechanism
-  if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
+  if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_X)) {
     ptoActivated = !ptoActivated;
     rightPiston.set_value(ptoActivated);
     leftPiston.set_value(ptoActivated);
@@ -13,7 +14,7 @@ void toggle_pto() {
 /* utility function to shorten code
  * sets the speed of the pto motors.
  * @param speed The speed that the PTO motors will be set to.
- * NOTE: one side must be set to negative speed since the motor is backwards
+ * 127 to -127
  */
 void set_ptom_speed(int speed) {
   lUFM = speed;
@@ -24,15 +25,31 @@ void set_ptom_speed(int speed) {
 void pto_controls() {
   // if the PTO is activated, check for a controller input to move the motors
   // attached to the PTO, otherwise, don't move motors
-  if (!ptoActivated) {
-    if (prosController.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
-      set_ptom_speed(127);
-    } else if (prosController.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+  
+ // Input logic
+ if(prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2)){ // check if r2 has been pressed
+  windingBack = true; // update value, user wants to windback catapult
+ }
+ if(prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
+  intakeActivated = !intakeActivated;
+ }
+
+ // activation logic
+  if(!ptoActivated){ // check if PTO is engaged into windback/intake mode
+    if(windingBack&&!windbackLimit.get_new_press()){ // check if the user wants to windback the catapult and if the catapult cant be wound
+      set_ptom_speed(127); // windback the catapult
+    }
+    else{
+      if(intakeActivated){
       set_ptom_speed(-127);
-    } else {
-      set_ptom_speed(0);
+      }
+      else{
+        set_ptom_speed(0);
+      }
+      windingBack=false;
     }
   }
+
 }
 
 void extension() {
