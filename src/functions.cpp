@@ -25,31 +25,32 @@ void set_ptom_speed(int speed) {
 void pto_controls() {
   // if the PTO is activated, check for a controller input to move the motors
   // attached to the PTO, otherwise, don't move motors
-  
- // Input logic
- if(prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R2)){ // check if r2 has been pressed
-  windingBack = true; // update value, user wants to windback catapult
- }
- if(prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
-  intakeActivated = !intakeActivated;
- }
 
- // activation logic
-  if(!ptoActivated){ // check if PTO is engaged into windback/intake mode
-    if(windingBack&&!windbackLimit.get_new_press()){ // check if the user wants to windback the catapult and if the catapult cant be wound
-      set_ptom_speed(127); // windback the catapult
-    }
-    else{
-      if(intakeActivated){
-      set_ptom_speed(-127);
-      }
-      else{
+  // Input logic
+  if (prosController.get_digital_new_press(
+          pros::E_CONTROLLER_DIGITAL_R2)) { // check if r2 has been pressed
+    windingBack = true; // update value, user wants to windback catapult
+  }
+  if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)) {
+    intakeActivated = !intakeActivated;
+  }
+  pros::delay(300);
+  // activation logic
+  if (!ptoActivated) { // check if PTO is engaged into windback/intake mode
+    if (windingBack &&
+        !windbackLimit
+             .get_new_press()) { // check if the user wants to windback the
+                                 // catapult and if the catapult cant be wound
+      set_ptom_speed(127);       // windback the catapult
+    } else {
+      if (intakeActivated) {
+        set_ptom_speed(-127);
+      } else {
         set_ptom_speed(0);
       }
-      windingBack=false;
+      windingBack = false;
     }
   }
-
 }
 
 void extension() {
@@ -76,12 +77,12 @@ void temp_rumble() {
     }
   }
 }
-// function to actuate drivetrain. uses 6 vs 8 motors depending on status of pto.
-void update_drivetrain(){
-  if(ptoActivated){
+// function to actuate drivetrain. uses 6 vs 8 motors depending on status of
+// pto.
+void update_drivetrain() {
+  if (ptoActivated) {
     lUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     rUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-
   }
   prosLDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
   prosRDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
