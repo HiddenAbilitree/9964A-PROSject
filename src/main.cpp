@@ -191,7 +191,7 @@ void opcontrol() {
     toggle_pto();
     // extension
     extension();
-    // temperature rumble
+    // pto state on controller.
     update_controller();
     // temp_rumble();
     // final delay
