@@ -20,7 +20,17 @@ void set_ptom_speed(int speed) {
   lUFM = speed;
   rUFM = speed;
 }
-
+void update_controller() {
+  std::string on = "t";
+  std::string off = "f";
+  const char *onValue = on.c_str();
+  const char *offValue = off.c_str();
+  if (ptoActivated) {
+    prosController.print(0, 3, onValue);
+  } else {
+    prosController.print(0, 3, offValue);
+  }
+}
 // the set of controls used when the PTO is activated
 void pto_controls() {
   // if the PTO is activated, check for a controller input to move the motors
