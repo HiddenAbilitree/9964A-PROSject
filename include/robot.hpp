@@ -28,15 +28,13 @@
 // motor 3 on both sides is attached to the PTO
 #define RIGHT_DRIVE_MOTOR1_PORT 1
 #define RIGHT_DRIVE_MOTOR2_PORT 2
-#define RIGHT_DRIVE_MOTOR3_PORT 3
-#define RIGHT_DRIVE_MOTOR4_PORT 4
+#define RIGHT_DRIVE_MOTOR3_PORT 4
 
 #define LEFT_DRIVE_MOTOR1_PORT 5
 #define LEFT_DRIVE_MOTOR2_PORT 6
-#define LEFT_DRIVE_MOTOR3_PORT 7 // roller mech motor
-#define LEFT_DRIVE_MOTOR4_PORT 8
+#define LEFT_DRIVE_MOTOR3_PORT 8
 
-extern int RIGHT_DRIVE_MOTOR_PORTS[4];
+#define ROLLER_MOTOR_PORT 7
 
 // stores the gearing of the drivetrain
 #define OKAPI_DRIVE_GEARSET                                                    \
@@ -53,18 +51,8 @@ extern int RIGHT_DRIVE_MOTOR_PORTS[4];
   14.25_in // distance between the inside edge of wheels on the same axle
 #define CHASSIS_WHEELS 3.25_in // diameter of drivetrain wheels
 
-// stores ports of the pistons used for the PTO mech
-#define LEFT_DIGITAL_SENSOR_PORT 'A'
-#define RIGHT_DIGITAL_SENSOR_PORT 'B'
-
-// stores port of the piston used for catapult
-#define CATAPULT_DIGITAL_SENSOR_PORT 'C' //TODO: remove all code to do with catapult piston
-
 // stores port of the piston used for extension
 #define EXTENSION_DIGITAL_SENSOR_PORT 'D'
-
-// stores port of the pullback limit switch
-#define PULLLIMIT_DIGITAL_SENSOR_PORT 'H'
 
 // okapilib
 extern std::shared_ptr<okapi::Controller>
@@ -85,9 +73,8 @@ extern okapi::MotorGroup okapiRDM; // drivetrain right motor group
 
 extern pros::Controller prosController; // pros contorller
 
-// declares pto motors
-extern pros::Motor lUFM; // left upper front motor
-extern pros::Motor rUFM; // right upper front motor
+// declares roller motor
+extern pros::Motor rM;
 
 // declares other motors
 extern pros::Motor rUBM; // right upper back motor
@@ -102,16 +89,7 @@ extern pros::Motor_Group prosLDM; // pros left drive motors
 extern pros::Motor_Group prosRDM; // pros right drive motors
 
 // declare pneumatic pistons
-extern pros::ADIDigitalOut leftPiston;   // left PTO piston
-extern pros::ADIDigitalOut rightPiston;  // right PTO piston
-extern pros::ADIDigitalOut catapultLock; // catapult piston
-extern pros::ADIDigitalOut jerry;        // extension piston
-
-// declare windback limit switch
-extern pros::ADIDigitalIn windbackLimit;
+extern pros::ADIDigitalOut jerry;
 
 // makes ptoActivated a global variable
-extern bool ptoActivated;
 extern bool extensionActivated;
-extern bool windingBack;
-extern bool intakeActivated;

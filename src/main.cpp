@@ -8,24 +8,18 @@
 pros::Controller prosController(pros::E_CONTROLLER_MASTER);
 
 // initialize pneumatic pistons
-pros::ADIDigitalOut leftPiston(LEFT_DIGITAL_SENSOR_PORT);
-pros::ADIDigitalOut rightPiston(RIGHT_DIGITAL_SENSOR_PORT);
-pros::ADIDigitalOut catapultLock(CATAPULT_DIGITAL_SENSOR_PORT);
 pros::ADIDigitalOut jerry(EXTENSION_DIGITAL_SENSOR_PORT);
 
 // initialize limit switch for catapult windback
-pros::ADIDigitalIn windbackLimit(PULLLIMIT_DIGITAL_SENSOR_PORT);
 
 // defining the PTO motors
-pros::Motor lUFM(LEFT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 0,
-                 PROS_DRIVE_MEASURE);
-pros::Motor rUFM(RIGHT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 1,
-                 PROS_DRIVE_MEASURE);
+pros::Motor rM(LEFT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 0,
+               PROS_DRIVE_MEASURE);
 
 // defining the rest of the motors
-pros::Motor lUBM(LEFT_DRIVE_MOTOR4_PORT, PROS_DRIVE_GEARSET, 0,
+pros::Motor lUBM(LEFT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 0,
                  PROS_DRIVE_MEASURE);
-pros::Motor rUBM(RIGHT_DRIVE_MOTOR4_PORT, PROS_DRIVE_GEARSET, 1,
+pros::Motor rUBM(RIGHT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 1,
                  PROS_DRIVE_MEASURE);
 pros::Motor lLFM(LEFT_DRIVE_MOTOR1_PORT, PROS_DRIVE_GEARSET, 0,
                  PROS_DRIVE_MEASURE);
@@ -38,21 +32,19 @@ pros::Motor rLBM(RIGHT_DRIVE_MOTOR2_PORT, PROS_DRIVE_GEARSET, 1,
 
 // defining the drivetrain motors
 pros::Motor_Group prosLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
-                           LEFT_DRIVE_MOTOR4_PORT});
+                           LEFT_DRIVE_MOTOR3_PORT});
 pros::Motor_Group prosRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
-                           RIGHT_DRIVE_MOTOR4_PORT});
+                           RIGHT_DRIVE_MOTOR3_PORT});
 // motors not included: LEFT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR3_PORT
 
 // defining the drivetrain motors for odometry
 // PTO motors are omitted for simplicity
 okapi::MotorGroup okapiLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
-                            LEFT_DRIVE_MOTOR4_PORT});
+                            LEFT_DRIVE_MOTOR3_PORT});
 okapi::MotorGroup okapiRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
-                            RIGHT_DRIVE_MOTOR4_PORT});
+                            RIGHT_DRIVE_MOTOR3_PORT});
 
-okapi::Motor rMotor(RIGHT_DRIVE_MOTOR3_PORT, true, OKAPI_DRIVE_GEARSET,
-                    OKAPI_DRIVE_MEASURE);
-okapi::Motor lMotor(LEFT_DRIVE_MOTOR3_PORT, false, OKAPI_DRIVE_GEARSET,
+okapi::Motor rMotor(ROLLER_MOTOR_PORT, true, OKAPI_DRIVE_GEARSET,
                     OKAPI_DRIVE_MEASURE);
 
 // defining the okapi chassis object
@@ -105,13 +97,8 @@ std::shared_ptr<okapi::AsyncPositionController<double, double>> cataController =
         .withMotor({lMotor, rMotor})
         .withGains({0.001, 0.0001, 0.0001})
         .build();*/
-// boolean value for PTO activation state
-bool ptoActivated = false;
+
 bool extensionActivated = true;
-// boolean value for windback process
-bool windingBack = false;
-// boolean value for intake toggle state
-bool intakeActivated = false;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -125,8 +112,6 @@ void initialize() {
   prosRDM.set_reversed(true);
   prosLDM.set_gearing(PROS_DRIVE_GEARSET);
   prosRDM.set_gearing(PROS_DRIVE_GEARSET);
-  rightPiston.set_value(ptoActivated);
-  leftPiston.set_value(ptoActivated);
   jerry.set_value(extensionActivated);
 }
 
@@ -191,11 +176,6 @@ void opcontrol() {
     extension();
     // roller mech
     roll_roller();
-    // temperature rumble
-    // temp_rumble();
-    // final delay
-    // lUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    // rUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
     pros::delay(20);
   }
 }
