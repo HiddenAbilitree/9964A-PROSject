@@ -90,16 +90,17 @@ void temp_rumble() {
 // function to actuate drivetrain. uses 6 vs 8 motors depending on status of
 // pto.
 void update_drivetrain() {
- /* if (ptoActivated) {
-    lUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    rUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-  } */
+  /* if (ptoActivated) {
+     lUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+     rUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+   } */
   prosLDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
   prosRDM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 }
 
-// function to actuate the roller mech. uses up and down arrows to spin the roller mech
-void roll_roller(){
-  lUFM = 100*(prosController.get_digital(pros::E_CONTROLLER_DIGITAL_UP) - prosController.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN));
-  
+// function to actuate the roller mech. uses up and down arrows to spin the
+// roller mech
+void roll_roller() {
+  lUFM = 100 * (prosController.get_digital(pros::E_CONTROLLER_DIGITAL_UP) -
+                prosController.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN));
 }

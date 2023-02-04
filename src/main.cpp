@@ -38,10 +38,10 @@ pros::Motor rLBM(RIGHT_DRIVE_MOTOR2_PORT, PROS_DRIVE_GEARSET, 1,
 
 // defining the drivetrain motors
 pros::Motor_Group prosLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
-                            LEFT_DRIVE_MOTOR4_PORT});
+                           LEFT_DRIVE_MOTOR4_PORT});
 pros::Motor_Group prosRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
-                            RIGHT_DRIVE_MOTOR4_PORT});
-                           // motors not included: LEFT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR3_PORT
+                           RIGHT_DRIVE_MOTOR4_PORT});
+// motors not included: LEFT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR3_PORT
 
 // defining the drivetrain motors for odometry
 // PTO motors are omitted for simplicity
@@ -163,7 +163,9 @@ void autonomous() {
   // setting the default values for the odometry
   // our team uses a placement guide so this number stays consistent
   chassis->setState({0_in, 0_in});
-  chassis->driveToPoint({6_in, 0_in});
+  chassis->turnAngle(45_deg);
+  chassis->turnAngle(45_deg);
+  chassis->driveToPoint({0_in, 6_in}, false, 0_in);
 }
 
 /**
