@@ -100,6 +100,6 @@ void update_drivetrain() {
 
 // function to actuate the roller mech. uses up and down arrows to spin the roller mech
 void roll_roller(){
-  lUFM = 100;
+  lUFM = 100*(prosController.get_digital(pros::E_CONTROLLER_DIGITAL_UP) - prosController.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN));
   
 }
