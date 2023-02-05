@@ -199,7 +199,7 @@ void autonomous() {
   // turning to aim extension
   chassis->turnAngle(45_deg);
   // launching extension
-  extension();
+  // extension();
 }
 
 /**
