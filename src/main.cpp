@@ -137,9 +137,13 @@ void disabled() {}
 void competition_initialize() {}
 
 void spinRoller() {
+  okapiLDM.moveVoltage(-12000);
+  okapiRDM.moveVoltage(-12000);
   rMotor.moveVoltage(12000);
-  pros::delay(1000);
-  rMotor.moveVelocity(0);
+  pros::delay(500);
+  rMotor.moveVoltage(0);
+  okapiLDM.moveVoltage(0);
+  okapiRDM.moveVoltage(0);
 }
 
 void move(okapi::QLength distance) { chassis->moveDistance(-distance); }
