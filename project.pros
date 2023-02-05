@@ -309,7 +309,7 @@
       }
     },
     "upload_options": {
-      "description": "hehehe",
+      "description": "Test program for DTO 9964A",
       "slot": 8,
       "after": "screen"
     }
