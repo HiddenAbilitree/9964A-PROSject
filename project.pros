@@ -309,7 +309,7 @@
       }
     },
     "upload_options": {
-      "description": "Drive control program for DTO 9964A99",
+      "description": "Driver control program for DTO 9964A",
       "slot": 1,
       "after": "screen"
     }
