@@ -149,27 +149,6 @@ void competition_initialize() {}
 void autonomous() {
   // setting the default values for the odometry
   // our team uses a placement guide so this number stays consistent
-  chassis->setState({0_in, 0_in, 0_deg});
-  chassis->setMaxVelocity(300);
-  rMotor.moveVoltage(12000);
-  pros::delay(1000);
-  rMotor.moveVelocity(0);
-  chassis->moveDistance(24_in);
-  chassis->turnAngle(90_deg);
-  chassis->moveDistance(-24_in);
-  rMotor.moveVoltage(12000);
-  pros::delay(1000);
-  rMotor.moveVelocity(0);
-  chassis->turnAngle(135_deg);
-  chassis->moveDistance(-96_in);
-  chassis->turnAngle(-45_deg);
-  chassis->moveDistance(-24_in);
-  rMotor.moveVoltage(12000);
-  pros::delay(1000);
-  rMotor.moveVelocity(0);
-  chassis->moveDistance(24_in);
-  chassis->turnAngle(90_deg);
-  chassis->moveDistance(-24_in);
   rMotor.moveVoltage(12000);
   pros::delay(1000);
   rMotor.moveVelocity(0);
