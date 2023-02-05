@@ -147,8 +147,9 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-  // setting the default values for the odometry
-  // our team uses a placement guide so this number stays consistent
+  // setting default chassis state.
+  chassis->setState({0_in, 0_in, 0_deg});
+  // moving roller
   rMotor.moveVoltage(12000);
   pros::delay(1000);
   rMotor.moveVelocity(0);
