@@ -1,5 +1,6 @@
 
 #include "functions.hpp"
+#include "okapi/api/units/QLength.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "robot.hpp"
@@ -135,6 +136,13 @@ void disabled() {}
  */
 void competition_initialize() {}
 
+void spinRoller() {
+  rMotor.moveVoltage(12000);
+  pros::delay(1000);
+  rMotor.moveVelocity(0);
+}
+
+void move(okapi::QLength distance) { chassis->moveDistance(-distance); }
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -149,10 +157,11 @@ void competition_initialize() {}
 void autonomous() {
 
   //
-  //
   //    The robot's drivetrain is reversed to make angle turns less
   //    confusing.
   //
+  //    angles are considered similar to a graph (0 degrees means facing
+  //    "right")
   //
 
   // setting the default values for the odometry
@@ -160,43 +169,35 @@ void autonomous() {
   // halving movement speed
   chassis->setMaxVelocity(300);
   // moving first roller
-  rMotor.moveVoltage(12000);
-  pros::delay(1000);
-  rMotor.moveVelocity(0);
+  spinRoller();
   // reversing
-  chassis->moveDistance(24_in);
+  move(-24_in);
   // turning to second roller
   chassis->turnAngle(90_deg);
   // moving to second roller
-  chassis->moveDistance(-24_in);
+  move(24_in);
   // moving second roller
-  rMotor.moveVoltage(12000);
-  pros::delay(1000);
-  rMotor.moveVelocity(0);
+  spinRoller();
   // turning to other two rollers
   chassis->turnAngle(135_deg);
   // moving to other two rollers
-  chassis->moveDistance(-96_in);
+  move(96_in);
   // turning to third roller
   chassis->turnAngle(-45_deg);
   // moving to third roller
-  chassis->moveDistance(-24_in);
+  move(24_in);
   // moving third roller
-  rMotor.moveVoltage(12000);
-  pros::delay(1000);
-  rMotor.moveVelocity(0);
+  spinRoller();
   // reversing
-  chassis->moveDistance(24_in);
+  move(-24_in);
   // turning to fourth roller
   chassis->turnAngle(90_deg);
   // moving to fourth roller
-  chassis->moveDistance(-24_in);
+  move(24_in);
   // moving fourth roller
-  rMotor.moveVoltage(12000);
-  pros::delay(1000);
-  rMotor.moveVelocity(0);
+  spinRoller();
   // reversing
-  chassis->moveDistance(12_in);
+  move(-12_in);
   // turning to aim extension
   chassis->turnAngle(45_deg);
   // launching extension
