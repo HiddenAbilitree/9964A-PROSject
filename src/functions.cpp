@@ -1,10 +1,14 @@
 #include "pros/adi.h"
 #include "robot.hpp"
 
+// function to activate the extension
 void extension() {
-  if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-    jerry.set_value(!extensionActivated);
-    extensionActivated = !extensionActivated;
+  jerry.set_value(!extensionActivated);
+  extensionActivated = !extensionActivated;
+}
+void extension(bool input) {
+  if (input) {
+    extension();
   }
 }
 
