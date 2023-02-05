@@ -142,6 +142,9 @@ void spinRoller() {
   rMotor.moveVoltage(12000);
   pros::delay(500);
   rMotor.moveVoltage(0);
+  okapiLDM.moveVoltage(12000);
+  okapiRDM.moveVoltage(12000);
+  pros::delay(500);
   okapiLDM.moveVoltage(0);
   okapiRDM.moveVoltage(0);
 }
@@ -177,14 +180,18 @@ void autonomous() {
   // reversing
   move(-24_in);
   // turning to second roller
-  chassis->turnAngle(90_deg);
+  chassis->turnAngle(-90_deg);
   // moving to second roller
   move(24_in);
   // moving second roller
   spinRoller();
+  // moving back to original position
+  move(-24_in);
+  chassis->turnAngle(45_deg);
   // turning to other two rollers
-  chassis->turnAngle(135_deg);
+  // chassis->turnAngle(135_deg);
   // moving to other two rollers
+  /*
   move(96_in);
   // turning to third roller
   chassis->turnAngle(-45_deg);
@@ -206,6 +213,7 @@ void autonomous() {
   chassis->turnAngle(45_deg);
   // launching extension
   extension();
+  */
 }
 
 /**
