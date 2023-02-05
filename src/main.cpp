@@ -237,7 +237,7 @@ void opcontrol() {
     // joystick positions ranges -127 to 127
     update_drivetrain();
     // extension
-    // extension();
+    extension();
     // roller mech
     roll_roller();
     pros::delay(20);
