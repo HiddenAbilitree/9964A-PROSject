@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "9964APROS",
+    "project_name": "Driver",
     "target": "v5",
     "templates": {
       "kernel": {
@@ -309,8 +309,8 @@
       }
     },
     "upload_options": {
-      "description": "hehehe",
-      "slot": 8,
+      "description": "Drive control program for DTO 9964A99",
+      "slot": 1,
       "after": "screen"
     }
   }
