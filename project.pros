@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "9964APROS",
+    "project_name": "DriverControl",
     "target": "v5",
     "templates": {
       "kernel": {
@@ -310,7 +310,7 @@
     },
     "upload_options": {
       "description": "hehehe",
-      "slot": 8,
+      "slot": 1,
       "after": "screen"
     }
   }
