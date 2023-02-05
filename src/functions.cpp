@@ -1,4 +1,5 @@
 #include "pros/adi.h"
+#include "pros/misc.h"
 #include "robot.hpp"
 
 // function to activate the extension
@@ -22,6 +23,6 @@ void update_drivetrain() {
 // function to actuate the roller mech. uses up and down arrows to spin the
 // roller mech
 void roll_roller() {
-  rM = 100 * (prosController.get_digital(pros::E_CONTROLLER_DIGITAL_UP) -
-              prosController.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN));
+  rM = 100 * (prosController.get_digital(pros::E_CONTROLLER_DIGITAL_L1) -
+              prosController.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
 }
