@@ -1,5 +1,6 @@
 
 #include "functions.hpp"
+#include "okapi/api/units/QLength.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "robot.hpp"
@@ -136,9 +137,16 @@ void disabled() {}
 void competition_initialize() {}
 
 void spinRoller() {
+  okapiLDM.moveVoltage(-4000);
+  okapiRDM.moveVoltage(-4000);
   rMotor.moveVoltage(12000);
-  pros::delay(1000);
-  rMotor.moveVelocity(0);
+  pros::delay(500);
+  rMotor.moveVoltage(0);
+  okapiLDM.moveVoltage(4000);
+  okapiRDM.moveVoltage(4000);
+  pros::delay(500);
+  okapiLDM.moveVoltage(0);
+  okapiRDM.moveVoltage(0);
 }
 
 void move(okapi::QLength distance) { chassis->moveDistance(-distance); }
@@ -156,10 +164,11 @@ void move(okapi::QLength distance) { chassis->moveDistance(-distance); }
 void autonomous() {
 
   //
+  //    The robot's drivetrain is reversed to make angle turns less
+  //    confusing.
+  //
   //    angles are considered similar to a graph (0 degrees means facing
   //    "right")
-  //
-  //    positive direction is towards the roller mech side.
   //
 
   // setting the default values for the odometry
@@ -171,14 +180,18 @@ void autonomous() {
   // reversing
   move(-24_in);
   // turning to second roller
-  chassis->turnAngle(90_deg);
+  chassis->turnAngle(-90_deg);
   // moving to second roller
   move(24_in);
   // moving second roller
   spinRoller();
+  // moving back to original position
+  move(-24_in);
+  chassis->turnAngle(45_deg);
   // turning to other two rollers
-  chassis->turnAngle(135_deg);
+  // chassis->turnAngle(135_deg);
   // moving to other two rollers
+  /*
   move(96_in);
   // turning to third roller
   chassis->turnAngle(-45_deg);
@@ -199,7 +212,8 @@ void autonomous() {
   // turning to aim extension
   chassis->turnAngle(45_deg);
   // launching extension
-  // extension();
+  extension();
+  */
 }
 
 /**
@@ -223,8 +237,7 @@ void opcontrol() {
     // joystick positions ranges -127 to 127
     update_drivetrain();
     // extension
-    extension(
-        prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A));
+    // extension();
     // roller mech
     roll_roller();
     pros::delay(20);
