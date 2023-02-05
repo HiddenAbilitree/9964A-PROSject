@@ -114,7 +114,7 @@ void initialize() {
   okapiRDM.setReversed(true);
   okapiLDM.setReversed(true);
   jerry.set_value(extensionActivated);
-  // defining the okapi chassis object
+  autonomous();
 }
 
 /**
