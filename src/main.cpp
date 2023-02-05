@@ -137,13 +137,14 @@ void disabled() {}
 void competition_initialize() {}
 
 void spinRoller() {
-  okapiLDM.moveVoltage(-12000);
-  okapiRDM.moveVoltage(-12000);
+  okapiLDM.moveVoltage(-4000);
+  okapiRDM.moveVoltage(-4000);
+  pros::delay(500);
   rMotor.moveVoltage(12000);
   pros::delay(500);
   rMotor.moveVoltage(0);
-  okapiLDM.moveVoltage(12000);
-  okapiRDM.moveVoltage(12000);
+  okapiLDM.moveVoltage(4000);
+  okapiRDM.moveVoltage(4000);
   pros::delay(500);
   okapiLDM.moveVoltage(0);
   okapiRDM.moveVoltage(0);
