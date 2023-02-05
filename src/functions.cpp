@@ -3,10 +3,9 @@
 #include "robot.hpp"
 
 void extension() {
-  if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-    jerry.set_value(!extensionActivated);
-    extensionActivated = !extensionActivated;
-  }
+
+  jerry.set_value(!extensionActivated);
+  extensionActivated = !extensionActivated;
 }
 
 // function to actuate drivetrain. uses 6 vs 8 motors depending on status of
