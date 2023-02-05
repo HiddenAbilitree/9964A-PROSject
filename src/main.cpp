@@ -147,32 +147,60 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+
+  //
+  //
+  //    The robot's drivetrain is reversed to make angle turns less
+  //    confusing.
+  //
+  //
+
   // setting the default values for the odometry
-  // our team uses a placement guide so this number stays consistent
   chassis->setState({0_in, 0_in, 0_deg});
+  // halving movement speed
   chassis->setMaxVelocity(300);
+  // moving first roller
   rMotor.moveVoltage(12000);
   pros::delay(1000);
   rMotor.moveVelocity(0);
+  // reversing
   chassis->moveDistance(24_in);
+  // turning to second roller
   chassis->turnAngle(90_deg);
+  // moving to second roller
   chassis->moveDistance(-24_in);
+  // moving second roller
   rMotor.moveVoltage(12000);
   pros::delay(1000);
   rMotor.moveVelocity(0);
+  // turning to other two rollers
   chassis->turnAngle(135_deg);
+  // moving to other two rollers
   chassis->moveDistance(-96_in);
+  // turning to third roller
   chassis->turnAngle(-45_deg);
+  // moving to third roller
   chassis->moveDistance(-24_in);
+  // moving third roller
   rMotor.moveVoltage(12000);
   pros::delay(1000);
   rMotor.moveVelocity(0);
+  // reversing
   chassis->moveDistance(24_in);
+  // turning to fourth roller
   chassis->turnAngle(90_deg);
+  // moving to fourth roller
   chassis->moveDistance(-24_in);
+  // moving fourth roller
   rMotor.moveVoltage(12000);
   pros::delay(1000);
   rMotor.moveVelocity(0);
+  // reversing
+  chassis->moveDistance(12_in);
+  // turning to aim extension
+  chassis->turnAngle(45_deg);
+  // launching extension
+  extension();
 }
 
 /**
