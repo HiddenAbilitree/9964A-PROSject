@@ -156,11 +156,10 @@ void move(okapi::QLength distance) { chassis->moveDistance(-distance); }
 void autonomous() {
 
   //
-  //    The robot's drivetrain is reversed to make angle turns less
-  //    confusing.
-  //
   //    angles are considered similar to a graph (0 degrees means facing
   //    "right")
+  //
+  //    positive direction is towards the roller mech side.
   //
 
   // setting the default values for the odometry
