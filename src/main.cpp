@@ -150,9 +150,13 @@ void autonomous() {
   // setting default chassis state.
   chassis->setState({0_in, 0_in, 0_deg});
   // moving roller
+  okapiLDM.moveVoltage(-12000);
+  okapiRDM.moveVoltage(-12000);
   rMotor.moveVoltage(12000);
-  pros::delay(1000);
-  rMotor.moveVelocity(0);
+  pros::delay(500);
+  rMotor.moveVoltage(0);
+  okapiLDM.moveVoltage(0);
+  okapiRDM.moveVoltage(0);
 }
 
 /**
