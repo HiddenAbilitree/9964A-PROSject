@@ -13,8 +13,7 @@ pros::ADIDigitalOut jerry(EXTENSION_DIGITAL_SENSOR_PORT);
 // initialize limit switch for catapult windback
 
 // defining the PTO motors
-pros::Motor rM(LEFT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 0,
-               PROS_DRIVE_MEASURE);
+pros::Motor rM(ROLLER_MOTOR_PORT, PROS_DRIVE_GEARSET, 1, PROS_DRIVE_MEASURE);
 
 // defining the rest of the motors
 pros::Motor lUBM(LEFT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 0,
@@ -44,10 +43,9 @@ okapi::MotorGroup okapiLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
 okapi::MotorGroup okapiRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
                             RIGHT_DRIVE_MOTOR3_PORT});
 
-okapi::Motor rMotor(ROLLER_MOTOR_PORT, true, OKAPI_DRIVE_GEARSET,
-                    OKAPI_DRIVE_MEASURE);
+okapi::Motor rMotor(ROLLER_MOTOR_PORT, true,
+                    okapi::AbstractMotor::gearset::green, OKAPI_DRIVE_MEASURE);
 
-// defining the okapi chassis object
 std::shared_ptr<okapi::OdomChassisController> chassis =
     okapi::ChassisControllerBuilder()
         .withMotors(okapiLDM, // left motors
@@ -69,6 +67,7 @@ std::shared_ptr<okapi::OdomChassisController> chassis =
             })
         .withOdometry()
         .buildOdometry();
+
 /*
 std::shared_ptr<okapi::ChassisController> driveController =
     okapi::ChassisControllerBuilder()
@@ -98,7 +97,7 @@ std::shared_ptr<okapi::AsyncPositionController<double, double>> cataController =
         .withGains({0.001, 0.0001, 0.0001})
         .build();*/
 
-bool extensionActivated = true;
+bool extensionActivated = false;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -112,7 +111,10 @@ void initialize() {
   prosRDM.set_reversed(true);
   prosLDM.set_gearing(PROS_DRIVE_GEARSET);
   prosRDM.set_gearing(PROS_DRIVE_GEARSET);
+  okapiRDM.setReversed(true);
+  okapiLDM.setReversed(true);
   jerry.set_value(extensionActivated);
+  // defining the okapi chassis object
 }
 
 /**
@@ -147,10 +149,30 @@ void competition_initialize() {}
 void autonomous() {
   // setting the default values for the odometry
   // our team uses a placement guide so this number stays consistent
-  chassis->setState({0_in, 0_in});
-  chassis->turnAngle(45_deg);
-  chassis->turnAngle(45_deg);
-  chassis->driveToPoint({0_in, 6_in}, false, 0_in);
+  chassis->setState({0_in, 0_in, 0_deg});
+  chassis->setMaxVelocity(300);
+  rMotor.moveVoltage(12000);
+  pros::delay(1000);
+  rMotor.moveVelocity(0);
+  chassis->moveDistance(24_in);
+  chassis->turnAngle(90_deg);
+  chassis->moveDistance(-24_in);
+  rMotor.moveVoltage(12000);
+  pros::delay(1000);
+  rMotor.moveVelocity(0);
+  chassis->turnAngle(135_deg);
+  chassis->moveDistance(-96_in);
+  chassis->turnAngle(-45_deg);
+  chassis->moveDistance(-24_in);
+  rMotor.moveVoltage(12000);
+  pros::delay(1000);
+  rMotor.moveVelocity(0);
+  chassis->moveDistance(24_in);
+  chassis->turnAngle(90_deg);
+  chassis->moveDistance(-24_in);
+  rMotor.moveVoltage(12000);
+  pros::delay(1000);
+  rMotor.moveVelocity(0);
 }
 
 /**
@@ -167,6 +189,7 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+
   // main while loop
   while (true) {
     // sets the speed of the drivetrain motors according to the controller
