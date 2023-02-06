@@ -10,8 +10,6 @@ pros::Controller prosController(pros::E_CONTROLLER_MASTER);
 // initialize pneumatic pistons
 pros::ADIDigitalOut jerry(EXTENSION_DIGITAL_SENSOR_PORT);
 
-// initialize limit switch for catapult windback
-
 // defining the PTO motors
 pros::Motor rM(ROLLER_MOTOR_PORT, PROS_DRIVE_GEARSET, 1, PROS_DRIVE_MEASURE);
 
@@ -34,10 +32,8 @@ pros::Motor_Group prosLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
                            LEFT_DRIVE_MOTOR3_PORT});
 pros::Motor_Group prosRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
                            RIGHT_DRIVE_MOTOR3_PORT});
-// motors not included: LEFT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR3_PORT
 
 // defining the drivetrain motors for odometry
-// PTO motors are omitted for simplicity
 okapi::MotorGroup okapiLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
                             LEFT_DRIVE_MOTOR3_PORT});
 okapi::MotorGroup okapiRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
@@ -114,7 +110,6 @@ void initialize() {
   okapiRDM.setReversed(true);
   okapiLDM.setReversed(true);
   jerry.set_value(extensionActivated);
-  // defining the okapi chassis object
 }
 
 /**
