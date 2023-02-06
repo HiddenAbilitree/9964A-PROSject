@@ -8,6 +8,11 @@ void extension() {
     extensionActivated = !extensionActivated;
   }
 }
+void extension(bool input) {
+  if (input) {
+    extension();
+  }
+}
 
 // function to actuate drivetrain. uses 6 vs 8 motors depending on status of
 // pto.
