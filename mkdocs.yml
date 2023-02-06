@@ -2,7 +2,7 @@
 # pip install mkdocs mkdocs-material==9.0.0b4 mkdocs-git-revision-date-localized-plugin mkdocs-glightbox pillow cairosvg
 
 # site settings
-site_name: 9964A Program Documentation
+site_name: 9964A Program Dopipcumentation
 site_description: Documentation for team 9964A's program built using the PROS library.
 site_author: Eric Zhang
 
