@@ -62,6 +62,8 @@ extern std::shared_ptr<okapi::OdomChassisController>
 extern okapi::MotorGroup okapiLDM; // drivetrain left motor group
 extern okapi::MotorGroup okapiRDM; // drivetrain right motor group
 
+extern okapi::Motor rMotor;
+
 #define OKAPI_DRIVE_MEASURE okapi::AbstractMotor::encoderUnits::degrees
 
 // pros

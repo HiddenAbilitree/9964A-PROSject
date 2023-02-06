@@ -136,21 +136,6 @@ void disabled() {}
  */
 void competition_initialize() {}
 
-void spinRoller() {
-  okapiLDM.moveVoltage(-4000);
-  okapiRDM.moveVoltage(-4000);
-  pros::delay(500);
-  rMotor.moveVoltage(12000);
-  pros::delay(250);
-  rMotor.moveVoltage(0);
-  okapiLDM.moveVoltage(4000);
-  okapiRDM.moveVoltage(4000);
-  pros::delay(500);
-  okapiLDM.moveVoltage(0);
-  okapiRDM.moveVoltage(0);
-}
-
-void move(okapi::QLength distance) { chassis->moveDistance(-distance); }
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
