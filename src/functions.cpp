@@ -3,10 +3,9 @@
 #include "robot.hpp"
 
 void extension() {
-  if (prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-    jerry.set_value(!extensionActivated);
-    extensionActivated = !extensionActivated;
-  }
+
+  jerry.set_value(!extensionActivated);
+  extensionActivated = !extensionActivated;
 }
 void extension(bool input) {
   if (input) {
@@ -27,3 +26,19 @@ void roll_roller() {
   rM = 100 * (prosController.get_digital(pros::E_CONTROLLER_DIGITAL_L1) -
               prosController.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
 }
+
+void spinRoller() {
+  okapiLDM.moveVoltage(-4000);
+  okapiRDM.moveVoltage(-4000);
+  pros::delay(500);
+  rMotor.moveVoltage(12000);
+  pros::delay(250);
+  rMotor.moveVoltage(0);
+  okapiLDM.moveVoltage(4000);
+  okapiRDM.moveVoltage(4000);
+  pros::delay(500);
+  okapiLDM.moveVoltage(0);
+  okapiRDM.moveVoltage(0);
+}
+
+void move(okapi::QLength distance) { chassis->moveDistance(-distance); }
