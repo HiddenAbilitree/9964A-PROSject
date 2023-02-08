@@ -51,6 +51,15 @@
   14.25_in // distance between the inside edge of wheels on the same axle
 #define CHASSIS_WHEELS 3.25_in // diameter of drivetrain wheels
 
+// radius of the flex wheel responsible for the roller.
+#define FLEX_RADIUS 1
+
+// radius of the roller
+#define ROLLER_RADIUS 1.2
+
+// the ratio between the flex wheel's radius and the roller's radius
+#define ROLLER_RATIO ROLLER_RADIUS / FLEX_RADIUS
+
 // stores port of the piston used for extension
 #define EXTENSION_DIGITAL_SENSOR_PORT 'D'
 

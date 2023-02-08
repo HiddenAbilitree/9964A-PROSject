@@ -27,18 +27,12 @@ void roll_roller() {
               prosController.get_digital(pros::E_CONTROLLER_DIGITAL_L2));
 }
 
-void spinRoller() {
-  okapiLDM.moveVoltage(-4000);
-  okapiRDM.moveVoltage(-4000);
+// spins the roller a certain distance
+void spinRoller(double desiredAngle) {
+  move(4_in);
+  rMotor.moveRelative(ROLLER_RATIO * desiredAngle, 600);
   pros::delay(500);
-  rMotor.moveVoltage(12000);
-  pros::delay(250);
-  rMotor.moveVoltage(0);
-  okapiLDM.moveVoltage(4000);
-  okapiRDM.moveVoltage(4000);
-  pros::delay(500);
-  okapiLDM.moveVoltage(0);
-  okapiRDM.moveVoltage(0);
+  move(-1_in);
 }
 
 void move(okapi::QLength distance) { chassis->moveDistance(-distance); }
