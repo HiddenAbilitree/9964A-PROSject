@@ -172,12 +172,12 @@ void autonomous() {
   // moving second roller
   spinRoller();
   // moving back to original position
-  move(-24_in);
+  move(-22_in);
   chassis->turnAngle(45_deg);
-  move(-20_in);
+  move(-30_in);
   extension();
   chassis->setMaxVelocity(600);
-  move(30_in);
+  move(50_in);
 
   // turning to other two rollers
   // chassis->turnAngle(135_deg);
