@@ -1,9 +1,11 @@
 
 #include "functions.hpp"
+#include "okapi/api/odometry/stateMode.hpp"
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/util/logging.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "robot.hpp"
+#include <cstdlib>
 
 // defining the controller
 pros::Controller prosController(pros::E_CONTROLLER_MASTER);
@@ -47,10 +49,14 @@ okapi::MotorGroup okapiRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
 okapi::Motor rMotor(ROLLER_MOTOR_PORT, true,
                     okapi::AbstractMotor::gearset::green, OKAPI_DRIVE_MEASURE);
 
+bool extensionActivated = false;
+
 std::shared_ptr<okapi::OdomChassisController> chassis =
     okapi::ChassisControllerBuilder()
-        .withMotors(okapiLDM, // left motors
-                    okapiRDM  // right motors
+        .withMotors({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
+                     LEFT_DRIVE_MOTOR3_PORT}, // left motors
+                    {-RIGHT_DRIVE_MOTOR1_PORT, -RIGHT_DRIVE_MOTOR2_PORT,
+                     -RIGHT_DRIVE_MOTOR3_PORT} // right motors
                     )
         .withDimensions(
             {
@@ -69,36 +75,20 @@ std::shared_ptr<okapi::OdomChassisController> chassis =
         .withOdometry()
         .buildOdometry();
 
-/*
-std::shared_ptr<okapi::ChassisController> driveController =
-    okapi::ChassisControllerBuilder()
-        .withMotors(okapiLDM, // left motors
-                    okapiRDM  // right motors
-                    )
-        .withDimensions(
-            {
-                OKAPI_DRIVE_GEARSET, // drive gearset stored in robot.h
-                (DRIVE_GEARWHEEL / DRIVE_GEARMOTOR) // drivetrain gearing
-            },
-            {
-                {
-                    CHASSIS_WHEELS, // wheel size stored in robot.h
-                    CHASSIS_TRACK   // drivetrain track size (length between
-                                    // wheels on same axis) stored in robot.h
-                },
-                OKAPI_DRIVE_TPR // drivetrain ticks per rotation stored in
-                                // robot.h
-            })
-        .withOdometry()
-        .buildOdometry();
+std::shared_ptr<okapi::AsyncMotionProfileController> driveController =
+    okapi::AsyncMotionProfileControllerBuilder()
+        .withLimits({
+            1.0, // Maximum linear velocity of the Chassis in m/s
+            2.0, // Maximum linear acceleration of the Chassis in m/s^2
+            10.0 // Maximum linear jerk of the Chassis in m/sˆ3
+        })
+        .withOutput(chassis)
+        .buildMotionProfileController();
 
-std::shared_ptr<okapi::AsyncPositionController<double, double>> cataController =
-    okapi::AsyncPosControllerBuilder()
-        .withMotor({lMotor, rMotor})
-        .withGains({0.001, 0.0001, 0.0001})
-        .build();*/
-
-bool extensionActivated = false;
+std::shared_ptr<okapi::AsyncPositionController<double, double>>
+    rollerController = okapi::AsyncPosControllerBuilder()
+                           .withMotor(ROLLER_MOTOR_PORT) // lift motor port 3
+                           .build();
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -107,15 +97,14 @@ bool extensionActivated = false;
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-  // creates buttons on the cortex lcd display
-  // pros::lcd::initialize();
-  prosRDM.set_reversed(true);
-  prosLDM.set_gearing(PROS_DRIVE_GEARSET);
-  prosRDM.set_gearing(PROS_DRIVE_GEARSET);
-  okapiRDM.setReversed(true);
-  okapiLDM.setReversed(true);
-  jerry.set_value(extensionActivated);
-  // defining the okapi chassis object
+    // creates buttons on the cortex lcd display
+    // pros::lcd::initialize();
+    chassis->setDefaultStateMode(okapi::StateMode::CARTESIAN);
+    prosRDM.set_reversed(true);
+    prosLDM.set_gearing(PROS_DRIVE_GEARSET);
+    prosRDM.set_gearing(PROS_DRIVE_GEARSET);
+    jerry.set_value(extensionActivated);
+    // defining the okapi chassis object
 }
 
 /**
@@ -149,62 +138,62 @@ void competition_initialize() {}
  */
 void autonomous() {
 
-  //
-  //    The robot's drivetrain is reversed to make angle turns less
-  //    confusing.
-  //
-  //    angles are considered similar to a graph (0 degrees means facing
-  //    "right")
-  //
+    //
+    //    The robot's drivetrain is reversed to make angle turns less
+    //    confusing.
+    //
+    //    angles are considered similar to a graph (0 degrees means facing
+    //    "right")
+    //
 
-  // setting the default values for the odometry
-  chassis->setState({0_in, 0_in, 0_deg});
-  // halving movement speed
-  chassis->setMaxVelocity(300);
-  // moving first roller
-  spinRoller();
-  // reversing
-  move(-22_in);
-  // turning to second roller
-  chassis->turnAngle(-110_deg);
-  // moving to second roller
-  move(24_in);
-  // moving second roller
-  spinRoller();
-  // moving back to original position
-  move(-22_in);
-  chassis->turnAngle(45_deg);
-  move(-30_in);
-  extension();
-  chassis->setMaxVelocity(600);
-  move(50_in);
+    // setting the default values for the odometry
+    chassis->setState({0_in, 0_in, 0_deg});
+    // halving movement speed
+    chassis->setMaxVelocity(300);
+    // moving first roller
+    spinRoller();
+    // reversing
+    move(-22_in);
+    // turning to second roller
+    chassis->turnAngle(-110_deg);
+    // moving to second roller
+    move(24_in);
+    // moving second roller
+    spinRoller();
+    // moving back to original position
+    move(-22_in);
+    chassis->turnAngle(45_deg);
+    move(-30_in);
+    extension();
+    chassis->setMaxVelocity(600);
+    move(50_in);
 
-  // turning to other two rollers
-  // chassis->turnAngle(135_deg);
-  // moving to other two rollers
-  /*
-  move(96_in);
-  // turning to third roller
-  chassis->turnAngle(-45_deg);
-  // moving to third roller
-  move(24_in);
-  // moving third roller
-  spinRoller();
-  // reversing
-  move(-24_in);
-  // turning to fourth roller
-  chassis->turnAngle(90_deg);
-  // moving to fourth roller
-  move(24_in);
-  // moving fourth roller
-  spinRoller();
-  // reversing
-  move(-12_in);
-  // turning to aim extension
-  chassis->turnAngle(45_deg);
-  // launching extension
-  extension();
-  */
+    // turning to other two rollers
+    // chassis->turnAngle(135_deg);
+    // moving to other two rollers
+    /*
+    move(96_in);
+    // turning to third roller
+    chassis->turnAngle(-45_deg);
+    // moving to third roller
+    move(24_in);
+    // moving third roller
+    spinRoller();
+    // reversing
+    move(-24_in);
+    // turning to fourth roller
+    chassis->turnAngle(90_deg);
+    // moving to fourth roller
+    move(24_in);
+    // moving fourth roller
+    spinRoller();
+    // reversing
+    move(-12_in);
+    // turning to aim extension
+    chassis->turnAngle(45_deg);
+    // launching extension
+    extension();
+    */
 }
 
 /**
@@ -222,16 +211,16 @@ void autonomous() {
  */
 void opcontrol() {
 
-  // main while loop
-  while (true) {
-    // sets the speed of the drivetrain motors according to the controller
-    // joystick positions ranges -127 to 127
-    update_drivetrain();
-    // extension
-    extension(
-        prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A));
-    // roller mech
-    roll_roller();
-    pros::delay(20);
-  }
+    // main while loop
+    while (true) {
+        // sets the speed of the drivetrain motors according to the controller
+        // joystick positions ranges -127 to 127
+        update_drivetrain();
+        // extension
+        extension(
+            prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A));
+        // roller mech
+        roll_roller();
+        pros::delay(20);
+    }
 }
