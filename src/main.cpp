@@ -50,9 +50,10 @@ okapi::Motor rMotor(ROLLER_MOTOR_PORT, true,
                     okapi::AbstractMotor::gearset::green, OKAPI_DRIVE_MEASURE);
 
 bool extensionActivated = false;
+namespace okapi {
 
-std::shared_ptr<okapi::OdomChassisController> chassis =
-    okapi::ChassisControllerBuilder()
+std::shared_ptr<OdomChassisController> chassis =
+    ChassisControllerBuilder()
         .withMotors({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
                      LEFT_DRIVE_MOTOR3_PORT}, // left motors
                     {-RIGHT_DRIVE_MOTOR1_PORT, -RIGHT_DRIVE_MOTOR2_PORT,
@@ -75,8 +76,20 @@ std::shared_ptr<okapi::OdomChassisController> chassis =
         .withOdometry()
         .buildOdometry();
 
-std::shared_ptr<okapi::AsyncMotionProfileController> driveController =
-    okapi::AsyncMotionProfileControllerBuilder()
+std::shared_ptr<ChassisController> chassisController =
+    ChassisControllerBuilder()
+        .withMotors({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
+                     LEFT_DRIVE_MOTOR3_PORT}, // left motors
+                    {-RIGHT_DRIVE_MOTOR1_PORT, -RIGHT_DRIVE_MOTOR2_PORT,
+                     -RIGHT_DRIVE_MOTOR3_PORT} // right motors
+                    )
+        // Green gearset, 4 in wheel diam, 11.5 in wheel track
+        .withDimensions(OKAPI_DRIVE_GEARSET,
+                        {{CHASSIS_WHEELS, CHASSIS_TRACK}, OKAPI_DRIVE_TPR})
+        .build();
+
+std::shared_ptr<AsyncMotionProfileController> driveController =
+    AsyncMotionProfileControllerBuilder()
         .withLimits({
             1.0, // Maximum linear velocity of the Chassis in m/s
             2.0, // Maximum linear acceleration of the Chassis in m/s^2
@@ -85,11 +98,11 @@ std::shared_ptr<okapi::AsyncMotionProfileController> driveController =
         .withOutput(chassis)
         .buildMotionProfileController();
 
-std::shared_ptr<okapi::AsyncPositionController<double, double>>
-    rollerController = okapi::AsyncPosControllerBuilder()
-                           .withMotor(ROLLER_MOTOR_PORT) // lift motor port 3
-                           .build();
-
+std::shared_ptr<AsyncPositionController<double, double>> rollerController =
+    AsyncPosControllerBuilder()
+        .withMotor(ROLLER_MOTOR_PORT) // lift motor port 3
+        .build();
+} // namespace okapi
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *

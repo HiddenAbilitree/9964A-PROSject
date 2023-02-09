@@ -36,4 +36,4 @@ void spinRoller(double desiredAngle) {
 }
 
 // moves the robot a certain distance.
-void move(okapi::QLength distance) { chassis->moveDistance(-distance); }
+void move(okapi::QLength distance) { chassis->moveDistance(distance); }
