@@ -152,11 +152,9 @@ void competition_initialize() {}
 void autonomous() {
 
     //
-    //    The robot's drivetrain is reversed to make angle turns less
-    //    confusing.
     //
-    //    angles are considered similar to a graph (0 degrees means facing
-    //    "right")
+    //    0 degrees is facing positive y.
+    //
     //
 
     // setting the default values for the odometry
