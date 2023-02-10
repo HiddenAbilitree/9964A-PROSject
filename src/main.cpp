@@ -43,8 +43,8 @@ pros::Motor_Group prosRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
 // PTO motors are omitted for simplicity
 okapi::MotorGroup okapiLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
                             LEFT_DRIVE_MOTOR3_PORT});
-okapi::MotorGroup okapiRDM({RIGHT_DRIVE_MOTOR1_PORT, RIGHT_DRIVE_MOTOR2_PORT,
-                            RIGHT_DRIVE_MOTOR3_PORT});
+okapi::MotorGroup okapiRDM({-RIGHT_DRIVE_MOTOR1_PORT, -RIGHT_DRIVE_MOTOR2_PORT,
+                            -RIGHT_DRIVE_MOTOR3_PORT});
 
 okapi::Motor rMotor(ROLLER_MOTOR_PORT, true,
                     okapi::AbstractMotor::gearset::green, OKAPI_DRIVE_MEASURE);
@@ -52,12 +52,10 @@ okapi::Motor rMotor(ROLLER_MOTOR_PORT, true,
 bool extensionActivated = false;
 namespace okapi {
 
-std::shared_ptr<OdomChassisController> chassis =
+std::shared_ptr<OdomChassisController> odomChassis =
     ChassisControllerBuilder()
-        .withMotors({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
-                     LEFT_DRIVE_MOTOR3_PORT}, // left motors
-                    {-RIGHT_DRIVE_MOTOR1_PORT, -RIGHT_DRIVE_MOTOR2_PORT,
-                     -RIGHT_DRIVE_MOTOR3_PORT} // right motors
+        .withMotors(okapiLDM, // left motors
+                    okapiRDM  // right motors
                     )
         .withDimensions(
             {
@@ -76,16 +74,26 @@ std::shared_ptr<OdomChassisController> chassis =
         .withOdometry()
         .buildOdometry();
 
-std::shared_ptr<ChassisController> chassisController =
+std::shared_ptr<ChassisController> chassis =
     ChassisControllerBuilder()
-        .withMotors({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
-                     LEFT_DRIVE_MOTOR3_PORT}, // left motors
-                    {-RIGHT_DRIVE_MOTOR1_PORT, -RIGHT_DRIVE_MOTOR2_PORT,
-                     -RIGHT_DRIVE_MOTOR3_PORT} // right motors
+        .withMotors(okapiLDM, // left motors
+                    okapiRDM  // right motors
                     )
         // Green gearset, 4 in wheel diam, 11.5 in wheel track
-        .withDimensions(OKAPI_DRIVE_GEARSET,
-                        {{CHASSIS_WHEELS, CHASSIS_TRACK}, OKAPI_DRIVE_TPR})
+        .withDimensions(
+            {
+                OKAPI_DRIVE_GEARSET, // drive gearset stored in robot.h
+                (DRIVE_GEARWHEEL / DRIVE_GEARMOTOR) // drivetrain gearing
+            },
+            {
+                {
+                    CHASSIS_WHEELS, // wheel size stored in robot.h
+                    CHASSIS_TRACK   // drivetrain track size (length between
+                                    // wheels on same axis) stored in robot.h
+                },
+                OKAPI_DRIVE_TPR // drivetrain ticks per rotation stored in
+                                // robot.h
+            })
         .build();
 
 std::shared_ptr<AsyncMotionProfileController> driveController =
@@ -158,7 +166,7 @@ void autonomous() {
     //
 
     // setting the default values for the odometry
-    chassis->setState({0_in, 0_in, 0_deg});
+    chassis->setState({0_in, 0_in, 180_deg});
     // halving movement speed
     chassis->setMaxVelocity(300);
     // moving first roller
