@@ -167,18 +167,21 @@ void autonomous() {
 
     // setting the default values for the odometry
     // chassis->setState({0_in, 0_in, 180_deg});
-    odomChassis->setState({0_in, 0_in, 180_deg});
+    odomChassis->setState({28.635_in, 7.5_in, 180_deg});
 
     // halving movement speed
     chassis->setMaxVelocity(300);
     // moving first roller
     spinRoller();
     // reversing
-    move(-2_in);
+    chassis->moveDistance(-2_in);
+    odomChassis->getState();
     // turning to avoid disk
+    driveController->generatePath(
+        {odomChassis->getState(), {11.78_in, 28.635_in, 0_deg}}, "A");
 
     // turning to second roller
-    chassis->turnAngle(-110_deg);
+    odomChassis->turnAngle(-110_deg);
     // moving to second roller
     move(24_in);
     // moving second roller
