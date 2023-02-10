@@ -32,7 +32,6 @@ void roll_roller() {
 void spinRoller(double desiredAngle) {
     move(4_in);
     rMotor.moveRelative(ROLLER_RATIO * desiredAngle, 600);
-    move(-1_in);
 }
 
 // moves the robot a certain distance.

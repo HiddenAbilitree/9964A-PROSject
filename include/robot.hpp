@@ -9,6 +9,7 @@
 #include "okapi/api/chassis/controller/chassisControllerIntegrated.hpp"
 #include "okapi/api/chassis/controller/odomChassisController.hpp"
 #include "okapi/api/chassis/model/chassisModel.hpp"
+#include "okapi/api/control/async/asyncPosIntegratedController.hpp"
 #include "okapi/api/device/motor/abstractMotor.hpp"
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/units/RQuantity.hpp"
@@ -64,10 +65,16 @@
 #define EXTENSION_DIGITAL_SENSOR_PORT 'D'
 
 // okapilib
+
 extern std::shared_ptr<okapi::Controller>
     okapiController; // okapilib controller
-extern std::shared_ptr<okapi::OdomChassisController>
-    chassis;                       // okapilib odometry controller
+extern std::shared_ptr<okapi::ChassisController>
+    chassis; // okapilib async controller
+extern std::shared_ptr<okapi::OdomChassisController> odomChassis;
+extern std::shared_ptr<okapi::AsyncMotionProfileController>
+    driveController; // okapilib async controller
+extern std::shared_ptr<okapi::AsyncPositionController<double, double>>
+    rollerController;
 extern okapi::MotorGroup okapiLDM; // drivetrain left motor group
 extern okapi::MotorGroup okapiRDM; // drivetrain right motor group
 

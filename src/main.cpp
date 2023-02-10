@@ -120,7 +120,7 @@ std::shared_ptr<AsyncPositionController<double, double>> rollerController =
 void initialize() {
     // creates buttons on the cortex lcd display
     // pros::lcd::initialize();
-    chassis->setDefaultStateMode(okapi::StateMode::CARTESIAN);
+    odomChassis->setDefaultStateMode(okapi::StateMode::CARTESIAN);
     prosRDM.set_reversed(true);
     prosLDM.set_gearing(PROS_DRIVE_GEARSET);
     prosRDM.set_gearing(PROS_DRIVE_GEARSET);
@@ -166,13 +166,17 @@ void autonomous() {
     //
 
     // setting the default values for the odometry
-    chassis->setState({0_in, 0_in, 180_deg});
+    // chassis->setState({0_in, 0_in, 180_deg});
+    odomChassis->setState({0_in, 0_in, 180_deg});
+
     // halving movement speed
     chassis->setMaxVelocity(300);
     // moving first roller
     spinRoller();
     // reversing
-    move(-22_in);
+    move(-2_in);
+    // turning to avoid disk
+
     // turning to second roller
     chassis->turnAngle(-110_deg);
     // moving to second roller
