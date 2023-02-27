@@ -1,5 +1,6 @@
 
 #include "functions.hpp"
+#include "okapi/api/odometry/odomState.hpp"
 #include "okapi/api/odometry/stateMode.hpp"
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/util/logging.hpp"
@@ -175,13 +176,16 @@ void autonomous() {
     spinRoller();
     // reversing
     chassis->moveDistance(-2_in);
-    odomChassis->getState();
     // turning to avoid disk
-    driveController->generatePath(
-        {odomChassis->getState(), {11.78_in, 28.635_in, 0_deg}}, "A");
 
-    // turning to second roller
-    odomChassis->turnAngle(-110_deg);
+    okapi::OdomState state1 = odomChassis->getState();
+    driveController->generatePath(
+
+        {{state1.x, state1.y, state1.theta}, {11.78_in, 28.635_in, 0_deg}},
+        "A");
+    odomChassis -> driveToPoint({11.78_in, 28.635_in},false);
+        // turning to second roller
+        odomChassis->turnAngle(-110_deg);
     // moving to second roller
     move(24_in);
     // moving second roller
