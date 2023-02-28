@@ -75,10 +75,14 @@ void windBack() {
     }
 }
 void shoot() {
-    lock.set_value(false);
-    miscMotors.move_relative(3918.85714286, 200);
-    pros::delay(2000);
-    windBack();
+    if (lock.get_value()) {
+        lock.set_value(false);
+        miscMotors.move_relative(3918.85714286, 200);
+        pros::delay(2000);
+        windBack();
+    } else {
+        windBack();
+    }
 }
 void shoot(bool input) {
     if (input) {
