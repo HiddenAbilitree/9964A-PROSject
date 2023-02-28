@@ -13,12 +13,15 @@ pros::Controller prosController(pros::E_CONTROLLER_MASTER);
 
 // initialize pneumatic pistons
 pros::ADIDigitalOut jerry(EXTENSION_DIGITAL_SENSOR_PORT);
+pros::ADIDigitalOut lock(LOCK_DIGITAL_SENSOR_PORT);
 
-// initialize limit switch for catapult windback
+// initialize limit switch for sligshot windback
+pros::ADIDigitalIn limitSwitch(LIMIT_SWITCH_PORT);
+// defining the misc motors
+pros::Motor rM(RIGHT_EXT_MOTOR_PORT, PROS_DRIVE_GEARSET, 1, PROS_DRIVE_MEASURE);
+pros::Motor lM(LEFT_EXT_MOTOR_PORT, PROS_DRIVE_GEARSET, 0, PROS_DRIVE_MEASURE);
 
-// defining the PTO motors
-pros::Motor rM(ROLLER_MOTOR_PORT, PROS_DRIVE_GEARSET, 1, PROS_DRIVE_MEASURE);
-
+pros::MotorGroup miscMotors({lM, rM});
 // defining the rest of the motors
 pros::Motor lUBM(LEFT_DRIVE_MOTOR3_PORT, PROS_DRIVE_GEARSET, 0,
                  PROS_DRIVE_MEASURE);
@@ -47,10 +50,11 @@ okapi::MotorGroup okapiLDM({LEFT_DRIVE_MOTOR1_PORT, LEFT_DRIVE_MOTOR2_PORT,
 okapi::MotorGroup okapiRDM({-RIGHT_DRIVE_MOTOR1_PORT, -RIGHT_DRIVE_MOTOR2_PORT,
                             -RIGHT_DRIVE_MOTOR3_PORT});
 
-okapi::Motor rMotor(ROLLER_MOTOR_PORT, true,
-                    okapi::AbstractMotor::gearset::green, OKAPI_DRIVE_MEASURE);
+okapi::Motor rEXTM(RIGHT_EXT_MOTOR_PORT, true,
+                   okapi::AbstractMotor::gearset::green, OKAPI_DRIVE_MEASURE);
+okapi::Motor lEXTM(LEFT_EXT_MOTOR_PORT, false,
+                   okapi::AbstractMotor::gearset::green, OKAPI_DRIVE_MEASURE);
 
-bool extensionActivated = false;
 namespace okapi {
 
 std::shared_ptr<OdomChassisController> odomChassis =
@@ -107,10 +111,6 @@ std::shared_ptr<AsyncMotionProfileController> driveController =
         .withOutput(chassis)
         .buildMotionProfileController();
 
-std::shared_ptr<AsyncPositionController<double, double>> rollerController =
-    AsyncPosControllerBuilder()
-        .withMotor(ROLLER_MOTOR_PORT) // lift motor port 3
-        .build();
 } // namespace okapi
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -125,7 +125,8 @@ void initialize() {
     prosRDM.set_reversed(true);
     prosLDM.set_gearing(PROS_DRIVE_GEARSET);
     prosRDM.set_gearing(PROS_DRIVE_GEARSET);
-    jerry.set_value(extensionActivated);
+    jerry.set_value(false);
+    lock.set_value(true);
     // defining the okapi chassis object
 }
 
@@ -183,9 +184,9 @@ void autonomous() {
 
         {{state1.x, state1.y, state1.theta}, {11.78_in, 28.635_in, 0_deg}},
         "A");
-    odomChassis -> driveToPoint({11.78_in, 28.635_in},false);
-        // turning to second roller
-        odomChassis->turnAngle(-110_deg);
+    odomChassis->driveToPoint({11.78_in, 28.635_in}, false);
+    // turning to second roller
+    odomChassis->turnAngle(-110_deg);
     // moving to second roller
     move(24_in);
     // moving second roller
@@ -251,6 +252,11 @@ void opcontrol() {
             prosController.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A));
         // roller mech
         roll_roller();
+
+        intake(1, prosController.get_digital_new_press(
+                      pros::E_CONTROLLER_DIGITAL_L2));
+        shoot(prosController.get_digital_new_press(
+            pros::E_CONTROLLER_DIGITAL_R2));
         pros::delay(20);
     }
 }

@@ -35,7 +35,8 @@
 #define LEFT_DRIVE_MOTOR2_PORT 6
 #define LEFT_DRIVE_MOTOR3_PORT 8
 
-#define ROLLER_MOTOR_PORT 7
+#define RIGHT_EXT_MOTOR_PORT 3
+#define LEFT_EXT_MOTOR_PORT 7
 
 // stores the gearing of the drivetrain
 #define OKAPI_DRIVE_GEARSET                                                    \
@@ -50,7 +51,7 @@
 // stores the dimensions of the drivetrain
 #define CHASSIS_TRACK                                                          \
   14.25_in // distance between the inside edge of wheels on the same axle
-#define CHASSIS_WHEELS 3.25_in // diameter of drivetrain wheels
+#define CHASSIS_WHEELS 2.75_in // diameter of drivetrain wheels
 
 // radius of the flex wheel responsible for the roller.
 #define FLEX_RADIUS 1
@@ -63,6 +64,12 @@
 
 // stores port of the piston used for extension
 #define EXTENSION_DIGITAL_SENSOR_PORT 'D'
+
+// stores port of the piston used for locking the slingshot
+#define LOCK_DIGITAL_SENSOR_PORT 'A'
+
+// stores port of the limit switch used for locking the slingshot
+#define LIMIT_SWITCH_PORT 'B'
 
 // okapilib
 
@@ -79,6 +86,7 @@ extern okapi::MotorGroup okapiLDM; // drivetrain left motor group
 extern okapi::MotorGroup okapiRDM; // drivetrain right motor group
 
 extern okapi::Motor rMotor;
+extern okapi::Motor lMotor;
 
 #define OKAPI_DRIVE_MEASURE okapi::AbstractMotor::encoderUnits::degrees
 
@@ -93,7 +101,8 @@ extern pros::Controller prosController; // pros contorller
 
 // declares roller motor
 extern pros::Motor rM;
-
+extern pros::Motor lM;
+extern pros::MotorGroup miscMotors;
 // declares other motors
 extern pros::Motor rUBM; // right upper back motor
 extern pros::Motor lUBM; // left upper back motor
@@ -109,5 +118,8 @@ extern pros::Motor_Group prosRDM; // pros right drive motors
 // declare pneumatic pistons
 extern pros::ADIDigitalOut jerry;
 
-// makes ptoActivated a global variable
-extern bool extensionActivated;
+// declare slingshot lock
+extern pros::ADIDigitalOut lock;
+
+// declare limit switch
+extern pros::ADIDigitalIn limitSwitch;

@@ -3,10 +3,7 @@
 #include "robot.hpp"
 
 // toggles the extension piston
-void extension() {
-    jerry.set_value(!extensionActivated);
-    extensionActivated = !extensionActivated;
-}
+void extension() { jerry.set_value(!jerry.get_value()); }
 
 // uses a boolean input to toggle extension
 void extension(bool input) {
@@ -36,3 +33,55 @@ void spinRoller(double desiredAngle) {
 
 // moves the robot a certain distance.
 void move(okapi::QLength distance) { chassis->moveDistance(distance); }
+/*
+ Sets the state of the miscellaneous motors.
+ 1: Intaking
+ 2: Winding Back
+ 3: Idle
+*/
+void intake(int state) {
+    switch (state) {
+    case 1:
+        rM = 127;
+        lM = 127;
+        break;
+    case 2:
+        rM = -127;
+        lM = -127;
+        break;
+    case 3:
+        rM = 0;
+        lM = 0;
+        break;
+    }
+}
+/*
+ Sets the state of the miscellaneous motors.
+ 1: Intaking
+ 2: Winding Back
+ 3: Idle
+*/
+void intake(int state, bool input) {
+    if (input) {
+        intake(state);
+    }
+}
+void windBack() {
+    if (!lock.get_value() && !limitSwitch.get_value()) {
+        intake(2);
+    }
+    if (limitSwitch.get_new_press()) {
+        lock.set_value(true);
+    }
+}
+void shoot() {
+    lock.set_value(false);
+    miscMotors.move_relative(3918.85714286, 200);
+    pros::delay(2000);
+    windBack();
+}
+void shoot(bool input) {
+    if (input) {
+        shoot();
+    }
+}
