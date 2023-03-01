@@ -123,3 +123,5 @@ extern pros::ADIDigitalOut lock;
 
 // declare limit switch
 extern pros::ADIDigitalIn limitSwitch;
+extern bool locked;
+extern bool extended;

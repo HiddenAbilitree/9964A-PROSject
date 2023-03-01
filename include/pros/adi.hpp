@@ -283,7 +283,7 @@ public:
   using ADIPort::set_value;
 };
 
-class ADIDigitalOut : public ADIPort {
+class ADIDigitalOut : private ADIPort {
 public:
   /**
    * Configures an ADI port to act as a Digital Output.

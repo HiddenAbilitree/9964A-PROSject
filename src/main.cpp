@@ -54,7 +54,9 @@ okapi::Motor rEXTM(RIGHT_EXT_MOTOR_PORT, true,
                    okapi::AbstractMotor::gearset::green, OKAPI_DRIVE_MEASURE);
 okapi::Motor lEXTM(LEFT_EXT_MOTOR_PORT, false,
                    okapi::AbstractMotor::gearset::green, OKAPI_DRIVE_MEASURE);
-
+bool extended = false;
+bool locked = true;
+/*
 namespace okapi {
 
 std::shared_ptr<OdomChassisController> odomChassis =
@@ -112,6 +114,7 @@ std::shared_ptr<AsyncMotionProfileController> driveController =
         .buildMotionProfileController();
 
 } // namespace okapi
+*/
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -121,12 +124,12 @@ std::shared_ptr<AsyncMotionProfileController> driveController =
 void initialize() {
     // creates buttons on the cortex lcd display
     // pros::lcd::initialize();
-    odomChassis->setDefaultStateMode(okapi::StateMode::CARTESIAN);
+    // odomChassis->setDefaultStateMode(okapi::StateMode::CARTESIAN);
     prosRDM.set_reversed(true);
     prosLDM.set_gearing(PROS_DRIVE_GEARSET);
     prosRDM.set_gearing(PROS_DRIVE_GEARSET);
-    jerry.set_value(false);
-    lock.set_value(true);
+    jerry.set_value(extended);
+    lock.set_value(locked);
     // defining the okapi chassis object
 }
 
@@ -160,45 +163,45 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+    /*
+        //
+        //
+        //    0 degrees is facing positive y.
+        //
+        //
 
-    //
-    //
-    //    0 degrees is facing positive y.
-    //
-    //
+        // setting the default values for the odometry
+        // chassis->setState({0_in, 0_in, 180_deg});
+        odomChassis->setState({28.635_in, 7.5_in, 180_deg});
 
-    // setting the default values for the odometry
-    // chassis->setState({0_in, 0_in, 180_deg});
-    odomChassis->setState({28.635_in, 7.5_in, 180_deg});
+        // halving movement speed
+        chassis->setMaxVelocity(300);
+        // moving first roller
+        roll_roller();
+        // reversing
+        chassis->moveDistance(-2_in);
+        // turning to avoid disk
 
-    // halving movement speed
-    chassis->setMaxVelocity(300);
-    // moving first roller
-    spinRoller();
-    // reversing
-    chassis->moveDistance(-2_in);
-    // turning to avoid disk
+        okapi::OdomState state1 = odomChassis->getState();
+        driveController->generatePath(
 
-    okapi::OdomState state1 = odomChassis->getState();
-    driveController->generatePath(
-
-        {{state1.x, state1.y, state1.theta}, {11.78_in, 28.635_in, 0_deg}},
-        "A");
-    odomChassis->driveToPoint({11.78_in, 28.635_in}, false);
-    // turning to second roller
-    odomChassis->turnAngle(-110_deg);
-    // moving to second roller
-    move(24_in);
-    // moving second roller
-    spinRoller();
-    // moving back to original position
-    move(-22_in);
-    chassis->turnAngle(45_deg);
-    move(-30_in);
-    extension();
-    chassis->setMaxVelocity(600);
-    move(50_in);
-
+            {{state1.x, state1.y, state1.theta}, {11.78_in, 28.635_in, 0_deg}},
+            "A");
+        odomChassis->driveToPoint({11.78_in, 28.635_in}, false);
+        // turning to second roller
+        odomChassis->turnAngle(-110_deg);
+        // moving to second roller
+        move(24_in);
+        // moving second roller
+        roll_roller();
+        // moving back to original position
+        move(-22_in);
+        chassis->turnAngle(45_deg);
+        move(-30_in);
+        extension();
+        chassis->setMaxVelocity(600);
+        move(50_in);
+    */
     // turning to other two rollers
     // chassis->turnAngle(135_deg);
     // moving to other two rollers

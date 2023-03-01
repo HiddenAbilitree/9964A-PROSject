@@ -3,7 +3,10 @@
 #include "robot.hpp"
 
 // toggles the extension piston
-void extension() { jerry.set_value(!jerry.get_value()); }
+void extension() {
+    jerry.set_value(!extended);
+    extended = !extended;
+}
 
 // uses a boolean input to toggle extension
 void extension(bool input) {
@@ -67,16 +70,18 @@ void intake(int state, bool input) {
     }
 }
 void windBack() {
-    if (!lock.get_value() && !limitSwitch.get_value()) {
+    if (!locked && !limitSwitch.get_value()) {
         intake(2);
     }
     if (limitSwitch.get_new_press()) {
         lock.set_value(true);
+        locked = true;
     }
 }
 void shoot() {
-    if (lock.get_value()) {
+    if (locked) {
         lock.set_value(false);
+        locked = false;
         miscMotors.move_relative(3918.85714286, 200);
         pros::delay(2000);
         windBack();
