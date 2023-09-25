@@ -63,7 +63,7 @@
 #define ROLLER_RATIO ROLLER_RADIUS / FLEX_RADIUS
 
 // stores port of the piston used for extension
-#define EXTENSION_DIGITAL_SENSOR_PORT 'D'
+#define EXTENSION_DIGITAL_SENSOR_PORT 'C'
 
 // stores port of the piston used for locking the slingshot
 #define LOCK_DIGITAL_SENSOR_PORT 'A'

@@ -4,6 +4,7 @@
 #include "okapi/api/odometry/stateMode.hpp"
 #include "okapi/api/units/QLength.hpp"
 #include "okapi/api/util/logging.hpp"
+#include "okapi/api/util/mathUtil.hpp"
 #include "okapi/impl/chassis/controller/chassisControllerBuilder.hpp"
 #include "robot.hpp"
 #include <cstdlib>
@@ -56,7 +57,7 @@ okapi::Motor lEXTM(LEFT_EXT_MOTOR_PORT, false,
                    okapi::AbstractMotor::gearset::green, OKAPI_DRIVE_MEASURE);
 bool extended = false;
 bool locked = true;
-/*
+
 namespace okapi {
 
 std::shared_ptr<OdomChassisController> odomChassis =
@@ -64,57 +65,13 @@ std::shared_ptr<OdomChassisController> odomChassis =
         .withMotors(okapiLDM, // left motors
                     okapiRDM  // right motors
                     )
-        .withDimensions(
-            {
-                OKAPI_DRIVE_GEARSET, // drive gearset stored in robot.h
-                (DRIVE_GEARWHEEL / DRIVE_GEARMOTOR) // drivetrain gearing
-            },
-            {
-                {
-                    CHASSIS_WHEELS, // wheel size stored in robot.h
-                    CHASSIS_TRACK   // drivetrain track size (length between
-                                    // wheels on same axis) stored in robot.h
-                },
-                OKAPI_DRIVE_TPR // drivetrain ticks per rotation stored in
-                                // robot.h
-            })
+        .withSensors(ADIEncoder{'D', 'E'}, ADIEncoder{'F', 'G', true})
+        .withDimensions(OKAPI_DRIVE_GEARSET,
+                        {{2.75_in, 25.6_cm}, quadEncoderTPR})
         .withOdometry()
         .buildOdometry();
-
-std::shared_ptr<ChassisController> chassis =
-    ChassisControllerBuilder()
-        .withMotors(okapiLDM, // left motors
-                    okapiRDM  // right motors
-                    )
-        // Green gearset, 4 in wheel diam, 11.5 in wheel track
-        .withDimensions(
-            {
-                OKAPI_DRIVE_GEARSET, // drive gearset stored in robot.h
-                (DRIVE_GEARWHEEL / DRIVE_GEARMOTOR) // drivetrain gearing
-            },
-            {
-                {
-                    CHASSIS_WHEELS, // wheel size stored in robot.h
-                    CHASSIS_TRACK   // drivetrain track size (length between
-                                    // wheels on same axis) stored in robot.h
-                },
-                OKAPI_DRIVE_TPR // drivetrain ticks per rotation stored in
-                                // robot.h
-            })
-        .build();
-
-std::shared_ptr<AsyncMotionProfileController> driveController =
-    AsyncMotionProfileControllerBuilder()
-        .withLimits({
-            1.0, // Maximum linear velocity of the Chassis in m/s
-            2.0, // Maximum linear acceleration of the Chassis in m/s^2
-            10.0 // Maximum linear jerk of the Chassis in m/sˆ3
-        })
-        .withOutput(chassis)
-        .buildMotionProfileController();
-
 } // namespace okapi
-*/
+
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -124,7 +81,7 @@ std::shared_ptr<AsyncMotionProfileController> driveController =
 void initialize() {
     // creates buttons on the cortex lcd display
     // pros::lcd::initialize();
-    // odomChassis->setDefaultStateMode(okapi::StateMode::CARTESIAN);
+    odomChassis->setDefaultStateMode(okapi::StateMode::CARTESIAN);
     prosRDM.set_reversed(true);
     prosLDM.set_gearing(PROS_DRIVE_GEARSET);
     prosRDM.set_gearing(PROS_DRIVE_GEARSET);
