@@ -1,0 +1,1344 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for team 9964A's program built using the PROS library.">
+      
+      
+        <meta name="author" content="Eric Zhang">
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../github/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.1">
+    
+    
+      
+        <title>Docs - 9964A Program Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.72749a73.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a5377069.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#program-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="9964A Program Documentation" class="md-header__button md-logo" aria-label="9964A Program Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 4c-1.71 0-2.75.33-3.35.61C13.88 4.23 13 4 12 4s-1.88.23-2.65.61C8.75 4.33 7.71 4 6 4c-3 0-5 8-5 10 0 .83 1.32 1.59 3.14 1.9.64 2.24 3.66 3.95 7.36 4.1v-4.28c-.59-.37-1.5-1.04-1.5-1.72 0-1 2-1 2-1s2 0 2 1c0 .68-.91 1.35-1.5 1.72V20c3.7-.15 6.72-1.86 7.36-4.1C21.68 15.59 23 14.83 23 14c0-2-2-10-5-10M4.15 13.87c-.5-.12-.89-.26-1.15-.37.25-2.77 2.2-7.1 3.05-7.5.54 0 .95.06 1.32.11-2.1 2.31-2.93 5.93-3.22 7.76M9 12a1 1 0 0 1-1-1c0-.54.45-1 1-1a1 1 0 0 1 1 1c0 .56-.45 1-1 1m6 0a1 1 0 0 1-1-1c0-.54.45-1 1-1a1 1 0 0 1 1 1c0 .56-.45 1-1 1m4.85 1.87c-.29-1.83-1.12-5.45-3.22-7.76.37-.05.78-.11 1.32-.11.85.4 2.8 4.73 3.05 7.5-.25.11-.64.25-1.15.37Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            9964A Program Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Docs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/HiddenAbilitree/9964A-PROSject" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    HiddenAbilitree/9964A-PROSject
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="9964A Program Documentation" class="md-nav__button md-logo" aria-label="9964A Program Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 4c-1.71 0-2.75.33-3.35.61C13.88 4.23 13 4 12 4s-1.88.23-2.65.61C8.75 4.33 7.71 4 6 4c-3 0-5 8-5 10 0 .83 1.32 1.59 3.14 1.9.64 2.24 3.66 3.95 7.36 4.1v-4.28c-.59-.37-1.5-1.04-1.5-1.72 0-1 2-1 2-1s2 0 2 1c0 .68-.91 1.35-1.5 1.72V20c3.7-.15 6.72-1.86 7.36-4.1C21.68 15.59 23 14.83 23 14c0-2-2-10-5-10M4.15 13.87c-.5-.12-.89-.26-1.15-.37.25-2.77 2.2-7.1 3.05-7.5.54 0 .95.06 1.32.11-2.1 2.31-2.93 5.93-3.22 7.76M9 12a1 1 0 0 1-1-1c0-.54.45-1 1-1a1 1 0 0 1 1 1c0 .56-.45 1-1 1m6 0a1 1 0 0 1-1-1c0-.54.45-1 1-1a1 1 0 0 1 1 1c0 .56-.45 1-1 1m4.85 1.87c-.29-1.83-1.12-5.45-3.22-7.76.37-.05.78-.11 1.32-.11.85.4 2.8 4.73 3.05 7.5-.25.11-.64.25-1.15.37Z"/></svg>
+
+    </a>
+    9964A Program Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/HiddenAbilitree/9964A-PROSject" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    HiddenAbilitree/9964A-PROSject
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Docs
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<!-- @format -->
+
+<h1 id="program-documentation">Program Documentation<a class="headerlink" href="#program-documentation" title="Permanent link">&para;</a></h1>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Main Program</label><label for="__tabbed_1_2">Variables</label><label for="__tabbed_1_3">Functions</label><label for="__tabbed_1_4">Functions Header</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">main.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">  1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">  2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">  3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">  4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">  5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">  6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">  7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">  8</a></span>
+<span class="normal"><a href="#__codelineno-0-9">  9</a></span>
+<span class="normal"><a href="#__codelineno-0-10"> 10</a></span>
+<span class="normal"><a href="#__codelineno-0-11"> 11</a></span>
+<span class="normal"><a href="#__codelineno-0-12"> 12</a></span>
+<span class="normal"><a href="#__codelineno-0-13"> 13</a></span>
+<span class="normal"><a href="#__codelineno-0-14"> 14</a></span>
+<span class="normal"><a href="#__codelineno-0-15"> 15</a></span>
+<span class="normal"><a href="#__codelineno-0-16"> 16</a></span>
+<span class="normal"><a href="#__codelineno-0-17"> 17</a></span>
+<span class="normal"><a href="#__codelineno-0-18"> 18</a></span>
+<span class="normal"><a href="#__codelineno-0-19"> 19</a></span>
+<span class="normal"><a href="#__codelineno-0-20"> 20</a></span>
+<span class="normal"><a href="#__codelineno-0-21"> 21</a></span>
+<span class="normal"><a href="#__codelineno-0-22"> 22</a></span>
+<span class="normal"><a href="#__codelineno-0-23"> 23</a></span>
+<span class="normal"><a href="#__codelineno-0-24"> 24</a></span>
+<span class="normal"><a href="#__codelineno-0-25"> 25</a></span>
+<span class="normal"><a href="#__codelineno-0-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-0-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-0-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-0-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-0-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-0-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-0-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-0-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-0-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-0-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-0-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-0-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-0-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-0-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-0-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-0-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-0-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-0-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-0-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-0-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-0-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-0-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-0-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-0-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-0-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-0-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-0-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-0-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-0-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-0-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-0-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-0-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-0-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-0-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-0-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-0-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-0-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-0-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-0-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-0-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-0-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-0-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-0-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-0-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-0-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-0-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#__codelineno-0-105">105</a></span>
+<span class="normal"><a href="#__codelineno-0-106">106</a></span>
+<span class="normal"><a href="#__codelineno-0-107">107</a></span>
+<span class="normal"><a href="#__codelineno-0-108">108</a></span>
+<span class="normal"><a href="#__codelineno-0-109">109</a></span>
+<span class="normal"><a href="#__codelineno-0-110">110</a></span>
+<span class="normal"><a href="#__codelineno-0-111">111</a></span>
+<span class="normal"><a href="#__codelineno-0-112">112</a></span>
+<span class="normal"><a href="#__codelineno-0-113">113</a></span>
+<span class="normal"><a href="#__codelineno-0-114">114</a></span>
+<span class="normal"><a href="#__codelineno-0-115">115</a></span>
+<span class="normal"><a href="#__codelineno-0-116">116</a></span>
+<span class="normal"><a href="#__codelineno-0-117">117</a></span>
+<span class="normal"><a href="#__codelineno-0-118">118</a></span>
+<span class="normal"><a href="#__codelineno-0-119">119</a></span>
+<span class="normal"><a href="#__codelineno-0-120">120</a></span>
+<span class="normal"><a href="#__codelineno-0-121">121</a></span>
+<span class="normal"><a href="#__codelineno-0-122">122</a></span>
+<span class="normal"><a href="#__codelineno-0-123">123</a></span>
+<span class="normal"><a href="#__codelineno-0-124">124</a></span>
+<span class="normal"><a href="#__codelineno-0-125">125</a></span>
+<span class="normal"><a href="#__codelineno-0-126">126</a></span>
+<span class="normal"><a href="#__codelineno-0-127">127</a></span>
+<span class="normal"><a href="#__codelineno-0-128">128</a></span>
+<span class="normal"><a href="#__codelineno-0-129">129</a></span>
+<span class="normal"><a href="#__codelineno-0-130">130</a></span>
+<span class="normal"><a href="#__codelineno-0-131">131</a></span>
+<span class="normal"><a href="#__codelineno-0-132">132</a></span>
+<span class="normal"><a href="#__codelineno-0-133">133</a></span>
+<span class="normal"><a href="#__codelineno-0-134">134</a></span>
+<span class="normal"><a href="#__codelineno-0-135">135</a></span>
+<span class="normal"><a href="#__codelineno-0-136">136</a></span>
+<span class="normal"><a href="#__codelineno-0-137">137</a></span>
+<span class="normal"><a href="#__codelineno-0-138">138</a></span>
+<span class="normal"><a href="#__codelineno-0-139">139</a></span>
+<span class="normal"><a href="#__codelineno-0-140">140</a></span>
+<span class="normal"><a href="#__codelineno-0-141">141</a></span>
+<span class="normal"><a href="#__codelineno-0-142">142</a></span>
+<span class="normal"><a href="#__codelineno-0-143">143</a></span>
+<span class="normal"><a href="#__codelineno-0-144">144</a></span>
+<span class="normal"><a href="#__codelineno-0-145">145</a></span>
+<span class="normal"><a href="#__codelineno-0-146">146</a></span>
+<span class="normal"><a href="#__codelineno-0-147">147</a></span>
+<span class="normal"><a href="#__codelineno-0-148">148</a></span>
+<span class="normal"><a href="#__codelineno-0-149">149</a></span>
+<span class="normal"><a href="#__codelineno-0-150">150</a></span>
+<span class="normal"><a href="#__codelineno-0-151">151</a></span>
+<span class="normal"><a href="#__codelineno-0-152">152</a></span>
+<span class="normal"><a href="#__codelineno-0-153">153</a></span>
+<span class="normal"><a href="#__codelineno-0-154">154</a></span>
+<span class="normal"><a href="#__codelineno-0-155">155</a></span>
+<span class="normal"><a href="#__codelineno-0-156">156</a></span>
+<span class="normal"><a href="#__codelineno-0-157">157</a></span>
+<span class="normal"><a href="#__codelineno-0-158">158</a></span>
+<span class="normal"><a href="#__codelineno-0-159">159</a></span>
+<span class="normal"><a href="#__codelineno-0-160">160</a></span>
+<span class="normal"><a href="#__codelineno-0-161">161</a></span>
+<span class="normal"><a href="#__codelineno-0-162">162</a></span>
+<span class="normal"><a href="#__codelineno-0-163">163</a></span>
+<span class="normal"><a href="#__codelineno-0-164">164</a></span>
+<span class="normal"><a href="#__codelineno-0-165">165</a></span>
+<span class="normal"><a href="#__codelineno-0-166">166</a></span>
+<span class="normal"><a href="#__codelineno-0-167">167</a></span>
+<span class="normal"><a href="#__codelineno-0-168">168</a></span>
+<span class="normal"><a href="#__codelineno-0-169">169</a></span>
+<span class="normal"><a href="#__codelineno-0-170">170</a></span>
+<span class="normal"><a href="#__codelineno-0-171">171</a></span>
+<span class="normal"><a href="#__codelineno-0-172">172</a></span>
+<span class="normal"><a href="#__codelineno-0-173">173</a></span>
+<span class="normal"><a href="#__codelineno-0-174">174</a></span>
+<span class="normal"><a href="#__codelineno-0-175">175</a></span>
+<span class="normal"><a href="#__codelineno-0-176">176</a></span>
+<span class="normal"><a href="#__codelineno-0-177">177</a></span>
+<span class="normal"><a href="#__codelineno-0-178">178</a></span>
+<span class="normal"><a href="#__codelineno-0-179">179</a></span>
+<span class="normal"><a href="#__codelineno-0-180">180</a></span>
+<span class="normal"><a href="#__codelineno-0-181">181</a></span>
+<span class="normal"><a href="#__codelineno-0-182">182</a></span>
+<span class="normal"><a href="#__codelineno-0-183">183</a></span>
+<span class="normal"><a href="#__codelineno-0-184">184</a></span>
+<span class="normal"><a href="#__codelineno-0-185">185</a></span>
+<span class="normal"><a href="#__codelineno-0-186">186</a></span>
+<span class="normal"><a href="#__codelineno-0-187">187</a></span>
+<span class="normal"><a href="#__codelineno-0-188">188</a></span>
+<span class="normal"><a href="#__codelineno-0-189">189</a></span>
+<span class="normal"><a href="#__codelineno-0-190">190</a></span>
+<span class="normal"><a href="#__codelineno-0-191">191</a></span>
+<span class="normal"><a href="#__codelineno-0-192">192</a></span>
+<span class="normal"><a href="#__codelineno-0-193">193</a></span>
+<span class="normal"><a href="#__codelineno-0-194">194</a></span>
+<span class="normal"><a href="#__codelineno-0-195">195</a></span>
+<span class="normal"><a href="#__codelineno-0-196">196</a></span>
+<span class="normal"><a href="#__codelineno-0-197">197</a></span>
+<span class="normal"><a href="#__codelineno-0-198">198</a></span>
+<span class="normal"><a href="#__codelineno-0-199">199</a></span>
+<span class="normal"><a href="#__codelineno-0-200">200</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;functions.hpp&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/api/util/logging.hpp&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/impl/chassis/controller/chassisControllerBuilder.hpp&quot;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;robot.hpp&quot;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1">// defining the controller</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="n">pros</span><span class="o">::</span><span class="n">Controller</span><span class="w"> </span><span class="nf">prosController</span><span class="p">(</span><span class="n">pros</span><span class="o">::</span><span class="n">E_CONTROLLER_MASTER</span><span class="p">);</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="c1">// initialize pneumatic pistons</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="n">pros</span><span class="o">::</span><span class="n">ADIDigitalOut</span><span class="w"> </span><span class="nf">leftPiston</span><span class="p">(</span><span class="n">LEFT_DIGITAL_SENSOR_PORT</span><span class="p">);</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="n">pros</span><span class="o">::</span><span class="n">ADIDigitalOut</span><span class="w"> </span><span class="nf">rightPiston</span><span class="p">(</span><span class="n">RIGHT_DIGITAL_SENSOR_PORT</span><span class="p">);</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="n">pros</span><span class="o">::</span><span class="n">ADIDigitalOut</span><span class="w"> </span><span class="nf">catapultLock</span><span class="p">(</span><span class="n">CATAPULT_DIGITAL_SENSOR_PORT</span><span class="p">);</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="n">pros</span><span class="o">::</span><span class="n">ADIDigitalOut</span><span class="w"> </span><span class="nf">jerry</span><span class="p">(</span><span class="n">EXTENSION_DIGITAL_SENSOR_PORT</span><span class="p">);</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="c1">// initialize limit switch for catapult windback</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="n">pros</span><span class="o">::</span><span class="n">ADIDigitalIn</span><span class="w"> </span><span class="nf">windbackLimit</span><span class="p">(</span><span class="n">PULLLIMIT_DIGITAL_SENSOR_PORT</span><span class="p">);</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="c1">// defining the PTO motors</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="nf">lUFM</span><span class="p">(</span><span class="n">LEFT_DRIVE_MOTOR3_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">PROS_DRIVE_GEARSET</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">                 </span><span class="n">PROS_DRIVE_MEASURE</span><span class="p">);</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="nf">rUFM</span><span class="p">(</span><span class="n">RIGHT_DRIVE_MOTOR3_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">PROS_DRIVE_GEARSET</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">                 </span><span class="n">PROS_DRIVE_MEASURE</span><span class="p">);</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="c1">// defining the rest of the motors</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="nf">lUBM</span><span class="p">(</span><span class="n">LEFT_DRIVE_MOTOR4_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">PROS_DRIVE_GEARSET</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">                 </span><span class="n">PROS_DRIVE_MEASURE</span><span class="p">);</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="nf">rUBM</span><span class="p">(</span><span class="n">RIGHT_DRIVE_MOTOR4_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">PROS_DRIVE_GEARSET</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">                 </span><span class="n">PROS_DRIVE_MEASURE</span><span class="p">);</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="nf">lLFM</span><span class="p">(</span><span class="n">LEFT_DRIVE_MOTOR1_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">PROS_DRIVE_GEARSET</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">                 </span><span class="n">PROS_DRIVE_MEASURE</span><span class="p">);</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="nf">rLFM</span><span class="p">(</span><span class="n">RIGHT_DRIVE_MOTOR1_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">PROS_DRIVE_GEARSET</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">                 </span><span class="n">PROS_DRIVE_MEASURE</span><span class="p">);</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="nf">lLBM</span><span class="p">(</span><span class="n">LEFT_DRIVE_MOTOR2_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">PROS_DRIVE_GEARSET</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="w">                 </span><span class="n">PROS_DRIVE_MEASURE</span><span class="p">);</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="nf">rLBM</span><span class="p">(</span><span class="n">RIGHT_DRIVE_MOTOR2_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">PROS_DRIVE_GEARSET</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="w">                 </span><span class="n">PROS_DRIVE_MEASURE</span><span class="p">);</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="c1">// defining the drivetrain motors</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="n">pros</span><span class="o">::</span><span class="n">Motor_Group</span><span class="w"> </span><span class="nf">prosLDM</span><span class="p">({</span><span class="n">LEFT_DRIVE_MOTOR1_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">LEFT_DRIVE_MOTOR2_PORT</span><span class="p">,</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="w">                           </span><span class="n">LEFT_DRIVE_MOTOR4_PORT</span><span class="p">});</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="n">pros</span><span class="o">::</span><span class="n">Motor_Group</span><span class="w"> </span><span class="nf">prosRDM</span><span class="p">({</span><span class="n">RIGHT_DRIVE_MOTOR1_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">RIGHT_DRIVE_MOTOR2_PORT</span><span class="p">,</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="w">                           </span><span class="n">RIGHT_DRIVE_MOTOR4_PORT</span><span class="p">});</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="c1">// motors not included: LEFT_DRIVE_MOTOR3_PORT, RIGHT_DRIVE_MOTOR3_PORT</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="c1">// defining the drivetrain motors for odometry</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="c1">// PTO motors are omitted for simplicity</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="n">okapi</span><span class="o">::</span><span class="n">MotorGroup</span><span class="w"> </span><span class="nf">okapiLDM</span><span class="p">({</span><span class="n">LEFT_DRIVE_MOTOR1_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">LEFT_DRIVE_MOTOR2_PORT</span><span class="p">,</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="w">                            </span><span class="n">LEFT_DRIVE_MOTOR4_PORT</span><span class="p">});</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="n">okapi</span><span class="o">::</span><span class="n">MotorGroup</span><span class="w"> </span><span class="nf">okapiRDM</span><span class="p">({</span><span class="n">RIGHT_DRIVE_MOTOR1_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">RIGHT_DRIVE_MOTOR2_PORT</span><span class="p">,</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="w">                            </span><span class="n">RIGHT_DRIVE_MOTOR4_PORT</span><span class="p">});</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="n">okapi</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="nf">rMotor</span><span class="p">(</span><span class="n">RIGHT_DRIVE_MOTOR3_PORT</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">OKAPI_DRIVE_GEARSET</span><span class="p">,</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="w">                    </span><span class="n">OKAPI_DRIVE_MEASURE</span><span class="p">);</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="n">okapi</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="nf">lMotor</span><span class="p">(</span><span class="n">LEFT_DRIVE_MOTOR3_PORT</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">OKAPI_DRIVE_GEARSET</span><span class="p">,</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="w">                    </span><span class="n">OKAPI_DRIVE_MEASURE</span><span class="p">);</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="c1">// defining the okapi chassis object</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">okapi</span><span class="o">::</span><span class="n">OdomChassisController</span><span class="o">&gt;</span><span class="w"> </span><span class="n">chassis</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="w">    </span><span class="n">okapi</span><span class="o">::</span><span class="n">ChassisControllerBuilder</span><span class="p">()</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="w">        </span><span class="p">.</span><span class="n">withMotors</span><span class="p">(</span><span class="n">okapiLDM</span><span class="p">,</span><span class="w"> </span><span class="c1">// left motors</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="w">                    </span><span class="n">okapiRDM</span><span class="w">  </span><span class="c1">// right motors</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="w">                    </span><span class="p">)</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="w">        </span><span class="p">.</span><span class="n">withDimensions</span><span class="p">(</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="w">                </span><span class="n">OKAPI_DRIVE_GEARSET</span><span class="p">,</span><span class="w"> </span><span class="c1">// drive gearset stored in robot.h</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a><span class="w">                </span><span class="p">(</span><span class="n">DRIVE_GEARWHEEL</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">DRIVE_GEARMOTOR</span><span class="p">)</span><span class="w"> </span><span class="c1">// drivetrain gearing</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="w">            </span><span class="p">},</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="w">                    </span><span class="n">CHASSIS_WHEELS</span><span class="p">,</span><span class="w"> </span><span class="c1">// wheel size stored in robot.h</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="w">                    </span><span class="n">CHASSIS_TRACK</span><span class="w">   </span><span class="c1">// drivetrain track size (length between</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="w">                                    </span><span class="c1">// wheels on same axis) stored in robot.h</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="w">                </span><span class="p">},</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="w">                </span><span class="n">OKAPI_DRIVE_TPR</span><span class="w"> </span><span class="c1">// drivetrain ticks per rotation stored in</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="w">                                </span><span class="c1">// robot.h</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="w">            </span><span class="p">})</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="w">        </span><span class="p">.</span><span class="n">withOdometry</span><span class="p">()</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="w">        </span><span class="p">.</span><span class="n">buildOdometry</span><span class="p">();</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="cm">/*</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="cm">std::shared_ptr&lt;okapi::ChassisController&gt; driveController =</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="cm">    okapi::ChassisControllerBuilder()</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="cm">        .withMotors(okapiLDM, // left motors</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="cm">                    okapiRDM  // right motors</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a><span class="cm">                    )</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="cm">        .withDimensions(</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="cm">            {</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a><span class="cm">                OKAPI_DRIVE_GEARSET, // drive gearset stored in robot.h</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a><span class="cm">                (DRIVE_GEARWHEEL / DRIVE_GEARMOTOR) // drivetrain gearing</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a><span class="cm">            },</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="cm">            {</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="cm">                {</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="cm">                    CHASSIS_WHEELS, // wheel size stored in robot.h</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="cm">                    CHASSIS_TRACK   // drivetrain track size (length between</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="cm">                                    // wheels on same axis) stored in robot.h</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="cm">                },</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="cm">                OKAPI_DRIVE_TPR // drivetrain ticks per rotation stored in</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="cm">                                // robot.h</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="cm">            })</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="cm">        .withOdometry()</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a><span class="cm">        .buildOdometry();</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="cm">std::shared_ptr&lt;okapi::AsyncPositionController&lt;double, double&gt;&gt; cataController =</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="cm">    okapi::AsyncPosControllerBuilder()</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a><span class="cm">        .withMotor({lMotor, rMotor})</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a><span class="cm">        .withGains({0.001, 0.0001, 0.0001})</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="cm">        .build();*/</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="c1">// boolean value for PTO activation state</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a><span class="kt">bool</span><span class="w"> </span><span class="n">ptoActivated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="kt">bool</span><span class="w"> </span><span class="n">extensionActivated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="c1">// boolean value for windback process</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a><span class="kt">bool</span><span class="w"> </span><span class="n">windingBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a><span class="c1">// boolean value for intake toggle state</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a><span class="kt">bool</span><span class="w"> </span><span class="n">intakeActivated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a><span class="cm">/**</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a><span class="cm"> * Runs initialization code. This occurs as soon as the program is started.</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="cm"> *</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a><span class="cm"> * All other competition modes are blocked by initialize; it is recommended</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a><span class="cm"> * to keep execution time for this mode under a few seconds.</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a><span class="cm"> */</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a><span class="kt">void</span><span class="w"> </span><span class="nf">initialize</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a><span class="w">  </span><span class="c1">// creates buttons on the cortex lcd display</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="w">  </span><span class="c1">// pros::lcd::initialize();</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a><span class="w">  </span><span class="n">prosRDM</span><span class="p">.</span><span class="n">set_reversed</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a><span class="w">  </span><span class="n">prosLDM</span><span class="p">.</span><span class="n">set_gearing</span><span class="p">(</span><span class="n">PROS_DRIVE_GEARSET</span><span class="p">);</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a><span class="w">  </span><span class="n">prosRDM</span><span class="p">.</span><span class="n">set_gearing</span><span class="p">(</span><span class="n">PROS_DRIVE_GEARSET</span><span class="p">);</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="w">  </span><span class="n">rightPiston</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">ptoActivated</span><span class="p">);</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128"></a><span class="w">  </span><span class="n">leftPiston</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">ptoActivated</span><span class="p">);</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="w">  </span><span class="n">jerry</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">extensionActivated</span><span class="p">);</span>
+<a id="__codelineno-0-130" name="__codelineno-0-130"></a><span class="p">}</span>
+<a id="__codelineno-0-131" name="__codelineno-0-131"></a>
+<a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="cm">/**</span>
+<a id="__codelineno-0-133" name="__codelineno-0-133"></a><span class="cm"> * Runs while the robot is in the disabled state of Field Management System or</span>
+<a id="__codelineno-0-134" name="__codelineno-0-134"></a><span class="cm"> * the VEX Competition Switch, following either autonomous or opcontrol. When</span>
+<a id="__codelineno-0-135" name="__codelineno-0-135"></a><span class="cm"> * the robot is enabled, this task will exit.</span>
+<a id="__codelineno-0-136" name="__codelineno-0-136"></a><span class="cm"> */</span>
+<a id="__codelineno-0-137" name="__codelineno-0-137"></a><span class="kt">void</span><span class="w"> </span><span class="nf">disabled</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-0-138" name="__codelineno-0-138"></a>
+<a id="__codelineno-0-139" name="__codelineno-0-139"></a><span class="cm">/**</span>
+<a id="__codelineno-0-140" name="__codelineno-0-140"></a><span class="cm"> * Runs after initialize(), and before autonomous when connected to the Field</span>
+<a id="__codelineno-0-141" name="__codelineno-0-141"></a><span class="cm"> * Management System or the VEX Competition Switch. This is intended for</span>
+<a id="__codelineno-0-142" name="__codelineno-0-142"></a><span class="cm"> * competition-specific initialization routines, such as an autonomous selector</span>
+<a id="__codelineno-0-143" name="__codelineno-0-143"></a><span class="cm"> * on the LCD.</span>
+<a id="__codelineno-0-144" name="__codelineno-0-144"></a><span class="cm"> *</span>
+<a id="__codelineno-0-145" name="__codelineno-0-145"></a><span class="cm"> * This task will exit when the robot is enabled and autonomous or opcontrol</span>
+<a id="__codelineno-0-146" name="__codelineno-0-146"></a><span class="cm"> * starts.</span>
+<a id="__codelineno-0-147" name="__codelineno-0-147"></a><span class="cm"> */</span>
+<a id="__codelineno-0-148" name="__codelineno-0-148"></a><span class="kt">void</span><span class="w"> </span><span class="nf">competition_initialize</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-0-149" name="__codelineno-0-149"></a>
+<a id="__codelineno-0-150" name="__codelineno-0-150"></a><span class="cm">/**</span>
+<a id="__codelineno-0-151" name="__codelineno-0-151"></a><span class="cm"> * Runs the user autonomous code. This function will be started in its own task</span>
+<a id="__codelineno-0-152" name="__codelineno-0-152"></a><span class="cm"> * with the default priority and stack size whenever the robot is enabled via</span>
+<a id="__codelineno-0-153" name="__codelineno-0-153"></a><span class="cm"> * the Field Management System or the VEX Competition Switch in the autonomous</span>
+<a id="__codelineno-0-154" name="__codelineno-0-154"></a><span class="cm"> * mode. Alternatively, this function may be called in initialize or opcontrol</span>
+<a id="__codelineno-0-155" name="__codelineno-0-155"></a><span class="cm"> * for non-competition testing purposes.</span>
+<a id="__codelineno-0-156" name="__codelineno-0-156"></a><span class="cm"> *</span>
+<a id="__codelineno-0-157" name="__codelineno-0-157"></a><span class="cm"> * If the robot is disabled or communications is lost, the autonomous task</span>
+<a id="__codelineno-0-158" name="__codelineno-0-158"></a><span class="cm"> * will be stopped. Re-enabling the robot will restart the task, not re-start it</span>
+<a id="__codelineno-0-159" name="__codelineno-0-159"></a><span class="cm"> * from where it left off.</span>
+<a id="__codelineno-0-160" name="__codelineno-0-160"></a><span class="cm"> */</span>
+<a id="__codelineno-0-161" name="__codelineno-0-161"></a><span class="kt">void</span><span class="w"> </span><span class="nf">autonomous</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-162" name="__codelineno-0-162"></a><span class="w">  </span><span class="c1">// setting the default values for the odometry</span>
+<a id="__codelineno-0-163" name="__codelineno-0-163"></a><span class="w">  </span><span class="c1">// our team uses a placement guide so this number stays consistent</span>
+<a id="__codelineno-0-164" name="__codelineno-0-164"></a><span class="w">  </span><span class="n">chassis</span><span class="o">-&gt;</span><span class="n">setState</span><span class="p">({</span><span class="mi">0</span><span class="n">_in</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="n">_in</span><span class="p">});</span>
+<a id="__codelineno-0-165" name="__codelineno-0-165"></a><span class="w">  </span><span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnAngle</span><span class="p">(</span><span class="mi">45</span><span class="n">_deg</span><span class="p">);</span>
+<a id="__codelineno-0-166" name="__codelineno-0-166"></a><span class="w">  </span><span class="n">chassis</span><span class="o">-&gt;</span><span class="n">turnAngle</span><span class="p">(</span><span class="mi">45</span><span class="n">_deg</span><span class="p">);</span>
+<a id="__codelineno-0-167" name="__codelineno-0-167"></a><span class="w">  </span><span class="n">chassis</span><span class="o">-&gt;</span><span class="n">driveToPoint</span><span class="p">({</span><span class="mi">0</span><span class="n">_in</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="n">_in</span><span class="p">},</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="n">_in</span><span class="p">);</span>
+<a id="__codelineno-0-168" name="__codelineno-0-168"></a><span class="p">}</span>
+<a id="__codelineno-0-169" name="__codelineno-0-169"></a>
+<a id="__codelineno-0-170" name="__codelineno-0-170"></a><span class="cm">/**</span>
+<a id="__codelineno-0-171" name="__codelineno-0-171"></a><span class="cm"> * Runs the operator control code. This function will be started in its own task</span>
+<a id="__codelineno-0-172" name="__codelineno-0-172"></a><span class="cm"> * with the default priority and stack size whenever the robot is enabled via</span>
+<a id="__codelineno-0-173" name="__codelineno-0-173"></a><span class="cm"> * the Field Management System or the VEX Competition Switch in the operator</span>
+<a id="__codelineno-0-174" name="__codelineno-0-174"></a><span class="cm"> * control mode.</span>
+<a id="__codelineno-0-175" name="__codelineno-0-175"></a><span class="cm"> *</span>
+<a id="__codelineno-0-176" name="__codelineno-0-176"></a><span class="cm"> * If no competition control is connected, this function will run immediately</span>
+<a id="__codelineno-0-177" name="__codelineno-0-177"></a><span class="cm"> * following initialize().</span>
+<a id="__codelineno-0-178" name="__codelineno-0-178"></a><span class="cm"> *</span>
+<a id="__codelineno-0-179" name="__codelineno-0-179"></a><span class="cm"> * If the robot is disabled or communications is lost, the</span>
+<a id="__codelineno-0-180" name="__codelineno-0-180"></a><span class="cm"> * operator control task will be stopped. Re-enabling the robot will restart the</span>
+<a id="__codelineno-0-181" name="__codelineno-0-181"></a><span class="cm"> * task, not resume it from where it left off.</span>
+<a id="__codelineno-0-182" name="__codelineno-0-182"></a><span class="cm"> */</span>
+<a id="__codelineno-0-183" name="__codelineno-0-183"></a><span class="kt">void</span><span class="w"> </span><span class="nf">opcontrol</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-184" name="__codelineno-0-184"></a><span class="w">  </span><span class="c1">// main while loop</span>
+<a id="__codelineno-0-185" name="__codelineno-0-185"></a><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-186" name="__codelineno-0-186"></a><span class="w">    </span><span class="c1">// sets the speed of the drivetrain motors according to the controller</span>
+<a id="__codelineno-0-187" name="__codelineno-0-187"></a><span class="w">    </span><span class="c1">// joystick positions ranges -127 to 127</span>
+<a id="__codelineno-0-188" name="__codelineno-0-188"></a><span class="w">    </span><span class="n">update_drivetrain</span><span class="p">();</span>
+<a id="__codelineno-0-189" name="__codelineno-0-189"></a><span class="w">    </span><span class="c1">// extension</span>
+<a id="__codelineno-0-190" name="__codelineno-0-190"></a><span class="w">    </span><span class="n">extension</span><span class="p">();</span>
+<a id="__codelineno-0-191" name="__codelineno-0-191"></a><span class="w">    </span><span class="c1">// roller mech</span>
+<a id="__codelineno-0-192" name="__codelineno-0-192"></a><span class="w">    </span><span class="n">roll_roller</span><span class="p">();</span>
+<a id="__codelineno-0-193" name="__codelineno-0-193"></a><span class="w">    </span><span class="c1">// temperature rumble</span>
+<a id="__codelineno-0-194" name="__codelineno-0-194"></a><span class="w">    </span><span class="c1">// temp_rumble();</span>
+<a id="__codelineno-0-195" name="__codelineno-0-195"></a><span class="w">    </span><span class="c1">// final delay</span>
+<a id="__codelineno-0-196" name="__codelineno-0-196"></a><span class="w">    </span><span class="c1">// lUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);</span>
+<a id="__codelineno-0-197" name="__codelineno-0-197"></a><span class="w">    </span><span class="c1">// rUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);</span>
+<a id="__codelineno-0-198" name="__codelineno-0-198"></a><span class="w">    </span><span class="n">pros</span><span class="o">::</span><span class="n">delay</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<a id="__codelineno-0-199" name="__codelineno-0-199"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-200" name="__codelineno-0-200"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">robot.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">  1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">  2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">  3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">  4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">  5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">  6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">  7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">  8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">  9</a></span>
+<span class="normal"><a href="#__codelineno-1-10"> 10</a></span>
+<span class="normal"><a href="#__codelineno-1-11"> 11</a></span>
+<span class="normal"><a href="#__codelineno-1-12"> 12</a></span>
+<span class="normal"><a href="#__codelineno-1-13"> 13</a></span>
+<span class="normal"><a href="#__codelineno-1-14"> 14</a></span>
+<span class="normal"><a href="#__codelineno-1-15"> 15</a></span>
+<span class="normal"><a href="#__codelineno-1-16"> 16</a></span>
+<span class="normal"><a href="#__codelineno-1-17"> 17</a></span>
+<span class="normal"><a href="#__codelineno-1-18"> 18</a></span>
+<span class="normal"><a href="#__codelineno-1-19"> 19</a></span>
+<span class="normal"><a href="#__codelineno-1-20"> 20</a></span>
+<span class="normal"><a href="#__codelineno-1-21"> 21</a></span>
+<span class="normal"><a href="#__codelineno-1-22"> 22</a></span>
+<span class="normal"><a href="#__codelineno-1-23"> 23</a></span>
+<span class="normal"><a href="#__codelineno-1-24"> 24</a></span>
+<span class="normal"><a href="#__codelineno-1-25"> 25</a></span>
+<span class="normal"><a href="#__codelineno-1-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-1-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-1-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-1-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-1-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-1-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-1-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-1-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-1-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-1-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-1-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-1-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-1-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-1-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-1-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-1-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-1-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-1-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-1-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-1-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-1-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-1-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-1-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-1-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-1-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-1-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-1-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-1-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-1-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-1-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-1-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-1-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-1-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-1-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-1-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-1-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-1-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-1-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-1-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-1-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-1-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-1-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-1-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-1-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-1-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-1-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-1-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-1-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-1-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-1-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-1-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-1-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-1-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-1-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-1-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-1-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-1-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-1-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-1-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-1-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-1-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-1-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-1-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-1-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-1-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-1-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-1-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-1-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-1-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-1-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-1-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-1-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-1-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-1-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-1-100">100</a></span>
+<span class="normal"><a href="#__codelineno-1-101">101</a></span>
+<span class="normal"><a href="#__codelineno-1-102">102</a></span>
+<span class="normal"><a href="#__codelineno-1-103">103</a></span>
+<span class="normal"><a href="#__codelineno-1-104">104</a></span>
+<span class="normal"><a href="#__codelineno-1-105">105</a></span>
+<span class="normal"><a href="#__codelineno-1-106">106</a></span>
+<span class="normal"><a href="#__codelineno-1-107">107</a></span>
+<span class="normal"><a href="#__codelineno-1-108">108</a></span>
+<span class="normal"><a href="#__codelineno-1-109">109</a></span>
+<span class="normal"><a href="#__codelineno-1-110">110</a></span>
+<span class="normal"><a href="#__codelineno-1-111">111</a></span>
+<span class="normal"><a href="#__codelineno-1-112">112</a></span>
+<span class="normal"><a href="#__codelineno-1-113">113</a></span>
+<span class="normal"><a href="#__codelineno-1-114">114</a></span>
+<span class="normal"><a href="#__codelineno-1-115">115</a></span>
+<span class="normal"><a href="#__codelineno-1-116">116</a></span>
+<span class="normal"><a href="#__codelineno-1-117">117</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="cp">#pragma once </span><span class="c1">// prevents the file from being included multiple times</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="c1">// includes all needed files</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;functions.hpp&quot;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;main.h&quot;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/api/chassis/controller/chassisControllerIntegrated.hpp&quot;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/api/chassis/controller/odomChassisController.hpp&quot;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/api/chassis/model/chassisModel.hpp&quot;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/api/device/motor/abstractMotor.hpp&quot;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/api/units/QLength.hpp&quot;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/api/units/RQuantity.hpp&quot;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/api/util/logging.hpp&quot;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/api/util/mathUtil.hpp&quot;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/impl/chassis/controller/chassisControllerBuilder.hpp&quot;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;okapi/impl/device/motor/motorGroup.hpp&quot;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;pros/adi.h&quot;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;pros/adi.hpp&quot;</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;pros/misc.h&quot;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;pros/motors.h&quot;</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;pros/rtos.hpp&quot;</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="c1">// global</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="c1">// stores motor port values</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="c1">// motor 3 on both sides is attached to the PTO</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="cp">#define RIGHT_DRIVE_MOTOR1_PORT 1</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="cp">#define RIGHT_DRIVE_MOTOR2_PORT 2</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="cp">#define RIGHT_DRIVE_MOTOR3_PORT 3</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="cp">#define RIGHT_DRIVE_MOTOR4_PORT 4</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="cp">#define LEFT_DRIVE_MOTOR1_PORT 5</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="cp">#define LEFT_DRIVE_MOTOR2_PORT 6</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="cp">#define LEFT_DRIVE_MOTOR3_PORT 7 </span><span class="c1">// roller mech motor</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="cp">#define LEFT_DRIVE_MOTOR4_PORT 8</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RIGHT_DRIVE_MOTOR_PORTS</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40"></a>
+<a id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="c1">// stores the gearing of the drivetrain</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="cp">#define OKAPI_DRIVE_GEARSET                                                    \</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="cp">  okapi::AbstractMotor::gearset::blue </span><span class="c1">// blue motor RPM (600)</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44"></a><span class="cp">#define OKAPI_DRIVE_TPR                                                        \</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45"></a><span class="cp">  okapi::imev5BlueTPR </span><span class="c1">// gear ticks per rotation in a blue motor cartridge</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46"></a><span class="cp">#define DRIVE_GEARMOTOR                                                        \</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="cp">  36.0 </span><span class="c1">// gear tooth count on the axle attached to the motor</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="cp">#define DRIVE_GEARWHEEL                                                        \</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49"></a><span class="cp">  60.0 </span><span class="c1">// gear tooth count on the axle attached to the wheel</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50"></a>
+<a id="__codelineno-1-51" name="__codelineno-1-51"></a><span class="c1">// stores the dimensions of the drivetrain</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52"></a><span class="cp">#define CHASSIS_TRACK                                                          \</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53"></a><span class="cp">  14.25_in </span><span class="c1">// distance between the inside edge of wheels on the same axle</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54"></a><span class="cp">#define CHASSIS_WHEELS 3.25_in </span><span class="c1">// diameter of drivetrain wheels</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55"></a>
+<a id="__codelineno-1-56" name="__codelineno-1-56"></a><span class="c1">// stores ports of the pistons used for the PTO mech</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57"></a><span class="cp">#define LEFT_DIGITAL_SENSOR_PORT &#39;A&#39;</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58"></a><span class="cp">#define RIGHT_DIGITAL_SENSOR_PORT &#39;B&#39;</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59"></a>
+<a id="__codelineno-1-60" name="__codelineno-1-60"></a><span class="c1">// stores port of the piston used for catapult</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61"></a><span class="cp">#define CATAPULT_DIGITAL_SENSOR_PORT &#39;C&#39; </span><span class="c1">//TODO: remove all code to do with catapult piston</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62"></a>
+<a id="__codelineno-1-63" name="__codelineno-1-63"></a><span class="c1">// stores port of the piston used for extension</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64"></a><span class="cp">#define EXTENSION_DIGITAL_SENSOR_PORT &#39;D&#39;</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65"></a>
+<a id="__codelineno-1-66" name="__codelineno-1-66"></a><span class="c1">// stores port of the pullback limit switch</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67"></a><span class="cp">#define PULLLIMIT_DIGITAL_SENSOR_PORT &#39;H&#39;</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68"></a>
+<a id="__codelineno-1-69" name="__codelineno-1-69"></a><span class="c1">// okapilib</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70"></a><span class="k">extern</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">okapi</span><span class="o">::</span><span class="n">Controller</span><span class="o">&gt;</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71"></a><span class="w">    </span><span class="n">okapiController</span><span class="p">;</span><span class="w"> </span><span class="c1">// okapilib controller</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72"></a><span class="k">extern</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">okapi</span><span class="o">::</span><span class="n">OdomChassisController</span><span class="o">&gt;</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73"></a><span class="w">    </span><span class="n">chassis</span><span class="p">;</span><span class="w">                       </span><span class="c1">// okapilib odometry controller</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74"></a><span class="k">extern</span><span class="w"> </span><span class="n">okapi</span><span class="o">::</span><span class="n">MotorGroup</span><span class="w"> </span><span class="n">okapiLDM</span><span class="p">;</span><span class="w"> </span><span class="c1">// drivetrain left motor group</span>
+<a id="__codelineno-1-75" name="__codelineno-1-75"></a><span class="k">extern</span><span class="w"> </span><span class="n">okapi</span><span class="o">::</span><span class="n">MotorGroup</span><span class="w"> </span><span class="n">okapiRDM</span><span class="p">;</span><span class="w"> </span><span class="c1">// drivetrain right motor group</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76"></a>
+<a id="__codelineno-1-77" name="__codelineno-1-77"></a><span class="cp">#define OKAPI_DRIVE_MEASURE okapi::AbstractMotor::encoderUnits::degrees</span>
+<a id="__codelineno-1-78" name="__codelineno-1-78"></a>
+<a id="__codelineno-1-79" name="__codelineno-1-79"></a><span class="c1">// pros</span>
+<a id="__codelineno-1-80" name="__codelineno-1-80"></a><span class="cp">#define PROS_DRIVE_GEARSET pros::E_MOTOR_GEAR_BLUE </span><span class="c1">// blue motor (600rpm)</span>
+<a id="__codelineno-1-81" name="__codelineno-1-81"></a><span class="cp">#define PROS_DRIVE_MEASURE                                                     \</span>
+<a id="__codelineno-1-82" name="__codelineno-1-82"></a><span class="cp">  pros::E_MOTOR_ENCODER_DEGREES </span><span class="c1">// encoder measures in degrees</span>
+<a id="__codelineno-1-83" name="__codelineno-1-83"></a>
+<a id="__codelineno-1-84" name="__codelineno-1-84"></a><span class="c1">// pros object declarations</span>
+<a id="__codelineno-1-85" name="__codelineno-1-85"></a>
+<a id="__codelineno-1-86" name="__codelineno-1-86"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">Controller</span><span class="w"> </span><span class="n">prosController</span><span class="p">;</span><span class="w"> </span><span class="c1">// pros contorller</span>
+<a id="__codelineno-1-87" name="__codelineno-1-87"></a>
+<a id="__codelineno-1-88" name="__codelineno-1-88"></a><span class="c1">// declares pto motors</span>
+<a id="__codelineno-1-89" name="__codelineno-1-89"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="n">lUFM</span><span class="p">;</span><span class="w"> </span><span class="c1">// left upper front motor</span>
+<a id="__codelineno-1-90" name="__codelineno-1-90"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="n">rUFM</span><span class="p">;</span><span class="w"> </span><span class="c1">// right upper front motor</span>
+<a id="__codelineno-1-91" name="__codelineno-1-91"></a>
+<a id="__codelineno-1-92" name="__codelineno-1-92"></a><span class="c1">// declares other motors</span>
+<a id="__codelineno-1-93" name="__codelineno-1-93"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="n">rUBM</span><span class="p">;</span><span class="w"> </span><span class="c1">// right upper back motor</span>
+<a id="__codelineno-1-94" name="__codelineno-1-94"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="n">lUBM</span><span class="p">;</span><span class="w"> </span><span class="c1">// left upper back motor</span>
+<a id="__codelineno-1-95" name="__codelineno-1-95"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="n">rLFM</span><span class="p">;</span><span class="w"> </span><span class="c1">// right lower front motor</span>
+<a id="__codelineno-1-96" name="__codelineno-1-96"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="n">lLFM</span><span class="p">;</span><span class="w"> </span><span class="c1">// left lower front motor</span>
+<a id="__codelineno-1-97" name="__codelineno-1-97"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="n">rLBM</span><span class="p">;</span><span class="w"> </span><span class="c1">// right lower back motor</span>
+<a id="__codelineno-1-98" name="__codelineno-1-98"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="n">lLBM</span><span class="p">;</span><span class="w"> </span><span class="c1">// left lower back motor</span>
+<a id="__codelineno-1-99" name="__codelineno-1-99"></a>
+<a id="__codelineno-1-100" name="__codelineno-1-100"></a><span class="c1">// declare motor groups</span>
+<a id="__codelineno-1-101" name="__codelineno-1-101"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">Motor_Group</span><span class="w"> </span><span class="n">prosLDM</span><span class="p">;</span><span class="w"> </span><span class="c1">// pros left drive motors</span>
+<a id="__codelineno-1-102" name="__codelineno-1-102"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">Motor_Group</span><span class="w"> </span><span class="n">prosRDM</span><span class="p">;</span><span class="w"> </span><span class="c1">// pros right drive motors</span>
+<a id="__codelineno-1-103" name="__codelineno-1-103"></a>
+<a id="__codelineno-1-104" name="__codelineno-1-104"></a><span class="c1">// declare pneumatic pistons</span>
+<a id="__codelineno-1-105" name="__codelineno-1-105"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">ADIDigitalOut</span><span class="w"> </span><span class="n">leftPiston</span><span class="p">;</span><span class="w">   </span><span class="c1">// left PTO piston</span>
+<a id="__codelineno-1-106" name="__codelineno-1-106"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">ADIDigitalOut</span><span class="w"> </span><span class="n">rightPiston</span><span class="p">;</span><span class="w">  </span><span class="c1">// right PTO piston</span>
+<a id="__codelineno-1-107" name="__codelineno-1-107"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">ADIDigitalOut</span><span class="w"> </span><span class="n">catapultLock</span><span class="p">;</span><span class="w"> </span><span class="c1">// catapult piston</span>
+<a id="__codelineno-1-108" name="__codelineno-1-108"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">ADIDigitalOut</span><span class="w"> </span><span class="n">jerry</span><span class="p">;</span><span class="w">        </span><span class="c1">// extension piston</span>
+<a id="__codelineno-1-109" name="__codelineno-1-109"></a>
+<a id="__codelineno-1-110" name="__codelineno-1-110"></a><span class="c1">// declare windback limit switch</span>
+<a id="__codelineno-1-111" name="__codelineno-1-111"></a><span class="k">extern</span><span class="w"> </span><span class="n">pros</span><span class="o">::</span><span class="n">ADIDigitalIn</span><span class="w"> </span><span class="n">windbackLimit</span><span class="p">;</span>
+<a id="__codelineno-1-112" name="__codelineno-1-112"></a>
+<a id="__codelineno-1-113" name="__codelineno-1-113"></a><span class="c1">// makes ptoActivated a global variable</span>
+<a id="__codelineno-1-114" name="__codelineno-1-114"></a><span class="k">extern</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">ptoActivated</span><span class="p">;</span>
+<a id="__codelineno-1-115" name="__codelineno-1-115"></a><span class="k">extern</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">extensionActivated</span><span class="p">;</span>
+<a id="__codelineno-1-116" name="__codelineno-1-116"></a><span class="k">extern</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">windingBack</span><span class="p">;</span>
+<a id="__codelineno-1-117" name="__codelineno-1-117"></a><span class="k">extern</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">intakeActivated</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p></br></p>
+<div class="admonition abstract inline end">
+<p class="admonition-title">Note</p>
+<p>Variables are stored here primarily for readability purposes throughout the codebase, although it also enables modularity through the use of global variables.</p>
+</div>
+<p>This file contains the variable definitions used in the odometry controller constructor in main.cpp.</p>
+<p>We utilized global objects at the bottom of the file for modularity, allowing for multiple files to utilize the same objects.</p>
+<pre class="mermaid"><code>graph LR
+A[#include] --&gt; B{Already included?};
+B ---&gt;|Yes| C(Ignore);
+B ---&gt;|No| D(Include);
+C --&gt; E(No double inclusion);</code></pre>
+<div class="admonition info inline end">
+<p class="admonition-title">Info</p>
+<p><code class="highlight"><span class="cp">#pragma</span></code> serves as way to give the compiler a configuration setting before compiling the program.</p>
+</div>
+<p>This chart illustrates the importance of the use of <code class="highlight"><span class="cp">#pragma once</span></code> at the beginning of the header file.</p>
+<p><code class="highlight"><span class="cp">#pragma once</span></code> acts very similarly to a <code class="highlight"><span class="cp">#ifndef</span></code> header guard.</p>
+<pre class="mermaid"><code>graph LR
+A(Header file)
+B(File A)
+C(File B)
+D[#pragma once in header file]
+%%E(Header only included once)
+A --&gt;|#include| B;
+B --&gt;|#include| D;
+A --&gt;|#include| C;
+C --&gt; E;
+D --&gt;|Header not included again| C;
+E --&gt; F(No double inclusion);</code></pre>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">functions.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">  1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">  2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">  3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">  4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">  5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">  6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">  7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">  8</a></span>
+<span class="normal"><a href="#__codelineno-2-9">  9</a></span>
+<span class="normal"><a href="#__codelineno-2-10"> 10</a></span>
+<span class="normal"><a href="#__codelineno-2-11"> 11</a></span>
+<span class="normal"><a href="#__codelineno-2-12"> 12</a></span>
+<span class="normal"><a href="#__codelineno-2-13"> 13</a></span>
+<span class="normal"><a href="#__codelineno-2-14"> 14</a></span>
+<span class="normal"><a href="#__codelineno-2-15"> 15</a></span>
+<span class="normal"><a href="#__codelineno-2-16"> 16</a></span>
+<span class="normal"><a href="#__codelineno-2-17"> 17</a></span>
+<span class="normal"><a href="#__codelineno-2-18"> 18</a></span>
+<span class="normal"><a href="#__codelineno-2-19"> 19</a></span>
+<span class="normal"><a href="#__codelineno-2-20"> 20</a></span>
+<span class="normal"><a href="#__codelineno-2-21"> 21</a></span>
+<span class="normal"><a href="#__codelineno-2-22"> 22</a></span>
+<span class="normal"><a href="#__codelineno-2-23"> 23</a></span>
+<span class="normal"><a href="#__codelineno-2-24"> 24</a></span>
+<span class="normal"><a href="#__codelineno-2-25"> 25</a></span>
+<span class="normal"><a href="#__codelineno-2-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-2-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-2-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-2-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-2-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-2-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-2-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-2-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-2-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-2-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-2-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-2-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-2-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-2-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-2-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-2-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-2-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-2-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-2-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-2-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-2-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-2-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-2-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-2-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-2-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-2-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-2-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-2-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-2-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-2-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-2-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-2-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-2-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-2-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-2-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-2-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-2-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-2-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-2-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-2-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-2-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-2-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-2-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-2-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-2-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-2-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-2-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-2-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-2-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-2-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-2-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-2-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-2-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-2-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-2-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-2-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-2-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-2-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-2-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-2-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-2-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-2-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-2-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-2-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-2-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-2-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-2-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-2-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-2-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-2-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-2-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-2-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-2-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-2-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-2-100">100</a></span>
+<span class="normal"><a href="#__codelineno-2-101">101</a></span>
+<span class="normal"><a href="#__codelineno-2-102">102</a></span>
+<span class="normal"><a href="#__codelineno-2-103">103</a></span>
+<span class="normal"><a href="#__codelineno-2-104">104</a></span>
+<span class="normal"><a href="#__codelineno-2-105">105</a></span>
+<span class="normal"><a href="#__codelineno-2-106">106</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;pros/adi.h&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;robot.hpp&quot;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">// toggles the PTO mechanism</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="kt">void</span><span class="w"> </span><span class="nf">toggle_pto</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="c1">// if controller&#39;s front right bumper is pressed, toggles the PTO mechanism</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prosController</span><span class="p">.</span><span class="n">get_digital_new_press</span><span class="p">(</span><span class="n">pros</span><span class="o">::</span><span class="n">E_CONTROLLER_DIGITAL_X</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="n">ptoActivated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">ptoActivated</span><span class="p">;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="n">rightPiston</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">ptoActivated</span><span class="p">);</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">    </span><span class="n">leftPiston</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">ptoActivated</span><span class="p">);</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="p">}</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="cm">/* utility function to shorten code</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="cm"> * sets the speed of the pto motors.</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="cm"> * @param speed The speed that the PTO motors will be set to.</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="cm"> * 127 to -127</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="cm"> */</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="kt">void</span><span class="w"> </span><span class="nf">set_ptom_speed</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">speed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">  </span><span class="n">lUFM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">speed</span><span class="p">;</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">  </span><span class="n">rUFM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">speed</span><span class="p">;</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="p">}</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="kt">void</span><span class="w"> </span><span class="nf">update_controller</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;t&quot;</span><span class="p">;</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">off</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;f&quot;</span><span class="p">;</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">onValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">on</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">offValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">off</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ptoActivated</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="w">    </span><span class="n">prosController</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">onValue</span><span class="p">);</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a><span class="w">    </span><span class="n">prosController</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">offValue</span><span class="p">);</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a><span class="p">}</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="c1">// the set of controls used when the PTO is activated</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a><span class="kt">void</span><span class="w"> </span><span class="nf">pto_controls</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a><span class="w">  </span><span class="c1">// if the PTO is activated, check for a controller input to move the motors</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a><span class="w">  </span><span class="c1">// attached to the PTO, otherwise, don&#39;t move motors</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38"></a>
+<a id="__codelineno-2-39" name="__codelineno-2-39"></a><span class="w">  </span><span class="c1">// Input logic</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prosController</span><span class="p">.</span><span class="n">get_digital_new_press</span><span class="p">(</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41"></a><span class="w">          </span><span class="n">pros</span><span class="o">::</span><span class="n">E_CONTROLLER_DIGITAL_R2</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// check if r2 has been pressed</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42"></a><span class="w">    </span><span class="n">windingBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// update value, user wants to windback catapult</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prosController</span><span class="p">.</span><span class="n">get_digital_new_press</span><span class="p">(</span><span class="n">pros</span><span class="o">::</span><span class="n">E_CONTROLLER_DIGITAL_L1</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45"></a><span class="w">    </span><span class="n">intakeActivated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">intakeActivated</span><span class="p">;</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-47" name="__codelineno-2-47"></a><span class="w">  </span><span class="n">pros</span><span class="o">::</span><span class="n">delay</span><span class="p">(</span><span class="mi">300</span><span class="p">);</span>
+<a id="__codelineno-2-48" name="__codelineno-2-48"></a><span class="w">  </span><span class="c1">// activation logic</span>
+<a id="__codelineno-2-49" name="__codelineno-2-49"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ptoActivated</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// check if PTO is engaged into windback/intake mode</span>
+<a id="__codelineno-2-50" name="__codelineno-2-50"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">windingBack</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51"></a><span class="w">        </span><span class="o">!</span><span class="n">windbackLimit</span>
+<a id="__codelineno-2-52" name="__codelineno-2-52"></a><span class="w">             </span><span class="p">.</span><span class="n">get_new_press</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// check if the user wants to windback the</span>
+<a id="__codelineno-2-53" name="__codelineno-2-53"></a><span class="w">                                 </span><span class="c1">// catapult and if the catapult cant be wound</span>
+<a id="__codelineno-2-54" name="__codelineno-2-54"></a><span class="w">      </span><span class="n">set_ptom_speed</span><span class="p">(</span><span class="mi">127</span><span class="p">);</span><span class="w">       </span><span class="c1">// windback the catapult</span>
+<a id="__codelineno-2-55" name="__codelineno-2-55"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-56" name="__codelineno-2-56"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">intakeActivated</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-57" name="__codelineno-2-57"></a><span class="w">        </span><span class="n">set_ptom_speed</span><span class="p">(</span><span class="mi">-127</span><span class="p">);</span>
+<a id="__codelineno-2-58" name="__codelineno-2-58"></a><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-59" name="__codelineno-2-59"></a><span class="w">        </span><span class="n">set_ptom_speed</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-2-60" name="__codelineno-2-60"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-2-61" name="__codelineno-2-61"></a><span class="w">      </span><span class="n">windingBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-2-62" name="__codelineno-2-62"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-63" name="__codelineno-2-63"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-64" name="__codelineno-2-64"></a><span class="p">}</span>
+<a id="__codelineno-2-65" name="__codelineno-2-65"></a>
+<a id="__codelineno-2-66" name="__codelineno-2-66"></a><span class="kt">void</span><span class="w"> </span><span class="nf">extension</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-67" name="__codelineno-2-67"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">prosController</span><span class="p">.</span><span class="n">get_digital_new_press</span><span class="p">(</span><span class="n">pros</span><span class="o">::</span><span class="n">E_CONTROLLER_DIGITAL_A</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-68" name="__codelineno-2-68"></a><span class="w">    </span><span class="n">jerry</span><span class="p">.</span><span class="n">set_value</span><span class="p">(</span><span class="o">!</span><span class="n">extensionActivated</span><span class="p">);</span>
+<a id="__codelineno-2-69" name="__codelineno-2-69"></a><span class="w">    </span><span class="n">extensionActivated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">extensionActivated</span><span class="p">;</span>
+<a id="__codelineno-2-70" name="__codelineno-2-70"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-71" name="__codelineno-2-71"></a><span class="p">}</span>
+<a id="__codelineno-2-72" name="__codelineno-2-72"></a>
+<a id="__codelineno-2-73" name="__codelineno-2-73"></a><span class="c1">// only rumbles once to not annoy the driver</span>
+<a id="__codelineno-2-74" name="__codelineno-2-74"></a><span class="kt">bool</span><span class="w"> </span><span class="n">firstRumble</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a id="__codelineno-2-75" name="__codelineno-2-75"></a>
+<a id="__codelineno-2-76" name="__codelineno-2-76"></a><span class="c1">// array of motors to iterate through.</span>
+<a id="__codelineno-2-77" name="__codelineno-2-77"></a><span class="n">pros</span><span class="o">::</span><span class="n">Motor</span><span class="w"> </span><span class="n">motors</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">rLFM</span><span class="p">,</span><span class="w"> </span><span class="n">rLBM</span><span class="p">,</span><span class="w"> </span><span class="n">rUFM</span><span class="p">,</span><span class="w"> </span><span class="n">rUBM</span><span class="p">,</span><span class="w"> </span><span class="n">lLFM</span><span class="p">,</span><span class="w"> </span><span class="n">lLBM</span><span class="p">,</span><span class="w"> </span><span class="n">lUFM</span><span class="p">,</span><span class="w"> </span><span class="n">lUBM</span><span class="p">};</span>
+<a id="__codelineno-2-78" name="__codelineno-2-78"></a>
+<a id="__codelineno-2-79" name="__codelineno-2-79"></a><span class="kt">void</span><span class="w"> </span><span class="nf">temp_rumble</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-80" name="__codelineno-2-80"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">firstRumble</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-81" name="__codelineno-2-81"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">motors</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-82" name="__codelineno-2-82"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">motors</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">get_temperature</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">40</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-83" name="__codelineno-2-83"></a><span class="w">        </span><span class="n">firstRumble</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-2-84" name="__codelineno-2-84"></a><span class="w">        </span><span class="n">prosController</span><span class="p">.</span><span class="n">rumble</span><span class="p">(</span><span class="s">&quot;...&quot;</span><span class="p">);</span>
+<a id="__codelineno-2-85" name="__codelineno-2-85"></a><span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-2-86" name="__codelineno-2-86"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-2-87" name="__codelineno-2-87"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-88" name="__codelineno-2-88"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-89" name="__codelineno-2-89"></a><span class="p">}</span>
+<a id="__codelineno-2-90" name="__codelineno-2-90"></a><span class="c1">// function to actuate drivetrain. uses 6 vs 8 motors depending on status of</span>
+<a id="__codelineno-2-91" name="__codelineno-2-91"></a><span class="c1">// pto.</span>
+<a id="__codelineno-2-92" name="__codelineno-2-92"></a><span class="kt">void</span><span class="w"> </span><span class="nf">update_drivetrain</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-93" name="__codelineno-2-93"></a><span class="w">  </span><span class="cm">/* if (ptoActivated) {</span>
+<a id="__codelineno-2-94" name="__codelineno-2-94"></a><span class="cm">     lUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);</span>
+<a id="__codelineno-2-95" name="__codelineno-2-95"></a><span class="cm">     rUFM = prosController.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);</span>
+<a id="__codelineno-2-96" name="__codelineno-2-96"></a><span class="cm">   } */</span>
+<a id="__codelineno-2-97" name="__codelineno-2-97"></a><span class="w">  </span><span class="n">prosLDM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prosController</span><span class="p">.</span><span class="n">get_analog</span><span class="p">(</span><span class="n">pros</span><span class="o">::</span><span class="n">E_CONTROLLER_ANALOG_LEFT_Y</span><span class="p">);</span>
+<a id="__codelineno-2-98" name="__codelineno-2-98"></a><span class="w">  </span><span class="n">prosRDM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prosController</span><span class="p">.</span><span class="n">get_analog</span><span class="p">(</span><span class="n">pros</span><span class="o">::</span><span class="n">E_CONTROLLER_ANALOG_RIGHT_Y</span><span class="p">);</span>
+<a id="__codelineno-2-99" name="__codelineno-2-99"></a><span class="p">}</span>
+<a id="__codelineno-2-100" name="__codelineno-2-100"></a>
+<a id="__codelineno-2-101" name="__codelineno-2-101"></a><span class="c1">// function to actuate the roller mech. uses up and down arrows to spin the</span>
+<a id="__codelineno-2-102" name="__codelineno-2-102"></a><span class="c1">// roller mech</span>
+<a id="__codelineno-2-103" name="__codelineno-2-103"></a><span class="kt">void</span><span class="w"> </span><span class="nf">roll_roller</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-104" name="__codelineno-2-104"></a><span class="w">  </span><span class="n">lUFM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">prosController</span><span class="p">.</span><span class="n">get_digital</span><span class="p">(</span><span class="n">pros</span><span class="o">::</span><span class="n">E_CONTROLLER_DIGITAL_UP</span><span class="p">)</span><span class="w"> </span><span class="o">-</span>
+<a id="__codelineno-2-105" name="__codelineno-2-105"></a><span class="w">                </span><span class="n">prosController</span><span class="p">.</span><span class="n">get_digital</span><span class="p">(</span><span class="n">pros</span><span class="o">::</span><span class="n">E_CONTROLLER_DIGITAL_DOWN</span><span class="p">));</span>
+<a id="__codelineno-2-106" name="__codelineno-2-106"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">functions.hpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="cp">#pragma once </span><span class="c1">// explanation under robot.h</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="c1">// functions in functions.cpp</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="kt">void</span><span class="w"> </span><span class="nf">toggle_pto</span><span class="p">();</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="kt">void</span><span class="w"> </span><span class="nf">pto_controls</span><span class="p">();</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="kt">void</span><span class="w"> </span><span class="nf">extension</span><span class="p">();</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="kt">void</span><span class="w"> </span><span class="nf">temp_rumble</span><span class="p">();</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">update_drivetrain</span><span class="p">();</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="kt">void</span><span class="w"> </span><span class="nf">update_controller</span><span class="p">();</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="kt">void</span><span class="w"> </span><span class="nf">roll_roller</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-09-25 00:51:18</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-09-25 00:51:18</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/HiddenAbilitree/9964A-PROSject" target="_blank" rel="noopener" title="9964A Repository" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.tooltips", "search.highlight", "search.suggest", "search.share", "content.tabs.link", "content.code.annotate", "navigation.expand", "navigation.tracking", "navigation.instant", "navigation.sections", "toc.integrate"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../javascripts/tablesort.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
