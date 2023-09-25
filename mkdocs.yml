@@ -20,7 +20,6 @@ nav:
   - Home: 'index.md'
   - Docs: 'docs.md'
   - GitHub: 'github.md'
-  - Design: 'design.md'
 
 # theme
 theme:
